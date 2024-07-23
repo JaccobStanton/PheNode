@@ -1,0 +1,20 @@
+/* src/components/Navbar.css */
+.navbar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  margin: auto;
+  width: 85%;
+  gap: 4rem; /* Optional: Adjust the gap between grid items */
+  border: 2px solid red; /* Red border for the grid */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc; /* Optional: Border for each grid item */
+  padding: 10px; /* Optional: Padding for each grid item */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}

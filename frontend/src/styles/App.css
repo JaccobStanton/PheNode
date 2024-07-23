@@ -1,0 +1,71 @@
+:root {
+  --midnight-blue-2: #000d30;
+  --medium-grey: #797979;
+  --blue: #1a75e0;
+  --background-blue: #001f449c;
+  --transparent: #48f7f500;
+  --green: #48f7f5;
+  --box-outline-blue: #054085b0;
+  --drf: var(--transparent);
+  --reflected-light: #764ceb33;
+  --midnight-blue: #001244;
+  --gainsboro: #e8e8e8;
+  --dark-blue: #1258aa;
+  --med-grey: #afafaf;
+  --orange: #ff8c49;
+  --bg-dark-color: #001130;
+  --dark-orange: #f57931;
+  --inactive-grey: #474a4e;
+  --sensor-card-colors: #00123100;
+  --deep-sky-blue: #25c0e9;
+  --purple: #8955e2;
+  --red: #ff484b;
+  --critical: #f7487a;
+  --div-label-color-1: #011f4db0;
+  --dark-grey-1: #2c2c2c;
+  --steel-blue: #077e9e;
+  --card-grey: #28272c;
+  --background-grey: #181818;
+  --medium-bg-blue: #04264c;
+  --div-card-color: #0a3464;
+  --no-input: var(--orange);
+  --recess: #00102f1a;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 68, 143, 8);
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+body,
+html,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.app-background {
+  background-color: var(--midnight-blue-2);
+  height: 100vh;
+  max-height: 100vh;
+  padding: 2rem;
+}
+
+.background-box {
+  border: 1px solid var(--box-outline-blue);
+  background-color: #0000;
+  background-image: radial-gradient(circle at 50% 15%, #00438f, #00102f);
+  height: auto;
+  /* width: 99%; */
+  max-height: none;
+  margin-top: 2rem;
+  margin-bottom: auto;
+  padding-top: 2rem;
+  position: relative;
+  overflow: visible;
+  margin: auto;
+}
