@@ -50,22 +50,29 @@ html,
 
 .app-background {
   background-color: var(--midnight-blue-2);
-  height: 100vh;
-  max-height: 100vh;
-  padding: 2rem;
+  height: auto;
+  padding: 3rem;
 }
 
 .background-box {
-  border: 1px solid var(--box-outline-blue);
+  border: 1.5px solid var(--box-outline-blue);
   background-color: #0000;
   background-image: radial-gradient(circle at 50% 15%, #00438f, #00102f);
   height: auto;
   /* width: 99%; */
   max-height: none;
-  margin-top: 2rem;
   margin-bottom: auto;
-  padding-top: 2rem;
+  padding-top: 3rem;
   position: relative;
   overflow: visible;
   margin: auto;
 }
+/* @media screen and (min-width: 1920px) {
+  .background-box {
+    height: auto;
+    margin-bottom: auto;
+    padding: 3rem 0 0;
+    font-size: 1.3vw;
+    line-height: 1;
+  }
+} */
