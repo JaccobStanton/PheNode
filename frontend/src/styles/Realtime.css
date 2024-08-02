@@ -1,8 +1,8 @@
-/* src/styles/CustomGrid.css */
 .realtime-grid {
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  /* gap: 1rem; */
+  /* padding: 3rem; */
   margin: auto;
   width: 85%;
   box-sizing: border-box;
@@ -22,7 +22,6 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /* padding: 1rem; */
   box-sizing: border-box;
 }
 .image-gps-grid-item {
@@ -150,7 +149,7 @@
 /* //! wireless sensor count box */
 .wireless-sensor-count-box {
   width: 70%;
-  height: 100%;
+  height: 80%;
   border: 1px solid var(--reflected-light);
   box-shadow: 0 11px 19px 1px #0000002e;
   display: flex;
@@ -201,14 +200,14 @@
 }
 
 .sensor-svg {
-  max-width: 80%;
-  max-height: 80%;
+  max-width: 85%;
+  max-height: 85%;
 }
 
 /* image and gps boxes */
 .image-gps-box {
   width: 50%;
-  height: 100%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -267,7 +266,10 @@
 
 .image-gps-box .top-image-box .image-sensor-text,
 .image-gps-box .top-image-box .sensor-status-top-box,
-.image-gps-box .top-image-box .sensor-text-operation {
+.image-gps-box .top-image-box .sensor-text-operation,
+.bottom-gps-box .gps-battery-box,
+.gps-battery-box .gps-text,
+.gps-battery-box .battery-text {
   margin: 0.3rem 0; /* Increase vertical spacing between text elements */
 }
 
@@ -277,12 +279,12 @@
 
 .image-gps-box .top-image-box .image-sensor-text {
   color: var(--blue);
-  font-size: 1.7rem;
+  font-size: 1.6rem;
 }
 
 .image-gps-box .top-image-box .sensor-status-top-box {
   color: var(--blue);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .image-gps-box .top-image-box .sensor-text-operation {
@@ -297,6 +299,7 @@
   display: flex;
   flex-direction: column; /* Ensure content is displayed in a column */
   align-items: center; /* Center content horizontally */
+  padding: 1rem;
 }
 
 .bottom-gps-box .gps-battery-box {
@@ -306,8 +309,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
-  margin-bottom: 1rem; /* Space between the top and bottom boxes */
+  box-sizing: border-box; /* Space between the top and bottom boxes */
 }
 
 .gps-battery-box .gps-text,
@@ -389,398 +391,4 @@
 }
 .right-column p {
   color: var(--green);
-}
-
-@media screen and (min-width: 1920px) {
-  .realtime-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 5rem;
-    margin: auto;
-    width: 85%;
-    box-sizing: border-box;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
-    border-top: 1.3px solid orange;
-  }
-
-  .row {
-    display: flex;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .grid-item,
-  .row-one {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    /* padding: 1rem; */
-    box-sizing: border-box;
-  }
-  .image-gps-grid-item {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  .row-one {
-    padding-top: 1rem;
-  }
-
-  /* Equal width for first row items */
-  .page-title,
-  .cell-wifi-last-measurements {
-    flex: 1;
-  }
-
-  .page-title {
-    display: flex;
-    justify-content: flex-start;
-    background-color: var(--transparent);
-    color: var(--dark-blue);
-    height: auto;
-    font-size: 2rem;
-    font-weight: 500;
-  }
-
-  /* time stamp last measurements cell wifi  */
-  .cell-wifi-last-measurements {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .box {
-    box-sizing: border-box;
-  }
-
-  .last-measurement {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem; /* Space between the top and bottom boxes */
-  }
-
-  .last-measurement-text {
-    color: var(--blue);
-    text-align: left;
-    margin-top: 0;
-    font-size: 1.2rem;
-    display: block;
-  }
-
-  .measurement-date {
-    color: var(--green);
-    font-size: 1.2rem; /* Slightly larger text */
-    margin-left: 0.5rem; /* Space between the two texts */
-  }
-
-  /* cellular and wifi signal blocks */
-  .bottom-box {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .wifi-container,
-  .cellular-container {
-    display: flex;
-    align-items: center;
-  }
-
-  .wifi-text,
-  .cellular-text {
-    font-size: 1.5rem;
-    color: var(--blue);
-    margin-right: 0.5rem;
-  }
-
-  .signal-blocks {
-    display: grid;
-    grid-template-columns: repeat(4, 1.5rem);
-    grid-row-gap: 1rem;
-    place-content: start;
-    place-items: center start;
-    height: auto;
-  }
-
-  .signal-block {
-    width: 0.9rem;
-    height: 1rem;
-    background-color: var(--green);
-    border: 1px solid #000;
-    border-radius: 0;
-    outline-offset: 0px;
-    outline: 3px #e8e8e8;
-    box-shadow: 0 0 10px 1px #1a75e0db;
-  }
-
-  /* Specific widths for second row items */
-  .twenty-five-width {
-    flex: 0 0 25%;
-  }
-
-  /* phenode diagram */
-  .img-grid-container {
-    flex: 0 0 50%;
-  }
-
-  .phenode-svg-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
-
-  .phenode-svg {
-    max-width: 100%;
-    max-height: 100%;
-  }
-
-  /* //! wireless sensor count box */
-  .wireless-sensor-count-box {
-    width: 70%;
-    height: 100%;
-    border: 1px solid var(--reflected-light);
-    box-shadow: 0 11px 19px 1px #0000002e;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    box-sizing: border-box;
-  }
-
-  .wireless-sensor-count-box .top-box,
-  .wireless-sensor-count-box .bottom-box {
-    width: 95%;
-    box-sizing: border-box;
-  }
-
-  .wireless-sensor-count-box .top-box {
-    height: 40%;
-    margin-bottom: 1rem; /* Space between the top and bottom boxes */
-    display: flex;
-    flex-direction: column; /* Set flex direction to column */
-    justify-content: center;
-    align-items: center;
-  }
-
-  .wireless-sensor-count-box .top-box .top-box-content {
-    display: flex;
-    flex-direction: column; /* Ensure content is displayed in a column */
-    align-items: center; /* Center content horizontally */
-    text-align: center; /* Center text */
-  }
-
-  .wireless-sensor-count-box .top-box .sensor-count {
-    color: var(--green);
-    font-size: 3rem;
-  }
-
-  .wireless-sensor-count-box .top-box .sensor-text {
-    color: var(--blue);
-    font-size: 1.5rem;
-  }
-
-  .wireless-sensor-count-box .bottom-box {
-    height: 60%;
-    display: flex;
-    flex-direction: column; /* Ensure content is displayed in a column */
-    align-items: center; /* Center content horizontally */
-  }
-
-  .sensor-svg {
-    max-width: 80%;
-    max-height: 80%;
-  }
-
-  /* image and gps boxes */
-  .image-gps-box {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-    box-sizing: border-box;
-    padding: 1rem 0 1rem 1rem;
-  }
-
-  .image-gps-box .top-image-box,
-  .image-gps-box .bottom-gps-box {
-    width: 95%;
-    box-sizing: border-box;
-    border: 1px solid var(--reflected-light);
-    box-shadow: 0 11px 19px 1px #0000002e;
-  }
-
-  .image-gps-box .top-image-box {
-    height: 50%;
-    margin-bottom: 3rem; /* Space between the top and bottom boxes */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .image-gps-box .top-image-box .top-image-box-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .image-gps-box .top-image-box .image-box,
-  .image-gps-box .top-image-box .text-box {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .image-gps-box .top-image-box .image-box {
-    height: 20%; /* Increase the height of the image box */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .image-gps-box .top-image-box .images-svg {
-    max-width: 100%;
-    max-height: 100%;
-    width: 35%; /* Adjust the width as needed */
-  }
-  .image-gps-box .top-image-box .text-box {
-    margin-top: 1rem; /* Space between the image box and text box */
-  }
-
-  .image-gps-box .top-image-box .image-sensor-text,
-  .image-gps-box .top-image-box .sensor-status-top-box,
-  .image-gps-box .top-image-box .sensor-text-operation {
-    margin: 0.3rem 0; /* Increase vertical spacing between text elements */
-  }
-
-  .image-gps-box .top-image-box .sensor-count {
-    color: var(--green);
-  }
-
-  .image-gps-box .top-image-box .image-sensor-text {
-    color: var(--blue);
-    font-size: 1.7rem;
-  }
-
-  .image-gps-box .top-image-box .sensor-status-top-box {
-    color: var(--blue);
-    font-size: 1.2rem;
-  }
-
-  .image-gps-box .top-image-box .sensor-text-operation {
-    color: var(--purple);
-    font-size: 1rem;
-  }
-
-  /* //! bottom box start */
-
-  .image-gps-box .bottom-gps-box {
-    height: 50%;
-    display: flex;
-    flex-direction: column; /* Ensure content is displayed in a column */
-    align-items: center; /* Center content horizontally */
-  }
-
-  .bottom-gps-box .gps-battery-box {
-    width: 95%;
-    height: 50%; /* Equal height for both boxes */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-    margin-bottom: 1rem; /* Space between the top and bottom boxes */
-  }
-
-  .gps-battery-box .gps-text,
-  .gps-battery-box .battery-text {
-    font-size: 1.5rem;
-    text-align: center;
-    /* font-weight: 500; */
-  }
-
-  .gps-text .gps-coordinates,
-  .battery-text .battery-percentage {
-    text-align: center;
-  }
-
-  .gps-text {
-    color: var(--blue);
-  }
-
-  .gps-coordinates {
-    color: var(--green);
-    font-size: 1.3rem;
-    white-space: nowrap; /* Prevent text from wrapping */
-    overflow: hidden; /* Hide overflow */
-    text-overflow: ellipsis; /* Add ellipsis for overflow text */
-  }
-
-  .battery-text {
-    color: var(--blue);
-  }
-
-  .battery-percentage {
-    color: var(--green);
-    font-size: 1.4rem;
-  }
-
-  /* //!row 3 start */
-
-  /* Container for the data value boxes */
-  .data-value-boxes-container {
-    display: flex;
-    justify-content: space-between; /* Distributes space evenly */
-    gap: 8rem; /* Adjust the gap as needed */
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* Individual data value boxes */
-  .data-value-boxes {
-    flex: 1; /* Allow the boxes to grow and fill available space */
-    border: 1px solid var(--reflected-light);
-    box-shadow: 0 11px 19px 1px #0000002e;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    box-sizing: border-box;
-  }
-
-  .data-text-container {
-    display: flex;
-    padding: 1.5rem;
-    justify-content: space-around;
-    width: 100%;
-  }
-
-  .left-column,
-  .right-column {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .left-column p,
-  .right-column p {
-    margin: 0.1rem;
-    font-size: 1.5rem;
-    font-weight: 500;
-  }
-  .left-column p {
-    color: var(--blue);
-  }
-  .right-column p {
-    color: var(--green);
-  }
 }
