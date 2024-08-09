@@ -1,0 +1,127 @@
+.download-data-preferences-box {
+  display: flex;
+  justify-content: flex-end; /* Aligns content horizontally to the end */
+  align-items: center; /* Centers items vertically */
+  width: 100%; /* Ensures the box takes up the full width of its container */
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.preferences-text {
+  font-size: 1.3rem;
+  color: var(--blue); /* Adjust the color as needed */
+  margin-right: 0.5rem; /* Small space between the text and the SVG */
+}
+
+.data-preference-svg-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Ensure the container takes up the full height of its parent */
+  padding: 0.5rem;
+  border: 1px solid var(--blue);
+}
+.data-preference-svg {
+  width: 100%; /* Adjust size as needed */
+  height: 100%; /* Maintain aspect ratio */
+}
+
+.download-grid-container {
+  display: grid;
+  width: 100%; /* Container takes up 85% of the parent width */
+  margin: auto; /* Center the grid horizontally */
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-template-rows: auto auto auto; /* Three rows */
+  row-gap: 5rem; /* Gap between rows */
+  column-gap: 4rem; /* Gap between columns */
+  box-sizing: border-box;
+  margin-top: 2rem;
+}
+
+.download-box-title {
+  position: absolute;
+  top: -15px; /* Adjust the position above the box */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 128, 255, 0.8); /* Semi-transparent background */
+  padding: 0 1rem;
+  border-radius: 5px;
+  border: 1px #00e1b4;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  background-color: #082b56;
+}
+
+.download-box-title-text {
+  color: #00faff; /* Text color for the title */
+  font-size: 1.2rem; /* Adjust font size for the title */
+  /* font-weight: bold; */
+  font-weight: 500;
+}
+.download-grid-item {
+  background-color: #0000; /* Transparent background */
+  border-style: solid none none;
+  border-color: var(--reflected-light) var(--box-outline-blue)
+    var(--box-outline-blue);
+  border-top-width: 2px;
+  box-shadow: 0 8px 14px 2px #00000038;
+
+  color: var(--gainsboro);
+  height: 7rem; /* Set a fixed height for the boxes */
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  padding: 1rem;
+  font-size: 1.2rem; /* Adjust font size */
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
+}
+
+/* Center the fifth item in the third row */
+.download-grid-container > .download-grid-item:nth-child(5) {
+  grid-column: 1 / span 2; /* Span across both columns */
+  justify-self: center;
+  width: 50%; /* Make the fifth item take up 50% width */
+}
+
+/* //! download boxes start */
+.start-end-button-container {
+  display: flex;
+  justify-content: space-between; /* Space out the items evenly */
+  align-items: center;
+  width: 90%; /* Input group takes up 90% of the parent container */
+  padding: 1rem;
+}
+.start-end-box {
+  width: 28%; /* Equal width for each text box */
+  padding: 1.2rem; /* Padding inside the text box */
+  background-color: transparent; /* Transparent background */
+  border: 1.5px solid var(--box-outline-blue);
+  color: white; /* Text color inside the text box */
+  font-size: 1.2rem;
+  margin-right: 0.5rem; /* Small space between text boxes */
+  text-align: center;
+}
+
+.start-end-box::placeholder {
+  color: var(--blue); /* Red placeholder text */
+}
+
+.download-button {
+  width: 28%; /* Equal width for the button */
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  background-color: transparent; /* Transparent button background */
+  border: 1px solid orange; /* Orange border for the button */
+  color: var(--green); /* Red text color */
+  border-radius: 0.3rem;
+  cursor: pointer;
+  text-align: center; /* Center text inside the button */
+}
+
+.download-grid-item button:hover {
+  box-shadow: 0 0 7px -5px var(--green);
+  color: var(--orange);
+  /* text-shadow: 0 1px 1px var(--orange); */
+  border: 1px solid #fff;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}

@@ -24,9 +24,9 @@ function SensorData() {
         <div className="grid-item data-value-boxes">
           <div className="data-text-container">
             <div className="left-column">
-              <p>Temperature:</p>
-              <p>Humidity:</p>
-              <p>Air Pressure:</p>
+              <p>Hourly Rainfall:</p>
+              <p>Today's Rainfall:</p>
+              <p>Solar Radiation:</p>
               <p>Sensor Status:</p>
             </div>
             <div className="right-column">
@@ -40,9 +40,9 @@ function SensorData() {
         <div className="grid-item data-value-boxes">
           <div className="data-text-container">
             <div className="left-column">
-              <p>Temperature:</p>
-              <p>Humidity:</p>
-              <p>Air Pressure:</p>
+              <p>Soil Moisture:</p>
+              <p>Soil Temp:</p>
+              <p>Soil Salinity:</p>
               <p>Sensor Status:</p>
             </div>
             <div className="right-column">
@@ -56,9 +56,9 @@ function SensorData() {
         <div className="grid-item data-value-boxes">
           <div className="data-text-container">
             <div className="left-column">
-              <p>Temperature:</p>
-              <p>Humidity:</p>
-              <p>Air Pressure:</p>
+              <p>Wind Speed:</p>
+              <p>Wind Gust:</p>
+              <p>Wind Direction:</p>
               <p>Sensor Status:</p>
             </div>
             <div className="right-column">

@@ -2,8 +2,9 @@ import React from "react";
 import BackgroundBox from "./components/layouts/Background";
 import "./styles/App.css";
 import Navbar from "./components/navbar/Navbar";
-import Realtime from "./pages/Realtime";
-import WSN from "./pages/WSN";
+// import Realtime from "./pages/Realtime";
+// import WSN from "./pages/WSN";
+import Download from "./pages/Download";
 
 const App = () => {
   return (
@@ -12,7 +13,8 @@ const App = () => {
         <Navbar />
 
         {/* <Realtime /> */}
-        <WSN />
+        {/* <WSN /> */}
+        <Download />
       </BackgroundBox>
     </div>
   );

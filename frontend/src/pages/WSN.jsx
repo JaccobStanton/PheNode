@@ -1,19 +1,19 @@
 import React from "react";
 import "../styles/WSN.css";
-// import WSNTitle from "../components/pages/wsn/Title";
-import Title from "../components/pages/realtime/Title";
 import Sensor from "../components/pages/wsn/Sensor";
+import WSNTitle from "../components/pages/wsn/Title";
+import SensorGrafana from "../components/pages/wsn/Grafana";
 
 function WSN() {
   return (
     <div className="realtime-grid">
       <div className="row-one">
-        <Title />
+        <WSNTitle />
       </div>
       <div className="row">
         <Sensor />
       </div>
-      <div className="row">{/* <SensorData /> */}</div>
+      <SensorGrafana />
     </div>
   );
 }
