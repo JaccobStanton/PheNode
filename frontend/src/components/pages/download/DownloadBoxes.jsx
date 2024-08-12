@@ -4,10 +4,8 @@ function DownloadBoxes() {
   return (
     <div className="download-grid-container">
       <div className="download-grid-item">
-        <div className="download-box-title">
-          <span className="download-box-title-text">
-            Download Environmental Data
-          </span>
+        <div className="title-container">
+          <span className="title-text">Download Environmental Data</span>
         </div>
         <div className="start-end-button-container">
           <input
@@ -20,10 +18,8 @@ function DownloadBoxes() {
         </div>
       </div>
       <div className="download-grid-item">
-        <div className="download-box-title">
-          <span className="download-box-title-text">
-            Download PheNode Images
-          </span>
+        <div className="title-container">
+          <span className="title-text">Download PheNode Images</span>
         </div>
         <div className="start-end-button-container">
           <input
@@ -36,10 +32,8 @@ function DownloadBoxes() {
         </div>
       </div>
       <div className="download-grid-item">
-        <div className="download-box-title">
-          <span className="download-box-title-text">
-            Download System Diagnostics Data
-          </span>
+        <div className="title-container">
+          <span className="title-text">Download System Diagnostics Data</span>
         </div>
         <div className="start-end-button-container">
           <input
@@ -52,10 +46,8 @@ function DownloadBoxes() {
         </div>
       </div>
       <div className="download-grid-item">
-        <div className="download-box-title">
-          <span className="download-box-title-text">
-            Download Wireless Sensor Data
-          </span>
+        <div className="title-container">
+          <span className="title-text">Download Wireless Sensor Data</span>
         </div>
         <div className="start-end-button-container">
           <input
@@ -68,8 +60,8 @@ function DownloadBoxes() {
         </div>
       </div>
       <div className="download-grid-item">
-        <div className="download-box-title">
-          <span className="download-box-title-text">Download All Data</span>
+        <div className="title-container">
+          <span className="title-text">Download All Data</span>
         </div>
         <div className="start-end-button-container">
           <input
