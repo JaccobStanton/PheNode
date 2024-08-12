@@ -22,10 +22,11 @@
   border: 1px solid var(--blue);
 }
 .data-preference-svg {
-  width: 100%; /* Adjust size as needed */
-  height: 100%; /* Maintain aspect ratio */
+  width: 100%;
+  height: 100%;
 }
 
+/* //! Download boxes CSS starts */
 .download-grid-container {
   display: grid;
   width: 100%; /* Container takes up 85% of the parent width */
@@ -38,24 +39,21 @@
   margin-top: 2rem;
 }
 
-.download-box-title {
-  position: absolute;
-  top: -15px; /* Adjust the position above the box */
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0, 128, 255, 0.8); /* Semi-transparent background */
-  padding: 0 1rem;
-  border-radius: 5px;
-  border: 1px #00e1b4;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  background-color: #082b56;
+.title-container {
+  width: 90%;
+  border-bottom: 1px solid var(--blue); /* Bottom border */
+  display: flex;
+  justify-content: flex-start; /* Align content to the left */
+  align-items: center;
+  box-sizing: border-box;
 }
 
-.download-box-title-text {
+.title-text {
   color: #00faff; /* Text color for the title */
-  font-size: 1.2rem; /* Adjust font size for the title */
-  /* font-weight: bold; */
+  font-size: 1.3rem; /* Adjust font size for the title */
   font-weight: 500;
+  text-shadow: 0 1px 9px #1a75e0c9;
+  margin-bottom: 3px;
 }
 .download-grid-item {
   background-color: #0000; /* Transparent background */
@@ -64,16 +62,17 @@
     var(--box-outline-blue);
   border-top-width: 2px;
   box-shadow: 0 8px 14px 2px #00000038;
-
   color: var(--gainsboro);
   height: 7rem; /* Set a fixed height for the boxes */
   display: flex;
   justify-content: center; /* Center content horizontally */
   align-items: center; /* Center content vertically */
-  padding: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   font-size: 1.2rem; /* Adjust font size */
   position: relative;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
+  flex-direction: column;
 }
 
 /* Center the fifth item in the third row */
@@ -83,21 +82,25 @@
   width: 50%; /* Make the fifth item take up 50% width */
 }
 
-/* //! download boxes start */
+/* //! download BOXES start */
 .start-end-button-container {
   display: flex;
   justify-content: space-between; /* Space out the items evenly */
   align-items: center;
   width: 90%; /* Input group takes up 90% of the parent container */
   padding: 1rem;
+  margin-top: 0.5rem;
 }
 .start-end-box {
   width: 28%; /* Equal width for each text box */
-  padding: 1.2rem; /* Padding inside the text box */
-  background-color: transparent; /* Transparent background */
-  border: 1.5px solid var(--box-outline-blue);
-  color: white; /* Text color inside the text box */
-  font-size: 1.2rem;
+  padding: 1.5rem; /* Padding inside the text box */
+  border-style: none none solid;
+  border-width: 1px 1px 2px;
+  border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
+  color: var(--blue);
+  background-color: #00143642;
+  box-shadow: inset 1px 4px 5px #0003;
+  font-size: 1rem;
   margin-right: 0.5rem; /* Small space between text boxes */
   text-align: center;
 }
@@ -108,20 +111,20 @@
 
 .download-button {
   width: 28%; /* Equal width for the button */
-  padding: 1.2rem;
-  font-size: 1.2rem;
+  padding: 1.5rem;
+  font-size: 1rem;
   background-color: transparent; /* Transparent button background */
-  border: 1px solid orange; /* Orange border for the button */
-  color: var(--green); /* Red text color */
-  border-radius: 0.3rem;
+  border: 1px solid var(--blue); /* Orange border for the button */
+  color: var(--green);
+  border-radius: 2px;
   cursor: pointer;
   text-align: center; /* Center text inside the button */
 }
 
 .download-grid-item button:hover {
   box-shadow: 0 0 7px -5px var(--green);
-  color: var(--orange);
-  /* text-shadow: 0 1px 1px var(--orange); */
-  border: 1px solid #fff;
+  color: var(--green);
+  text-shadow: 0 0.5px 1px var(--green);
+  border: 1px solid var(--green);
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
