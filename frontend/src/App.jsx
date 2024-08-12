@@ -6,6 +6,7 @@ import Navbar from "./components/navbar/Navbar";
 import Realtime from "./pages/Realtime";
 import WSN from "./pages/WSN";
 import Download from "./pages/Download";
+import Settings from "./pages/Settings";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
             <Route path="/" element={<Realtime />} />
             <Route path="/wsn" element={<WSN />} />
             <Route path="/download" element={<Download />} />
+            <Route path="/settings" element={<Settings />} />
           </Routes>
         </BackgroundBox>
       </div>
