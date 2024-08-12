@@ -104,7 +104,7 @@
   width: 70%;
   border-style: none none solid;
   border-width: 1px 1px 2px;
-  border-color: var(--blue) var(--blue) var(--reflected-light);
+  border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
   color: var(--blue);
   text-align: center;
   white-space: nowrap;
@@ -150,6 +150,13 @@
   justify-content: space-between;
   /* box-sizing: border-box; */
   margin-top: auto;
+}
+
+/* for the link */
+.toggle-buttons-container a {
+  display: block;
+  width: 100%;
+  margin: 0 10px; /* Add spacing between the links */
 }
 
 .toggle-button {

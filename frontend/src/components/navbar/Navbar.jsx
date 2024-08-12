@@ -1,5 +1,5 @@
-// src/components/Navbar.jsx
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../../styles/Navbar.css";
 import Logo from "../../assets/logo/Logo.svg";
 import HomeIconInactive from "../../assets/toggle_buttons/Home_Icon_Inactive.svg";
@@ -14,14 +14,6 @@ const Navbar = () => {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-
-  const icons = [
-    HomeIconInactive,
-    RealTimeIconInactive,
-    WirelessSensorIconInactive,
-    DownloadIconInactive,
-    SettingsIconInactive,
-  ];
 
   return (
     <div className="navbar-grid">
@@ -50,15 +42,51 @@ const Navbar = () => {
       </div>
       <div className="grid-item-right-corner-bottom">
         <div className="toggle-buttons-container">
-          {icons.map((iconSrc, index) => (
-            <button key={index} className="toggle-button">
+          <Link to="/">
+            <button className="toggle-button">
               <img
-                src={iconSrc}
-                alt={`Icon ${index + 1}`}
+                src={HomeIconInactive}
+                alt="Realtime Icon"
                 className="button-icon"
               />
             </button>
-          ))}
+          </Link>
+          <Link to="/">
+            <button className="toggle-button">
+              <img
+                src={RealTimeIconInactive}
+                alt="Realtime Icon"
+                className="button-icon"
+              />
+            </button>
+          </Link>
+          <Link to="/wsn">
+            <button className="toggle-button">
+              <img
+                src={WirelessSensorIconInactive}
+                alt="Wireless Sensor Icon"
+                className="button-icon"
+              />
+            </button>
+          </Link>
+          <Link to="/download">
+            <button className="toggle-button">
+              <img
+                src={DownloadIconInactive}
+                alt="Download Icon"
+                className="button-icon"
+              />
+            </button>
+          </Link>
+          <Link to="/download">
+            <button className="toggle-button">
+              <img
+                src={SettingsIconInactive}
+                alt="Download Icon"
+                className="button-icon"
+              />
+            </button>
+          </Link>
         </div>
       </div>
     </div>
