@@ -78,7 +78,7 @@ const Navbar = () => {
               />
             </button>
           </Link>
-          <Link to="/download">
+          <Link to="/settings">
             <button className="toggle-button">
               <img
                 src={SettingsIconInactive}
