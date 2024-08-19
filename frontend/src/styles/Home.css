@@ -1,0 +1,101 @@
+.fleet-overview-box {
+  width: 90%;
+  height: 50vh;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  overflow-y: auto; /* Enable vertical scrolling */
+  box-sizing: border-box;
+}
+
+/* Custom scrollbar styling */
+.fleet-overview-box::-webkit-scrollbar {
+  width: 13px; /* Width of the scrollbar */
+}
+
+.fleet-overview-box::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 68, 143, 8);
+}
+
+.fleet-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  box-sizing: border-box;
+}
+
+.fleet-card {
+  width: 99%;
+  padding: 1rem;
+  height: 150px;
+  border: 0.5px solid var(--box-outline-blue);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 2px;
+}
+.fleet-card:hover {
+  background-color: rgba(56, 152, 236, 0.1);
+  border-left: 0.5px solid var(--green);
+  border-right: 0.5px solid var(--green);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.fleet-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.fleet-card-content-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-right: 5rem;
+  padding-left: 1rem;
+}
+
+/* Specific section for the title */
+.fleet-card-content-title-section {
+  align-items: flex-start; /* Align title to the start (left) */
+  margin-right: 8.5rem;
+}
+
+.fleet-card-content-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--green);
+  margin-bottom: 1rem;
+}
+/* Last measurements */
+.fleet-card-content-date-label {
+  color: var(--blue);
+  font-weight: 500;
+}
+/* date */
+.fleet-card-content-date-value {
+  color: var(--green);
+  font-weight: 500;
+}
+.fleet-card-content-label {
+  font-size: 1.2rem;
+  color: var(--blue);
+}
+
+.fleet-card-content-date {
+  margin-top: 0.5rem;
+  color: var(--blue);
+}
+
+.fleet-card-content-data {
+  color: var(--green);
+  text-shadow: 0 1px 9px #1a75e0c9;
+  font-weight: 600;
+}
+
+.fleet-card-content-date,
+.fleet-card-content-data {
+  font-size: 1.1rem;
+}
