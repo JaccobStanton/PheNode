@@ -104,6 +104,13 @@
   margin-right: 0.5rem; /* Small space between text boxes */
   text-align: center;
 }
+.start-end-box:hover {
+  border-bottom: 1px solid var(--dark-blue);
+}
+.start-end-box:focus {
+  border-bottom: 1px solid var(--dark-blue); /* Blue bottom border when focused */
+  outline: none; /* Remove default outline */
+}
 
 .start-end-box::placeholder {
   color: var(--blue); /* Red placeholder text */
