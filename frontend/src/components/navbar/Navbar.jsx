@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../../styles/Navbar.css";
 import Logo from "../../assets/logo/Logo.svg";
 import HomeIconInactive from "../../assets/toggle_buttons/Home_Icon_Inactive.svg";
@@ -8,10 +8,22 @@ import WirelessSensorIconInactive from "../../assets/toggle_buttons/Wireless_Sen
 import DownloadIconInactive from "../../assets/toggle_buttons/Download_Icon_Inactive.svg";
 import SettingsIconInactive from "../../assets/toggle_buttons/Settings_Icon_Inactive.svg";
 
+import HomeIconActive from "../../assets/toggle_buttons/Home_Icon_Active.svg";
+import RealTimeIconActive from "../../assets/toggle_buttons/Real_Time_Icon_Active.svg";
+import WirelessSensorIconActive from "../../assets/toggle_buttons/Wireless_Sensor_Active_Icon.svg";
+import DownloadIconActive from "../../assets/toggle_buttons/Download_Icon_Active.svg";
+import SettingsIconActive from "../../assets/toggle_buttons/Settings_Icon_Active.svg";
+
 const Navbar = () => {
+  //logic for dropdown menu
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
+  //logic for toggle buttons
+  const [hoveredButton, setHoveredButton] = useState(null);
+  const location = useLocation();
+
+  //logic for dropdown menu
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -29,6 +41,20 @@ const Navbar = () => {
     };
   }, []);
 
+  //logic for toggle button hovering
+  const handleMouseEnter = (button) => {
+    setHoveredButton(button);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredButton(null);
+  };
+
+  // Function to determine if the button should show the active icon
+  const isActive = (path) => {
+    return location.pathname === path || hoveredButton === path;
+  };
+
   return (
     <div className="navbar-grid">
       <div className="grid-item-left">
@@ -41,62 +67,89 @@ const Navbar = () => {
         </div>
       </div>
       <div className="grid-item-left">
-        <div className="navbar-dropdown" ref={dropdownRef}>
-          <button onClick={toggleDropdown} className="navbar-dropdown-button">
-            Select PheNode...
-          </button>
-          {isOpen && (
-            <div className="navbar-dropdown-content show">
-              <a href="#option1">PheNode_0001</a>
-              <a href="#option2">PheNode_0002</a>
-              <a href="#option3">PheNode_0003</a>
-            </div>
-          )}
+        <div className="navbar-dropdown">
+          <button className="navbar-dropdown-button">Select PheNode...</button>
         </div>
       </div>
       <div className="grid-item-right-corner-bottom">
         <div className="toggle-buttons-container">
           <Link to="/home">
-            <button className="toggle-button">
+            <button
+              className="toggle-button"
+              onMouseEnter={() => handleMouseEnter("/home")}
+              onMouseLeave={handleMouseLeave}
+            >
               <img
-                src={HomeIconInactive}
-                alt="Realtime Icon"
+                src={isActive("/home") ? HomeIconActive : HomeIconInactive}
+                alt="Home Icon"
                 className="button-icon"
               />
             </button>
           </Link>
           <Link to="/realtime">
-            <button className="toggle-button">
+            <button
+              className="toggle-button"
+              onMouseEnter={() => handleMouseEnter("/realtime")}
+              onMouseLeave={handleMouseLeave}
+            >
               <img
-                src={RealTimeIconInactive}
+                src={
+                  isActive("/realtime")
+                    ? RealTimeIconActive
+                    : RealTimeIconInactive
+                }
                 alt="Realtime Icon"
                 className="button-icon"
               />
             </button>
           </Link>
           <Link to="/wsn">
-            <button className="toggle-button">
+            <button
+              className="toggle-button"
+              onMouseEnter={() => handleMouseEnter("/wsn")}
+              onMouseLeave={handleMouseLeave}
+            >
               <img
-                src={WirelessSensorIconInactive}
+                src={
+                  isActive("/wsn")
+                    ? WirelessSensorIconActive
+                    : WirelessSensorIconInactive
+                }
                 alt="Wireless Sensor Icon"
                 className="button-icon"
               />
             </button>
           </Link>
           <Link to="/download">
-            <button className="toggle-button">
+            <button
+              className="toggle-button"
+              onMouseEnter={() => handleMouseEnter("/download")}
+              onMouseLeave={handleMouseLeave}
+            >
               <img
-                src={DownloadIconInactive}
+                src={
+                  isActive("/download")
+                    ? DownloadIconActive
+                    : DownloadIconInactive
+                }
                 alt="Download Icon"
                 className="button-icon"
               />
             </button>
           </Link>
           <Link to="/settings">
-            <button className="toggle-button">
+            <button
+              className="toggle-button"
+              onMouseEnter={() => handleMouseEnter("/settings")}
+              onMouseLeave={handleMouseLeave}
+            >
               <img
-                src={SettingsIconInactive}
-                alt="Download Icon"
+                src={
+                  isActive("/settings")
+                    ? SettingsIconActive
+                    : SettingsIconInactive
+                }
+                alt="Settings Icon"
                 className="button-icon"
               />
             </button>
