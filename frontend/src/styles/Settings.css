@@ -48,16 +48,9 @@
   text-align: center;
 }
 
-.settings-blue-text {
-  color: var(--blue);
-  font-size: 1.3rem;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
+.settings-blue-text,
+.settings-ssid-input-box,
+.settings-password-input-box,
 .settings-input-box {
   background-color: #00143642;
   border-style: none none solid;
@@ -65,10 +58,25 @@
   border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
   border-top-width: 2px;
   box-shadow: inset 1px 4px 5px #0003;
+  color: var(--dark-blue);
+  font-size: 1.2rem;
+  text-align: center;
+  display: flex; /* Enables flexbox layout */
+  justify-content: center; /* Centers text horizontally */
+  align-items: center; /* Centers text vertically */
+  flex-shrink: 0;
+  height: 2.5rem; /* Set a fixed height */
+  flex-shrink: 0;
+  margin-top: 2rem;
+  margin-bottom: 1rem; /* Equal spacing between boxes */
   padding: 0.5rem;
-  flex-grow: 0; /* Allow the box to grow */
-  flex-basis: 12%;
-  margin-bottom: 2rem;
+}
+
+.settings-blue-text {
+  background-color: #0000;
+  border: none;
+  box-shadow: none;
+  color: var(--blue);
 }
 
 .settings-button {
