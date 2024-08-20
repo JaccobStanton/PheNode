@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/Navbar.css";
 import Logo from "../../assets/logo/Logo.svg";
@@ -10,10 +10,24 @@ import SettingsIconInactive from "../../assets/toggle_buttons/Settings_Icon_Inac
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="navbar-grid">
@@ -27,22 +41,22 @@ const Navbar = () => {
         </div>
       </div>
       <div className="grid-item-left">
-        <div className="dropdown">
-          <button onClick={toggleDropdown} className="dropdown-button">
+        <div className="navbar-dropdown" ref={dropdownRef}>
+          <button onClick={toggleDropdown} className="navbar-dropdown-button">
             Select PheNode...
           </button>
           {isOpen && (
-            <div className="dropdown-content">
-              <a href="#option1">Option 1</a>
-              <a href="#option2">Option 2</a>
-              <a href="#option3">Option 3</a>
+            <div className="navbar-dropdown-content show">
+              <a href="#option1">PheNode_0001</a>
+              <a href="#option2">PheNode_0002</a>
+              <a href="#option3">PheNode_0003</a>
             </div>
           )}
         </div>
       </div>
       <div className="grid-item-right-corner-bottom">
         <div className="toggle-buttons-container">
-          <Link to="/">
+          <Link to="/home">
             <button className="toggle-button">
               <img
                 src={HomeIconInactive}
@@ -51,7 +65,7 @@ const Navbar = () => {
               />
             </button>
           </Link>
-          <Link to="/">
+          <Link to="/realtime">
             <button className="toggle-button">
               <img
                 src={RealTimeIconInactive}
