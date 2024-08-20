@@ -8,6 +8,7 @@ import WSN from "./pages/WSN";
 import Download from "./pages/Download";
 import Settings from "./pages/Settings";
 import Home from "./pages/Home";
+import Preferences from "./pages/Preferences";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/wsn" element={<WSN />} />
             <Route path="/download" element={<Download />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/preferences" element={<Preferences />} />
           </Routes>
         </BackgroundBox>
       </div>
