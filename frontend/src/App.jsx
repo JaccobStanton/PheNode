@@ -7,6 +7,7 @@ import Realtime from "./pages/Realtime";
 import WSN from "./pages/WSN";
 import Download from "./pages/Download";
 import Settings from "./pages/Settings";
+import Home from "./pages/Home";
 
 const App = () => {
   return (
@@ -15,7 +16,8 @@ const App = () => {
         <BackgroundBox>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Realtime />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/realtime" element={<Realtime />} />
             <Route path="/wsn" element={<WSN />} />
             <Route path="/download" element={<Download />} />
             <Route path="/settings" element={<Settings />} />
