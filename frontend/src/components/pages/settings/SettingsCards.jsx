@@ -42,8 +42,8 @@ const SettingsCards = () => {
       <div className="settings-card">
         <div className="card-content-container">
           <div className="settings-title">Set Wi-Fi credentials</div>
-          <div className="settings-blue-text">Centered Text 4</div>
-          <div className="settings-input-box"></div>
+          <div className="settings-ssid-input-box">SSID</div>
+          <div className="settings-password-input-box">Password</div>
           <button className="settings-button">Set</button>
         </div>
       </div>
