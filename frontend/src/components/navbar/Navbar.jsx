@@ -75,7 +75,7 @@ const Navbar = () => {
         <div className="toggle-buttons-container">
           <Link to="/home">
             <button
-              className="toggle-button"
+              className={`toggle-button ${isActive("/home") ? "active" : ""}`}
               onMouseEnter={() => handleMouseEnter("/home")}
               onMouseLeave={handleMouseLeave}
             >
@@ -88,7 +88,9 @@ const Navbar = () => {
           </Link>
           <Link to="/realtime">
             <button
-              className="toggle-button"
+              className={`toggle-button ${
+                isActive("/realtime") ? "active" : ""
+              }`}
               onMouseEnter={() => handleMouseEnter("/realtime")}
               onMouseLeave={handleMouseLeave}
             >
@@ -105,7 +107,7 @@ const Navbar = () => {
           </Link>
           <Link to="/wsn">
             <button
-              className="toggle-button"
+              className={`toggle-button ${isActive("/wsn") ? "active" : ""}`}
               onMouseEnter={() => handleMouseEnter("/wsn")}
               onMouseLeave={handleMouseLeave}
             >
@@ -122,7 +124,9 @@ const Navbar = () => {
           </Link>
           <Link to="/download">
             <button
-              className="toggle-button"
+              className={`toggle-button ${
+                isActive("/download") ? "active" : ""
+              }`}
               onMouseEnter={() => handleMouseEnter("/download")}
               onMouseLeave={handleMouseLeave}
             >
@@ -139,7 +143,9 @@ const Navbar = () => {
           </Link>
           <Link to="/settings">
             <button
-              className="toggle-button"
+              className={`toggle-button ${
+                isActive("/settings") ? "active" : ""
+              }`}
               onMouseEnter={() => handleMouseEnter("/settings")}
               onMouseLeave={handleMouseLeave}
             >

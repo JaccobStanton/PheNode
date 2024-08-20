@@ -203,7 +203,7 @@
   color: var(--green);
   text-shadow: 0 1px 5px #007bff;
 }
-.toggle-button:focus {
+.toggle-button.active {
   outline: none;
   border-color: var(--green);
   box-shadow: 0 0 7px -5px var(--green);
