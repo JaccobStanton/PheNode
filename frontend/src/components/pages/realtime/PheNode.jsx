@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../../styles/Realtime.css";
 import PheNodeDiagram from "../../../assets/diagrams/Phenode-Diagram.svg";
 import SensorSvg from "../../../assets/diagrams/Wireless-Sensors.svg";
-import ImageSvg from "../../../assets/toggle_buttons/Imaging-Settings-Icon-Inactive.svg";
+import ImageInactive from "../../../assets/toggle_buttons/Imaging-Settings-Icon-Inactive.svg";
+import ImageActive from "../../../assets/toggle_buttons/Imaging_Icon_Active.svg";
 
 function PheNode() {
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <>
       <div className="grid-item twenty-five-width">
@@ -28,8 +30,16 @@ function PheNode() {
       <div className="image-gps-grid-item twenty-five-width">
         <div className="image-gps-box">
           <div className="top-image-box">
-            <div className="image-box">
-              <img src={ImageSvg} alt="Images SVG" className="images-svg" />
+            <div
+              className="image-box"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <img
+                src={isHovered ? ImageActive : ImageInactive}
+                alt="Images SVG"
+                className="images-svg"
+              />
             </div>
             <div className="text-box">
               <span className="image-sensor-text">See Images</span>

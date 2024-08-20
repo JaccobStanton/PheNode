@@ -260,8 +260,10 @@
 .image-gps-box .top-image-box .images-svg {
   max-width: 100%;
   max-height: 100%;
-  width: 35%; /* Adjust the width as needed */
+  width: 35%;
+  cursor: pointer;
 }
+
 .image-gps-box .top-image-box .text-box {
   margin-top: 1rem; /* Space between the image box and text box */
 }
