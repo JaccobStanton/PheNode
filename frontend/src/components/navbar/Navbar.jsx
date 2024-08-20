@@ -116,7 +116,7 @@ const Navbar = () => {
                     : WirelessSensorIconInactive
                 }
                 alt="Wireless Sensor Icon"
-                className="button-icon"
+                className="wsn-button-icon"
               />
             </button>
           </Link>
@@ -133,7 +133,7 @@ const Navbar = () => {
                     : DownloadIconInactive
                 }
                 alt="Download Icon"
-                className="button-icon"
+                className="download-button-icon"
               />
             </button>
           </Link>
@@ -150,7 +150,7 @@ const Navbar = () => {
                     : SettingsIconInactive
                 }
                 alt="Settings Icon"
-                className="button-icon"
+                className="settings-button-icon"
               />
             </button>
           </Link>
