@@ -1,7 +1,11 @@
 import React from "react";
 
-function Title() {
-  return <div>Title</div>;
+function PreferencesTitle() {
+  return (
+    <>
+      <div className="grid-item page-title">Data Download Preferences</div>
+    </>
+  );
 }
 
-export default Title;
+export default PreferencesTitle;
