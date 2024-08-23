@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../../styles/Navbar.css";
 import Logo from "../../assets/logo/Logo.svg";
@@ -15,31 +15,20 @@ import DownloadIconActive from "../../assets/toggle_buttons/Download_Icon_Active
 import SettingsIconActive from "../../assets/toggle_buttons/Settings_Icon_Active.svg";
 
 const Navbar = () => {
-  //logic for dropdown menu
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  //dropdown logic
+  const [showDropdownOptions, setDropdownOptions] = useState(false);
 
+  const handleNavDropdownChange = (e, setDropdownOptions) => {
+    if (e.target.value === "Flag with custom value") {
+      setDropdownOptions(true);
+    } else {
+      setDropdownOptions(false);
+    }
+  };
+  //----------------
   //logic for toggle buttons
   const [hoveredButton, setHoveredButton] = useState(null);
   const location = useLocation();
-
-  //logic for dropdown menu
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
 
   //logic for toggle button hovering
   const handleMouseEnter = (button) => {
@@ -68,7 +57,18 @@ const Navbar = () => {
       </div>
       <div className="grid-item-left">
         <div className="navbar-dropdown">
-          <button className="navbar-dropdown-button">Select PheNode...</button>
+          <select
+            className="navbar-dropdown-menu"
+            onChange={(e) => handleNavDropdownChange(e, setDropdownOptions)}
+          >
+            <option value="" disabled selected>
+              Select PheNode...
+            </option>
+            <option>PheNode_001</option>
+            <option>PheNode_002</option>
+            <option>PheNode_003</option>
+            <option>PheNode_004</option>
+          </select>
         </div>
       </div>
       <div className="grid-item-right-corner-bottom">
