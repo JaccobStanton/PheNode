@@ -338,6 +338,7 @@
   white-space: nowrap; /* Prevent text from wrapping */
   overflow: hidden; /* Hide overflow */
   text-overflow: ellipsis; /* Add ellipsis for overflow text */
+  font-weight: 500;
 }
 
 .battery-text {
@@ -347,6 +348,7 @@
 .battery-percentage {
   color: var(--green);
   font-size: 1.4rem;
+  font-weight: 500;
 }
 
 /* //!row 3 start */
