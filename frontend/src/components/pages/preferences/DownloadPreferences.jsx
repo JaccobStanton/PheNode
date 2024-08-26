@@ -18,7 +18,9 @@ function DownloadPreferences() {
       <div className="preferences-columns-container">
         <div className="preferences-column-one">
           <div className="preferences-box">
-            <div className="preferences-text">In the case of zeros...</div>
+            <div className="download-preferences-text">
+              In the case of zeros...
+            </div>
             <select
               className="preferences-dropdown"
               onChange={(e) => handleDropdownChange(e, setShowCustomInput1)}
@@ -37,7 +39,7 @@ function DownloadPreferences() {
             )}
           </div>
           <div className="preferences-box">
-            <div className="preferences-text">
+            <div className="download-preferences-text">
               Desired number of decimal places...
             </div>
             <select className="preferences-dropdown">
@@ -51,7 +53,9 @@ function DownloadPreferences() {
         </div>
         <div className="preferences-column-two">
           <div className="preferences-box">
-            <div className="preferences-text">In the case of zeros...</div>
+            <div className="download-preferences-text">
+              In the case of zeros...
+            </div>
             <select
               className="preferences-dropdown"
               onChange={(e) => handleDropdownChange(e, setShowCustomInput2)}
@@ -70,7 +74,9 @@ function DownloadPreferences() {
             )}
           </div>
           <div className="preferences-box">
-            <div className="preferences-text">Select a time zone...</div>
+            <div className="download-preferences-text">
+              Select a time zone...
+            </div>
             <select className="preferences-dropdown">
               <option>Coordinated Universal Time (GMT)</option>
               <option>Eastern Standard Time (GMT-5)</option>
@@ -82,7 +88,9 @@ function DownloadPreferences() {
         </div>
         <div className="preferences-column-three">
           <div className="preferences-box">
-            <div className="preferences-text">In the case of zeros...</div>
+            <div className="download-preferences-text">
+              In the case of zeros...
+            </div>
             <select
               className="preferences-dropdown"
               onChange={(e) => handleDropdownChange(e, setShowCustomInput3)}
@@ -101,7 +109,9 @@ function DownloadPreferences() {
             )}
           </div>
           <div className="preferences-box">
-            <div className="preferences-text">In the case of hyphens...</div>
+            <div className="download-preferences-text">
+              In the case of hyphens...
+            </div>
             <select className="preferences-dropdown">
               <option>Replace with underscore</option>
               <option>Leave hyphen</option>
