@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../../styles/Realtime.css";
 import PheNodeDiagram from "../../../assets/diagrams/Phenode-Diagram.svg";
 import SensorSvg from "../../../assets/diagrams/Wireless-Sensors.svg";
@@ -7,6 +8,12 @@ import ImageActive from "../../../assets/toggle_buttons/Imaging_Icon_Active.svg"
 
 function PheNode() {
   const [isHovered, setIsHovered] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/imaging");
+  };
   return (
     <>
       <div className="grid-item twenty-five-width">
@@ -34,6 +41,7 @@ function PheNode() {
               className="image-box"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
+              onClick={handleNavigate}
             >
               <img
                 src={isHovered ? ImageActive : ImageInactive}
