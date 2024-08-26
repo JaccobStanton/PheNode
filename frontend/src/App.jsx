@@ -9,6 +9,7 @@ import Download from "./pages/Download";
 import Settings from "./pages/Settings";
 import Home from "./pages/Home";
 import Preferences from "./pages/Preferences";
+import Imaging from "./pages/Imaging";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/download" element={<Download />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/preferences" element={<Preferences />} />
+            <Route path="/imaging" element={<Imaging />} />
           </Routes>
         </BackgroundBox>
       </div>
