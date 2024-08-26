@@ -152,7 +152,7 @@
   background-color: #04264c00;
   border-radius: 2px;
   width: 100%;
-  height: 4.5rem;
+  height: 4rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -163,19 +163,19 @@
 .wsn-button-icon,
 .settings-button-icon,
 .download-button-icon {
-  width: 45%; /* Adjusting the icon size */
+  width: 65%; /* Adjusting the icon size */
   object-fit: contain;
 }
 /* custon css for sensor toggle button icon */
 .wsn-button-icon {
-  width: 30%; /* Adjusting the icon size */
+  width: 48%; /* Adjusting the icon size */
 }
 /* custon css for sensor toggle button icon */
 .settings-button-icon {
-  width: 40%; /* Adjusting the icon size */
+  width: 65%; /* Adjusting the icon size */
 }
 .download-button-icon {
-  width: 50%; /* Adjusting the icon size */
+  width: 75%; /* Adjusting the icon size */
 }
 
 .toggle-button:hover {
@@ -200,17 +200,409 @@
 .toggle-buttons-container a:last-child {
   margin-right: 0; /* Remove right margin for the last button so aligned better with logout button end*/
 }
-
-@media (max-width: 768px) {
+@media (min-width: 1920px) {
   .navbar-grid {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: 1fr auto; /* Adjusted to shrink the height of the bottom two grid items */
+    margin: auto;
+    width: 85%;
+    gap: 1.1rem;
+    box-sizing: border-box;
+  }
+
+  .grid-item-right-corner,
+  .grid-item-left {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    box-sizing: border-box;
+  }
+  /* Adjusted container styles */
+  .grid-item-left {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    justify-content: flex-end; /* Align items to the bottom */
+  }
+
+  .grid-item-right-corner-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; /* Align items to the bottom */
+  }
+
+  .grid-item-right {
+    justify-content: flex-end;
+  }
+
+  .logo {
+    width: 65%;
+    height: auto;
+  }
+
+  .navbar-dropdown {
+    position: relative; /* Ensure the parent is relatively positioned */
+    width: 80%;
+  }
+
+  .navbar-dropdown-menu {
+    border: 1.2px solid var(--reflected-light);
+    background-color: var(--drf);
+    color: var(--green);
+    border-radius: 2px;
+    width: 100%;
+    height: 3rem;
+    margin-bottom: 0;
+    padding: 0 0 0 0.8em;
+    font-size: 1.4rem;
+    box-shadow: 0 8px 14px 2px #00000038;
+    cursor: pointer;
+    text-align: left;
+    -webkit-appearance: none; /* Removes default arrow in WebKit browsers */
+    -moz-appearance: none; /* Removes default arrow in Firefox */
+    appearance: none; /* Removes default arrow in other browsers */
+  }
+
+  .navbar-dropdown-menu:hover {
+    border-color: var(--green);
+    box-shadow: 0 0 7px -5px var(--green);
+    color: var(--green);
+    text-shadow: 0 1px 5px #007bff;
+  }
+  .navbar-dropdown-menu:focus {
+    outline: none;
+  }
+
+  .user-logout-container {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  .inner-box {
+    box-sizing: border-box;
+  }
+
+  .left-box {
+    width: 70%;
+    border-style: none none solid;
+    border-width: 1px 1px 2px;
+    border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
+    color: var(--blue);
+    text-align: center;
+    white-space: nowrap;
+    background-color: #00143642;
+    border-radius: 2px;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    margin-top: 0;
+    padding: 25px;
+    font-size: 1.4rem;
+    display: flex;
+    box-shadow: inset 1px 4px 5px #0003;
+  }
+
+  .logout-button {
+    width: 25%;
+    border: 1px solid var(--blue);
+    background-color: var(--transparent);
+    color: var(--green);
+    white-space: nowrap;
+    border-radius: 0;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 25px;
+    font-size: 1.4rem;
+    display: flex;
+  }
+
+  .logout-button:hover {
+    border-color: var(--green);
+    box-shadow: 0 0 7px -5px var(--green);
+    color: var(--green);
+    text-shadow: 0 1px 5px #007bff;
+  }
+  .logout-button:focus {
+    outline: none;
+  }
+
+  .toggle-buttons-container {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  /* for the link */
+  .toggle-buttons-container a {
+    display: block;
+    width: 100%;
+    margin: 0 10px; /* Add spacing between the links */
+  }
+
+  .toggle-button {
+    border: 1.3px solid var(--reflected-light);
+    box-shadow: 0 8px 14px 2px #00000038;
+    background-color: #04264c00;
+    border-radius: 2px;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  .button-icon,
+  .wsn-button-icon,
+  .settings-button-icon,
+  .download-button-icon {
+    width: 65%; /* Adjusting the icon size */
+    object-fit: contain;
+  }
+  /* custon css for sensor toggle button icon */
+  .wsn-button-icon {
+    width: 48%; /* Adjusting the icon size */
+  }
+  /* custon css for sensor toggle button icon */
+  .settings-button-icon {
+    width: 65%; /* Adjusting the icon size */
+  }
+  .download-button-icon {
+    width: 75%; /* Adjusting the icon size */
+  }
+
+  .toggle-button:hover {
+    border-color: var(--green);
+    box-shadow: 0 0 7px -5px var(--green);
+    color: var(--green);
+    text-shadow: 0 1px 5px #007bff;
+  }
+  .toggle-button.active {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: 0 0 7px -5px var(--green);
+    color: var(--green);
+    text-shadow: 0 1px 5px #007bff;
+    box-shadow: 0 8px 14px 2px #00000038;
+  }
+
+  .toggle-buttons-container a:first-child {
+    margin-left: 5; /* Makes just first toggle button has 5 margin */
+  }
+
+  .toggle-buttons-container a:last-child {
+    margin-right: 0; /* Remove right margin for the last button so aligned better with logout button end*/
   }
 }
-
-@media (max-width: 480px) {
+@media (min-width: 2560px) {
   .navbar-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, 1fr);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr auto; /* Adjusted to shrink the height of the bottom two grid items */
+    margin: auto;
+    width: 85%;
+    gap: 1.1rem;
+    box-sizing: border-box;
+  }
+
+  .grid-item-right-corner,
+  .grid-item-left {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    box-sizing: border-box;
+  }
+  /* Adjusted container styles */
+  .grid-item-left {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    justify-content: flex-end; /* Align items to the bottom */
+  }
+
+  .grid-item-right-corner-bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; /* Align items to the bottom */
+  }
+
+  .grid-item-right {
+    justify-content: flex-end;
+  }
+
+  .logo {
+    width: 65%;
+    height: auto;
+  }
+
+  .navbar-dropdown {
+    position: relative; /* Ensure the parent is relatively positioned */
+    width: 80%;
+  }
+
+  .navbar-dropdown-menu {
+    border: 1.2px solid var(--reflected-light);
+    background-color: var(--drf);
+    color: var(--green);
+    border-radius: 2px;
+    width: 100%;
+    height: 3rem;
+    margin-bottom: 0;
+    padding: 0 0 0 0.8em;
+    font-size: 1.4rem;
+    box-shadow: 0 8px 14px 2px #00000038;
+    cursor: pointer;
+    text-align: left;
+    -webkit-appearance: none; /* Removes default arrow in WebKit browsers */
+    -moz-appearance: none; /* Removes default arrow in Firefox */
+    appearance: none; /* Removes default arrow in other browsers */
+  }
+
+  .navbar-dropdown-menu:hover {
+    border-color: var(--green);
+    box-shadow: 0 0 7px -5px var(--green);
+    color: var(--green);
+    text-shadow: 0 1px 5px #007bff;
+  }
+  .navbar-dropdown-menu:focus {
+    outline: none;
+  }
+
+  .user-logout-container {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+
+  .inner-box {
+    box-sizing: border-box;
+  }
+
+  .left-box {
+    width: 70%;
+    border-style: none none solid;
+    border-width: 1px 1px 2px;
+    border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
+    color: var(--blue);
+    text-align: center;
+    white-space: nowrap;
+    background-color: #00143642;
+    border-radius: 2px;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    margin-top: 0;
+    padding: 25px;
+    font-size: 1.4rem;
+    display: flex;
+    box-shadow: inset 1px 4px 5px #0003;
+  }
+
+  .logout-button {
+    width: 25%;
+    border: 1px solid var(--blue);
+    background-color: var(--transparent);
+    color: var(--green);
+    white-space: nowrap;
+    border-radius: 0;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 25px;
+    font-size: 1.4rem;
+    display: flex;
+  }
+
+  .logout-button:hover {
+    border-color: var(--green);
+    box-shadow: 0 0 7px -5px var(--green);
+    color: var(--green);
+    text-shadow: 0 1px 5px #007bff;
+  }
+  .logout-button:focus {
+    outline: none;
+  }
+
+  .toggle-buttons-container {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  /* for the link */
+  .toggle-buttons-container a {
+    display: block;
+    width: 100%;
+    margin: 0 10px; /* Add spacing between the links */
+  }
+
+  .toggle-button {
+    border: 1.3px solid var(--reflected-light);
+    box-shadow: 0 8px 14px 2px #00000038;
+    background-color: #04264c00;
+    border-radius: 2px;
+    width: 100%;
+    height: 4.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  .button-icon,
+  .wsn-button-icon,
+  .settings-button-icon,
+  .download-button-icon {
+    width: 45%; /* Adjusting the icon size */
+    object-fit: contain;
+  }
+  /* custon css for sensor toggle button icon */
+  .wsn-button-icon {
+    width: 30%; /* Adjusting the icon size */
+  }
+  /* custon css for sensor toggle button icon */
+  .settings-button-icon {
+    width: 40%; /* Adjusting the icon size */
+  }
+  .download-button-icon {
+    width: 50%; /* Adjusting the icon size */
+  }
+
+  .toggle-button:hover {
+    border-color: var(--green);
+    box-shadow: 0 0 7px -5px var(--green);
+    color: var(--green);
+    text-shadow: 0 1px 5px #007bff;
+  }
+  .toggle-button.active {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: 0 0 7px -5px var(--green);
+    color: var(--green);
+    text-shadow: 0 1px 5px #007bff;
+    box-shadow: 0 8px 14px 2px #00000038;
+  }
+
+  .toggle-buttons-container a:first-child {
+    margin-left: 5; /* Makes just first toggle button has 5 margin */
+  }
+
+  .toggle-buttons-container a:last-child {
+    margin-right: 0; /* Remove right margin for the last button so aligned better with logout button end*/
   }
 }
