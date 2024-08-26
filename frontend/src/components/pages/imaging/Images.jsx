@@ -108,9 +108,13 @@ function Images() {
                 <td>{item.date}</td>
                 <td>{item.time}</td>
                 <td>
-                  <button className="action-button">View</button>
-                  <button className="action-button">Delete</button>
-                  <button className="action-button">Download</button>
+                  <div className="action-buttons-container">
+                    <button className="action-button">View</button>
+                    <span className="separator">|</span>
+                    <button className="action-button">Download</button>
+                    <span className="separator">|</span>
+                    <button className="action-button-delete">Delete</button>
+                  </div>
                 </td>
               </tr>
             ))}
