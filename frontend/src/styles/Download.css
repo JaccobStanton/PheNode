@@ -5,6 +5,7 @@
   width: 100%; /* Ensures the box takes up the full width of its container */
   padding: 1rem;
   box-sizing: border-box;
+  align-items: center;
 }
 
 .preferences-text {
@@ -12,13 +13,13 @@
   cursor: default;
   color: var(--blue); /* Adjust the color as needed */
   margin-right: 0.5rem; /* Small space between the text and the SVG */
+  line-height: 0;
 }
 
 .data-preference-svg-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%; /* Ensure the container takes up the full height of its parent */
   padding: 0.8rem;
   border: 1px solid var(--blue);
   box-shadow: 0 8px 14px 2px #00000038;
