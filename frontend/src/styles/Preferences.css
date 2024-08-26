@@ -136,3 +136,7 @@
   color: var(--green);
   text-shadow: 0 1px 5px #007bff;
 }
+
+.preferences-update-button:focus {
+  outline: none;
+}
