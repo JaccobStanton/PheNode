@@ -151,6 +151,7 @@
 
 .action-button:hover {
   color: var(--green); /* Hover color */
+  text-shadow: 0 0.5px 1px var(--green);
 }
 
 /* Adjust the separator */
@@ -158,4 +159,34 @@
   content: "|";
   color: var(--box-outline-blue); /* Separator color */
   margin-right: 0.5rem; /* Space after separator */
+}
+
+/* CSS FOR BATCH DOWNLOAD BUTTON */
+.batch-download-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.batch-download-button {
+  padding: 1.5rem 2rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  background-color: transparent;
+  color: var(--green);
+  border: 1px solid var(--blue);
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.batch-download-button:hover {
+  border-color: var(--green);
+  box-shadow: 0 0 7px -5px var(--green);
+  color: var(--green);
+  text-shadow: 0 1px 5px #007bff;
+}
+
+.batch-download-button:focus {
+  outline: none;
 }
