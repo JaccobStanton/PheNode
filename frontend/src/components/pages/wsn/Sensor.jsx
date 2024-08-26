@@ -1,5 +1,6 @@
 import React from "react";
 import "../../../styles/Realtime.css";
+import "../../../styles/WSN.css";
 import SensorDiagram from "../../../assets/diagrams/Wireless-Sensors-v4.svg";
 
 function Sensor() {
@@ -11,13 +12,13 @@ function Sensor() {
           <div className="sensor-data-value-boxes-container">
             <div className="grid-item sensor-data-value-boxes">
               <div className="sensor-data-text-container">
-                <div className="left-column">
+                <div className="sensor-left-column">
                   <p>Temperature:</p>
                   <p>Humidity:</p>
                   <p>Illumination (lux):</p>
                   <p>Sensor Status:</p>
                 </div>
-                <div className="right-column">
+                <div className="sensor-right-column">
                   <p>68.7 F</p>
                   <p>12%</p>
                   <p>19 kPa</p>
@@ -27,13 +28,13 @@ function Sensor() {
             </div>
             <div className="grid-item sensor-data-value-boxes">
               <div className="sensor-data-text-container">
-                <div className="left-column">
+                <div className="sensor-left-column">
                   <p>Soil Moisture:</p>
                   <p>Soil Temp:</p>
                   <p>Soil Salinity:</p>
                   <p>Sensor Status:</p>
                 </div>
-                <div className="right-column">
+                <div className="sensor-right-column">
                   <p>68.7 F</p>
                   <p>12%</p>
                   <p>19 kPa</p>
