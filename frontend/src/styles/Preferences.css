@@ -193,7 +193,7 @@
 
   .download-preferences-text {
     color: var(--blue);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-align: left;
     margin-bottom: 1rem;
     font-weight: 500;
@@ -203,7 +203,7 @@
     width: 100%;
     padding: 0.5rem;
     height: 4rem;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     box-sizing: border-box;
     text-align: center;
     border: 1px solid var(--reflected-light);
@@ -232,7 +232,7 @@
     height: 4rem;
     padding: 0.5rem;
     border-radius: 2px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 500;
     box-sizing: border-box;
     text-align: center;
@@ -261,7 +261,7 @@
 
   .preferences-update-button {
     padding: 1.5rem 2rem;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: bold;
     background-color: transparent;
     color: var(--green);

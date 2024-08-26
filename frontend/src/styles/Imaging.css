@@ -219,14 +219,14 @@
 
   .imaging-last-photo-text {
     color: var(--blue);
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     text-align: left;
     margin-right: 0.5rem; /* Adds space between the text and date */
   }
 
   .last-photo-date {
     color: var(--green);
-    font-size: 1.2rem; /* Slightly larger text */
+    font-size: 1.1rem; /* Slightly larger text */
     margin-left: 0.5rem; /* Space between the two texts */
   }
 

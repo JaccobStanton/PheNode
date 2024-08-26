@@ -158,7 +158,7 @@
   }
 
   .preferences-text {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     cursor: default;
     color: var(--blue); /* Adjust the color as needed */
     margin-right: 0.5rem; /* Small space between the text and the SVG */
@@ -206,7 +206,7 @@
 
   .title-text {
     color: #00faff; /* Text color for the title */
-    font-size: 1.3rem; /* Adjust font size for the title */
+    font-size: 1.2rem; /* Adjust font size for the title */
     font-weight: 500;
     text-shadow: 0 1px 9px #1a75e0c9;
     margin-bottom: 3px;
@@ -256,7 +256,7 @@
     color: var(--blue);
     background-color: #00143642;
     box-shadow: inset 1px 4px 5px #0003;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-right: 0.5rem; /* Small space between text boxes */
     text-align: center;
   }
@@ -275,7 +275,7 @@
   .download-button {
     width: 28%; /* Equal width for the button */
     padding: 1.5rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     background-color: transparent; /* Transparent button background */
     border: 1px solid var(--blue); /* Orange border for the button */
     color: var(--green);

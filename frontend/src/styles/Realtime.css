@@ -398,3 +398,105 @@
 .right-column p {
   color: var(--green);
 }
+
+@media (min-width: 1920px) {
+  .page-title {
+    display: flex;
+    justify-content: flex-start;
+    background-color: var(--transparent);
+    color: var(--dark-blue);
+    height: auto;
+    font-size: 2.3rem;
+    font-weight: 500;
+  }
+  .last-measurement-text {
+    color: var(--blue);
+    text-align: left;
+    margin-top: 0;
+    font-size: 1.1rem;
+    display: block;
+  }
+
+  .measurement-date {
+    color: var(--green);
+    font-size: 1.1rem; /* Slightly larger text */
+    margin-left: 0.5rem; /* Space between the two texts */
+  }
+  .wifi-text,
+  .cellular-text {
+    font-size: 1.3rem;
+    color: var(--blue);
+    margin-right: 0.5rem;
+  }
+
+  .signal-blocks {
+    display: grid;
+    grid-template-columns: repeat(4, 1.5rem);
+    grid-row-gap: 1rem;
+    place-content: start;
+    place-items: center start;
+    height: auto;
+  }
+
+  .signal-block {
+    width: 0.8rem;
+    height: 0.9rem;
+    background-color: var(--green);
+    border: 1px solid #000;
+    border-radius: 0;
+    outline-offset: 0px;
+    outline: 3px #e8e8e8;
+    box-shadow: 0 0 10px 1px #1a75e0db;
+  }
+}
+
+@media (min-width: 2560px) {
+  .page-title {
+    display: flex;
+    justify-content: flex-start;
+    background-color: var(--transparent);
+    color: var(--dark-blue);
+    height: auto;
+    font-size: 2.5rem;
+    font-weight: 500;
+  }
+  .last-measurement-text {
+    color: var(--blue);
+    text-align: left;
+    margin-top: 0;
+    font-size: 1.2rem;
+    display: block;
+  }
+
+  .measurement-date {
+    color: var(--green);
+    font-size: 1.2rem; /* Slightly larger text */
+    margin-left: 0.5rem; /* Space between the two texts */
+  }
+  .wifi-text,
+  .cellular-text {
+    font-size: 1.5rem;
+    color: var(--blue);
+    margin-right: 0.5rem;
+  }
+
+  .signal-blocks {
+    display: grid;
+    grid-template-columns: repeat(4, 1.5rem);
+    grid-row-gap: 1rem;
+    place-content: start;
+    place-items: center start;
+    height: auto;
+  }
+
+  .signal-block {
+    width: 0.9rem;
+    height: 1rem;
+    background-color: var(--green);
+    border: 1px solid #000;
+    border-radius: 0;
+    outline-offset: 0px;
+    outline: 3px #e8e8e8;
+    box-shadow: 0 0 10px 1px #1a75e0db;
+  }
+}
