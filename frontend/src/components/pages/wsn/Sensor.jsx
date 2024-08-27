@@ -52,15 +52,18 @@ function Sensor() {
           <img src={SensorDiagram} alt="sensor" className="wsn-sensor-svg" />
         </div>
         <div className="dropdown-wsn">
-          {/* //! ADD A SEARCH OPTION TO SEARCH SENSORS BY NAME */}
-          <button className="dropdown-button-wsn">
-            Select Wireless Sensor...
-          </button>
-          <div className="dropdown-content">
-            <a href="#">Option 1</a>
-            <a href="#">Option 2</a>
-            <a href="#">Option 3</a>
-          </div>
+          {/* Dropdown to select wireless sensor */}
+          <select
+            className="dropdown-menu-wsn"
+            onChange={(e) => handleDropdownChange(e)}
+          >
+            <option value="" disabled selected>
+              Select Wireless Sensor...
+            </option>
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
         </div>
       </div>
 

@@ -72,7 +72,7 @@
   z-index: 10; /* Ensure it stays above other content */
 }
 
-.dropdown-button-wsn {
+.dropdown-menu-wsn {
   border: 1.2px solid var(--reflected-light);
   background-color: var(--drf);
   color: var(--green);
@@ -87,42 +87,14 @@
   text-align: left;
 }
 
-.dropdown-button-wsn:hover {
+.dropdown-menu-wsn:hover {
   border-color: var(--green);
   box-shadow: 0 0 7px -5px var(--green);
   color: var(--green);
   text-shadow: 0 1px 5px #007bff;
 }
-.dropdown-button-wsn:focus {
+.dropdown-menu-wsn:focus {
   outline: none;
-}
-
-.dropdown-content {
-  display: none; /* Initially hidden */
-  position: absolute;
-  top: 100%; /* Start dropdown right below the button */
-  left: 0;
-  background-color: var(--drf);
-  min-width: 100%;
-  box-shadow: 0 8px 14px 2px #00000038;
-  z-index: 1;
-  border: 1px solid red;
-}
-
-.dropdown-content a {
-  color: var(--green);
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  font-size: 1.5rem;
-}
-
-.dropdown-content a:hover {
-  background-color: var(--reflected-light);
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
 }
 
 /* //!GPS AND RENAME SENSOR */
@@ -311,7 +283,7 @@
     z-index: 10; /* Ensure it stays above other content */
   }
 
-  .dropdown-button-wsn {
+  .dropdown-menu-wsn {
     border: 1.2px solid var(--reflected-light);
     background-color: var(--drf);
     color: var(--green);
@@ -326,42 +298,14 @@
     text-align: left;
   }
 
-  .dropdown-button-wsn:hover {
+  .dropdown-menu-wsn:hover {
     border-color: var(--green);
     box-shadow: 0 0 7px -5px var(--green);
     color: var(--green);
     text-shadow: 0 1px 5px #007bff;
   }
-  .dropdown-button-wsn:focus {
+  .dropdown-menu-wsn:focus {
     outline: none;
-  }
-
-  .dropdown-content {
-    display: none; /* Initially hidden */
-    position: absolute;
-    top: 100%; /* Start dropdown right below the button */
-    left: 0;
-    background-color: var(--drf);
-    min-width: 100%;
-    box-shadow: 0 8px 14px 2px #00000038;
-    z-index: 1;
-    border: 1px solid red;
-  }
-
-  .dropdown-content a {
-    color: var(--green);
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-size: 1.4rem;
-  }
-
-  .dropdown-content a:hover {
-    background-color: var(--reflected-light);
-  }
-
-  .dropdown:hover .dropdown-content {
-    display: block;
   }
 
   /* //!GPS AND RENAME SENSOR */
@@ -552,7 +496,7 @@
     z-index: 10; /* Ensure it stays above other content */
   }
 
-  .dropdown-button-wsn {
+  .dropdown-menu-wsn {
     border: 1.2px solid var(--reflected-light);
     background-color: var(--drf);
     color: var(--green);
@@ -565,44 +509,19 @@
     box-shadow: 0 8px 14px 2px #00000038;
     cursor: pointer;
     text-align: left;
+    -webkit-appearance: none; /* Removes default arrow in WebKit browsers */
+    -moz-appearance: none; /* Removes default arrow in Firefox */
+    appearance: none; /* Removes default arrow in other browsers */
   }
 
-  .dropdown-button-wsn:hover {
+  .dropdown-menu-wsn:hover {
     border-color: var(--green);
     box-shadow: 0 0 7px -5px var(--green);
     color: var(--green);
     text-shadow: 0 1px 5px #007bff;
   }
-  .dropdown-button-wsn:focus {
+  .dropdown-menu-wsn:focus {
     outline: none;
-  }
-
-  .dropdown-content {
-    display: none; /* Initially hidden */
-    position: absolute;
-    top: 100%; /* Start dropdown right below the button */
-    left: 0;
-    background-color: var(--drf);
-    min-width: 100%;
-    box-shadow: 0 8px 14px 2px #00000038;
-    z-index: 1;
-    border: 1px solid red;
-  }
-
-  .dropdown-content a {
-    color: var(--green);
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-size: 1.5rem;
-  }
-
-  .dropdown-content a:hover {
-    background-color: var(--reflected-light);
-  }
-
-  .dropdown:hover .dropdown-content {
-    display: block; /* Show the dropdown content on hover */
   }
 
   /* //!GPS AND RENAME SENSOR */
