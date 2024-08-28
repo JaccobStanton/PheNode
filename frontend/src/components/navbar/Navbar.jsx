@@ -51,7 +51,7 @@ const Navbar = () => {
       </div>
       <div className="grid-item-right-corner">
         <div className="user-logout-container">
-          <div className="inner-box left-box">User 0000</div>
+          <div className="inner-box logout-box">User 0000</div>
           <button className="inner-box logout-button">Logout</button>
         </div>
       </div>
