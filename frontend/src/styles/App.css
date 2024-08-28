@@ -61,12 +61,11 @@ html,
   background-image: radial-gradient(
     circle farthest-corner at 50% 0%,
     #043e83,
-    var(--bg-dark-color) 75%,
+    var(--bg-dark-color) 65%,
     #7b00ff24 102%
   );
-  /* background-image: radial-gradient(circle at 50% 15%, #00438f, #00102f); */
+  /* background-image: radial-gradient(circle at 50% 15%, #00438f, #00102f); if this code is on,var(--bg-dark-color) above should be 65%, */
   height: auto;
-  /* width: 99%; */
   max-height: none;
   margin-bottom: auto;
   padding-top: 3rem;
@@ -77,7 +76,7 @@ html,
 .grafana-box {
   border: 1px solid var(--blue);
   width: 100%;
-  min-height: 90vh;
+  min-height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
