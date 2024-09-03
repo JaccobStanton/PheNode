@@ -490,6 +490,7 @@
   .wireless-sensor-count-box .top-box .sensor-count {
     color: var(--green);
     font-size: 2rem;
+    text-shadow: 0 1px 5px #007bff;
   }
 
   .wireless-sensor-count-box .top-box .sensor-text {

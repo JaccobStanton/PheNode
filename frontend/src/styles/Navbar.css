@@ -371,14 +371,14 @@
   }
   /* custon css for sensor toggle button icon */
   .wsn-button-icon {
-    width: 65%; /* Adjusting the icon size */
+    width: 60%; /* Adjusting the icon size */
   }
   /* custon css for sensor toggle button icon */
   .settings-button-icon {
     width: 90%; /* Adjusting the icon size */
   }
   .download-button-icon {
-    width: 90%; /* Adjusting the icon size */
+    width: 100%; /* Adjusting the icon size */
   }
 
   .toggle-button:hover {
