@@ -410,18 +410,18 @@
     color: var(--blue);
     text-align: left;
     margin-top: 0;
-    font-size: 1rem;
+    font-size: 0.95rem;
     display: block;
   }
 
   .measurement-date {
     color: var(--green);
-    font-size: 1rem; /* Slightly larger text */
+    font-size: 0.95rem; /* Slightly larger text */
     margin-left: 0.5rem; /* Space between the two texts */
   }
   .wifi-text,
   .cellular-text {
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: var(--blue);
     margin-right: 0.5rem;
   }
@@ -436,14 +436,258 @@
   }
 
   .signal-block {
-    width: 0.8rem;
-    height: 0.9rem;
+    width: 0.75rem;
+    height: 0.85rem;
     background-color: var(--green);
     border: 1px solid #000;
     border-radius: 0;
     outline-offset: 0px;
     outline: 3px #e8e8e8;
     box-shadow: 0 0 10px 1px #1a75e0db;
+  }
+
+  /* PHENODE DIAGRAM ROW */
+  .twenty-five-width {
+    flex: 0 0 25%;
+    margin-top: 3rem;
+  }
+  /* //! wireless sensor count box */
+  .wireless-sensor-count-box {
+    width: 70%;
+    height: 100%;
+    border: 1px solid var(--reflected-light);
+    box-shadow: 0 11px 19px 1px #0000002e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  .wireless-sensor-count-box .top-box,
+  .wireless-sensor-count-box .bottom-box {
+    width: 95%;
+    box-sizing: border-box;
+  }
+
+  .wireless-sensor-count-box .top-box {
+    height: 40%;
+    margin-bottom: 1rem; /* Space between the top and bottom boxes */
+    display: flex;
+    flex-direction: column; /* Set flex direction to column */
+    justify-content: center;
+    align-items: center;
+  }
+
+  .wireless-sensor-count-box .top-box .top-box-content {
+    display: flex;
+    flex-direction: column; /* Ensure content is displayed in a column */
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text */
+  }
+
+  .wireless-sensor-count-box .top-box .sensor-count {
+    color: var(--green);
+    font-size: 2rem;
+  }
+
+  .wireless-sensor-count-box .top-box .sensor-text {
+    color: var(--blue);
+    font-size: 1rem;
+  }
+
+  .wireless-sensor-count-box .bottom-box {
+    height: 60%;
+    display: flex;
+    flex-direction: column; /* Ensure content is displayed in a column */
+    align-items: center; /* Center content horizontally */
+  }
+
+  .sensor-svg {
+    max-width: 95%;
+    max-height: 95%;
+  }
+
+  .img-grid-container {
+    flex: 0 0 50%;
+    position: relative; /* Make the container relative to position the SVG absolutely */
+    overflow: visible; /* Ensure the SVG can overflow the container */
+    margin-bottom: -3rem;
+  }
+
+  .phenode-svg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .phenode-svg {
+    width: 120%;
+    height: 120%;
+  }
+
+  /* //! IMAGE AND GPS BOX START */
+  .image-gps-box {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    box-sizing: border-box;
+    padding: 0 0 0 1rem;
+  }
+
+  .image-gps-box .top-image-box,
+  .image-gps-box .bottom-gps-box {
+    width: 95%;
+  }
+
+  .image-gps-box .top-image-box {
+    height: 50%;
+    margin-bottom: 1rem; /* Space between the top and bottom boxes */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-gps-box .top-image-box .image-box,
+  .image-gps-box .top-image-box .text-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-gps-box .top-image-box .image-box {
+    height: 20%; /* Increase the height of the image box */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-gps-box .top-image-box .images-svg {
+    max-width: 100%;
+    max-height: 100%;
+    width: 65%;
+    cursor: pointer;
+  }
+
+  .image-gps-box .top-image-box .text-box {
+    margin-top: 1rem; /* Space between the image box and text box */
+  }
+
+  .image-gps-box .top-image-box .image-sensor-text,
+  .image-gps-box .top-image-box .sensor-status-top-box,
+  .image-gps-box .top-image-box .sensor-text-operation,
+  .bottom-gps-box .gps-battery-box,
+  .gps-battery-box .gps-text,
+  .gps-battery-box .battery-text {
+    margin: 0.1rem 0; /* Increase vertical spacing between text elements */
+  }
+
+  .image-gps-box .top-image-box .image-sensor-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .image-gps-box .top-image-box .sensor-status-top-box {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .image-gps-box .top-image-box .sensor-text-operation {
+    font-size: 0.9rem;
+  }
+
+  /* //! bottom GPS/Battery box start */
+
+  .image-gps-box .bottom-gps-box {
+    height: 50%;
+    display: flex;
+    flex-direction: column; /* Ensure content is displayed in a column */
+    align-items: center; /* Center content horizontally */
+  }
+  .bottom-gps-box {
+    align-items: flex-end;
+  }
+
+  .bottom-gps-box .gps-battery-box {
+    width: 100%;
+    height: 50%; /* Equal height for both boxes */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; /* Space between the top and bottom boxes */
+  }
+
+  .gps-battery-box .gps-text,
+  .gps-battery-box .battery-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .gps-text .gps-coordinates,
+  .battery-text .battery-percentage {
+    text-align: center;
+  }
+
+  .gps-text {
+    color: var(--blue);
+  }
+
+  .gps-coordinates {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .battery-text {
+    color: var(--blue);
+  }
+
+  .battery-percentage {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  /* //!ROW THREE START*/
+  /* Container for the data value boxes */
+  .data-value-boxes-container {
+    display: flex;
+    justify-content: space-between; /* Distributes space evenly */
+    gap: 1.2rem; /* Adjust the gap as needed */
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 2rem;
+  }
+
+  .data-text-container {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .left-column,
+  .right-column {
+    display: flex;
+    flex-direction: column;
+  }
+  .right-column {
+    align-items: flex-end;
+  }
+
+  .left-column p,
+  .right-column p {
+    margin: 0.1rem;
+    font-size: 1rem;
+    font-weight: 500;
   }
 }
 @media (min-width: 1920px) {

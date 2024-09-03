@@ -229,13 +229,13 @@
 
   .sensor-data-text-container {
     display: flex;
-    padding: 1.2rem;
+    padding: 1rem;
     justify-content: space-between;
     width: 100%;
   }
   .sensor-left-column p,
   .sensor-right-column p {
-    margin: 0.35rem;
+    margin: 0.2rem;
     font-size: 1rem;
     font-weight: 500;
   }
@@ -311,15 +311,16 @@
     align-items: center; /* Center the text horizontally */
     justify-content: center; /* Center the content vertically */
     text-align: center; /* Ensure text is centered */
+    padding: 1rem;
   }
 
   .sensor-gps-text {
-    font-size: 1rem; /* Space between text and coordinates */
+    font-size: 0.95rem; /* Space between text and coordinates */
     color: var(--blue);
   }
 
   .sensor-gps-coordinates {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--green);
     margin-bottom: 0.5rem;
     font-weight: 500;
@@ -367,7 +368,7 @@
   }
 
   .placeholder-box {
-    width: 70%;
+    width: 75%;
     height: 2rem;
     border-style: none none solid;
     border-width: 1px 1px 2px;

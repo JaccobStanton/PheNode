@@ -101,9 +101,7 @@
 .start-end-box {
   width: 28%; /* Equal width for each text box */
   padding: 1.5rem; /* Padding inside the text box */
-  border-style: none none solid;
-  border-width: 1px 1px 2px;
-  border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
+  border: 1px solid var(--box-outline-blue);
   color: var(--blue);
   background-color: #00143642;
   box-shadow: inset 1px 4px 5px #0003;
@@ -126,7 +124,8 @@
 .download-button {
   width: 28%; /* Equal width for the button */
   padding: 1.5rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  font-weight: bold;
   background-color: transparent; /* Transparent button background */
   border: 1px solid var(--blue); /* Orange border for the button */
   color: var(--green);
@@ -144,6 +143,151 @@
 }
 .download-grid-item button:focus {
   outline: none;
+}
+@media (min-width: 1440px) {
+  .download-data-preferences-box {
+    display: flex;
+    justify-content: flex-end; /* Aligns content horizontally to the end */
+    align-items: center; /* Centers items vertically */
+    width: 100%; /* Ensures the box takes up the full width of its container */
+    padding: 1rem;
+    box-sizing: border-box;
+    align-items: center;
+  }
+
+  .preferences-text {
+    font-size: 1rem;
+    cursor: default;
+    color: var(--blue); /* Adjust the color as needed */
+    margin-right: 0.5rem; /* Small space between the text and the SVG */
+    line-height: 0;
+  }
+
+  .data-preference-svg-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem;
+    border: 1px solid var(--blue);
+    box-shadow: 0 8px 14px 2px #00000038;
+  }
+  .data-preference-svg {
+    width: 70%;
+    height: 70%;
+  }
+  .data-preference-svg-container:hover {
+    border: 1px solid var(--green);
+    cursor: pointer;
+  }
+
+  /* //! Download boxes CSS starts */
+  .download-grid-container {
+    display: grid;
+    width: 100%; /* Container takes up 85% of the parent width */
+    margin: auto; /* Center the grid horizontally */
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-template-rows: auto auto auto; /* Three rows */
+    row-gap: 4rem; /* Gap between rows */
+    column-gap: 3rem; /* Gap between columns */
+    box-sizing: border-box;
+    margin-top: 2rem;
+  }
+
+  .title-container {
+    width: 90%;
+    border-bottom: 1px solid var(--blue); /* Bottom border */
+    display: flex;
+    justify-content: flex-start; /* Align content to the left */
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .title-text {
+    color: #00faff; /* Text color for the title */
+    font-size: 1rem; /* Adjust font size for the title */
+    font-weight: 500;
+    text-shadow: 0 1px 9px #1a75e0c9;
+    margin-bottom: 3px;
+  }
+  .download-grid-item {
+    background-color: #0000; /* Transparent background */
+    border: 1px solid var(--box-outline-blue);
+    box-shadow: 0 8px 14px 2px #00000038;
+    color: var(--gainsboro);
+    height: 4rem; /* Set a fixed height for the boxes */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
+    flex-direction: column;
+  }
+
+  /* Center the fifth item in the third row */
+  .download-grid-container > .download-grid-item:nth-child(5) {
+    grid-column: 1 / span 2; /* Span across both columns */
+    justify-self: center;
+    width: 50%; /* Make the fifth item take up 50% width */
+  }
+
+  /* //! download BOXES start */
+  .start-end-button-container {
+    display: flex;
+    justify-content: space-between; /* Space out the items evenly */
+    align-items: center;
+    width: 90%; /* Input group takes up 90% of the parent container */
+    padding: 0.8rem;
+    margin-top: 0.05rem;
+  }
+  .start-end-box {
+    width: 28%; /* Equal width for each text box */
+    padding: 0.8rem; /* Padding inside the text box */
+    border-style: none none solid;
+    border-width: 1px 1px 2px;
+    border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
+    color: var(--blue);
+    background-color: #00143642;
+    box-shadow: inset 1px 4px 5px #0003;
+    font-size: 0.9rem;
+    margin-right: 0.5rem; /* Small space between text boxes */
+    text-align: center;
+  }
+  .start-end-box:hover {
+    border-bottom: 1px solid var(--dark-blue);
+  }
+  .start-end-box:focus {
+    border-bottom: 1px solid var(--dark-blue); /* Blue bottom border when focused */
+    outline: none; /* Remove default outline */
+  }
+
+  .start-end-box::placeholder {
+    color: var(--blue); /* Red placeholder text */
+  }
+
+  .download-button {
+    width: 28%; /* Equal width for the button */
+    padding: 0.7rem;
+    font-size: 0.95rem;
+    background-color: transparent; /* Transparent button background */
+    border: 1px solid var(--blue); /* Orange border for the button */
+    color: var(--green);
+    border-radius: 2px;
+    cursor: pointer;
+    text-align: center; /* Center text inside the button */
+  }
+
+  .download-grid-item button:hover {
+    box-shadow: 0 0 7px -5px var(--green);
+    color: var(--green);
+    text-shadow: 0 0.5px 1px var(--green);
+    border: 1px solid var(--green);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  }
+  .download-grid-item button:focus {
+    outline: none;
+  }
 }
 
 @media (min-width: 1920px) {
@@ -213,10 +357,7 @@
   }
   .download-grid-item {
     background-color: #0000; /* Transparent background */
-    border-style: solid none none;
-    border-color: var(--reflected-light) var(--box-outline-blue)
-      var(--box-outline-blue);
-    border-top-width: 2px;
+    border: 1px solid var(--box-outline-blue);
     box-shadow: 0 8px 14px 2px #00000038;
     color: var(--gainsboro);
     height: 7rem; /* Set a fixed height for the boxes */
@@ -364,9 +505,7 @@
   .download-grid-item {
     background-color: #0000; /* Transparent background */
     border-style: solid none none;
-    border-color: var(--reflected-light) var(--box-outline-blue)
-      var(--box-outline-blue);
-    border-top-width: 2px;
+    border: 1px solid var(--box-outline-blue);
     box-shadow: 0 8px 14px 2px #00000038;
     color: var(--gainsboro);
     height: 7rem; /* Set a fixed height for the boxes */
