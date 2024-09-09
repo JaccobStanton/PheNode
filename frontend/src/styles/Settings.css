@@ -186,7 +186,7 @@
   }
   .settings-password-input-box {
     /* since box has text inside, box was not lining up perfectly with box on left, this fixes that for this breakpoint */
-    margin-top: 00.9rem;
+    margin-top: 0.9rem;
   }
 
   .settings-button {
