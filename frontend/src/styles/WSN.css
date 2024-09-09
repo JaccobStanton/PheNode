@@ -195,6 +195,199 @@
 .rename-button:focus {
   outline: none;
 }
+@media (min-width: 1280px) {
+  .sensor-twenty-five-width {
+    flex: 0 0 25%;
+    margin-top: 3rem;
+  }
+  .sensor-page-data-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .sensor-data-value-boxes-container {
+    display: flex;
+    justify-content: center; /* Distributes space evenly */
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 2rem;
+  }
+  .sensor-data-value-boxes {
+    flex: 1; /* Allow the boxes to grow and fill available space */
+    border: 1px solid var(--reflected-light);
+    box-shadow: 0 11px 19px 1px #0000002e;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .sensor-data-text-container {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .sensor-left-column p,
+  .sensor-right-column p {
+    margin: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .sensor-left-column p {
+    color: var(--blue);
+  }
+  .sensor-right-column p {
+    color: var(--green);
+  }
+
+  /* //! WIRELESS SENSOR DIAGRAM  */
+  .wireless-sensor-img-grid-container {
+    flex: 1 0 50%;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Make this container the reference for absolute positioning */
+  }
+
+  .wireless-sensor-svg-container {
+    display: flex;
+    justify-content: center; /* Centers the image horizontally */
+    align-items: flex-end; /* Aligns the image to the bottom of the container */
+    width: 100%;
+    height: 100%;
+  }
+
+  .wsn-sensor-svg {
+    max-width: 70%;
+    max-height: 50%;
+    margin: 0; /* Ensure no extra space below the image */
+  }
+
+  /* //!WSN DROP DOWN MENU */
+  .dropdown-wsn {
+    width: 80%;
+    position: absolute;
+    top: 0; /* Align the dropdown to the top of the container */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 10; /* Ensure it stays above other content */
+  }
+
+  .dropdown-menu-wsn {
+    border: 1.2px solid var(--reflected-light);
+    background-color: var(--drf);
+    color: var(--green);
+    border-radius: 2px;
+    width: 100%;
+    height: 2rem;
+    margin-bottom: 0;
+    padding: 0 0 0 0.8em;
+    font-size: 0.9rem;
+    box-shadow: 0 8px 14px 2px #00000038;
+    cursor: pointer;
+    text-align: left;
+    -webkit-appearance: none; /* Removes default arrow in WebKit browsers */
+    -moz-appearance: none; /* Removes default arrow in Firefox */
+    appearance: none; /* Removes default arrow in other browsers */
+  }
+
+  /* //!GPS AND RENAME SENSOR */
+  .sensor-gps-coordinates-box {
+    display: flex;
+    flex-direction: column; /* Stack the text and coordinates vertically */
+    align-items: center; /* Center the text horizontally */
+    justify-content: center; /* Center the content vertically */
+    text-align: center; /* Ensure text is centered */
+    padding: 1rem;
+  }
+
+  .sensor-gps-text {
+    font-size: 0.85rem; /* Space between text and coordinates */
+    color: var(--blue);
+  }
+
+  .sensor-gps-coordinates {
+    font-size: 0.85rem;
+    color: var(--green);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .sensor-rename-container {
+    display: flex;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 1.5rem;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: column;
+  }
+  .id-top-box,
+  .rename-bottom-box {
+    flex: 1; /* Make both boxes take up equal space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .text-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .rename-title {
+    font-size: 0.9rem;
+    margin-bottom: 0.1rem;
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  .device-id {
+    font-size: 0.9rem;
+    color: var(--blue);
+    margin-top: 0;
+    font-weight: 500;
+  }
+
+  .placeholder-box {
+    width: 75%;
+    height: 1.8rem;
+    border-style: none none solid;
+    border-width: 1px 1px 2px;
+    border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
+    color: var(--blue);
+    background-color: #00143642;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+    box-shadow: inset 1px 4px 5px #0003;
+  }
+
+  .rename-button {
+    width: 40%;
+    padding: 0.2rem;
+    border: 1px solid var(--blue);
+    border-radius: 2px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    background-color: transparent;
+    color: var(--green);
+    cursor: pointer;
+    text-align: center;
+    height: 2rem;
+    margin-top: 0.5rem;
+  }
+}
 @media (min-width: 1440px) {
   .sensor-twenty-five-width {
     flex: 0 0 25%;
