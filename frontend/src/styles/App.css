@@ -83,3 +83,10 @@ html,
   box-sizing: border-box;
   margin-top: 5rem;
 }
+
+@media (min-width: 991px) {
+  .grafana-box {
+    width: 85%;
+    margin: 5rem auto 0 auto; /* Center horizontally */
+  }
+}

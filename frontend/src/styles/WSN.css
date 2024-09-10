@@ -114,8 +114,9 @@
 .sensor-gps-coordinates {
   font-size: 1.2rem;
   color: var(--green);
+  text-shadow: 0 1px 5px #007bff;
   margin-bottom: 0.5rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .sensor-rename-container {
@@ -194,6 +195,283 @@
 }
 .rename-button:focus {
   outline: none;
+}
+@media (min-width: 991px) {
+  /* THIS IS CSS CODE THE SENSOR MOBILE BREAKPOINT */
+  .sensor-mobile-container {
+    width: 85%;
+    margin: 0 auto; /* Center the container horizontally */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Align items to the center of the container */
+    gap: 1.5rem; /* Add gap between stacked items */
+    position: relative; /* Ensure the container provides a positioning context */
+  }
+
+  .dropdown-wsn-mobile {
+    width: 100%; /* Make the dropdown take the full width of the container */
+    text-align: center;
+    margin-top: 2rem;
+    position: relative; /* Ensure dropdown is positioned relative to this container */
+  }
+
+  .dropdown-menu-wsn-mobile {
+    width: 100%;
+    max-width: 440px;
+    border: 1.2px solid var(--reflected-light);
+    background-color: var(--drf);
+    color: var(--green);
+    border-radius: 2px;
+    height: 2rem;
+    font-size: 0.8rem;
+    box-shadow: 0 8px 14px 2px #00000038;
+    cursor: pointer;
+    text-align: left;
+    appearance: none;
+    padding: 0 0 0 0.8em;
+    margin-right: 25px; /*to offset image not being totally same size, to make it look more centered */
+  }
+
+  .wireless-sensor-svg-container-mobile {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .wsn-sensor-svg-mobile {
+    width: 70%;
+    height: auto;
+  }
+
+  .sensor-gps-coordinates-box-mobile {
+    width: 95%;
+    border: 1px solid var(--reflected-light);
+    box-shadow: 0 11px 19px 1px #0000002e;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-top: -4rem;
+  }
+
+  .gps-battery-container-mobile {
+    display: flex;
+    width: 35%;
+    flex-direction: row; /* Place items in a row */
+    align-items: center; /* Vertically align items */
+    justify-content: center; /* Horizontally center the content */
+    gap: 0.5rem; /* Add space between text and values */
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Ensure that both text and coordinates share the same font size and line height */
+  .sensor-gps-text-mobile,
+  .sensor-gps-coordinates-mobile {
+    font-size: 0.75rem;
+    line-height: 1.5rem; /* Make sure the line height is consistent */
+    margin: 0; /* Ensure no margin is causing misalignment */
+    padding: 0; /* Remove padding to avoid any shifting */
+  }
+
+  /* Specific styling for GPS text */
+  .sensor-gps-text-mobile {
+    color: var(--blue);
+  }
+
+  /* Specific styling for coordinates */
+  .sensor-gps-coordinates-mobile {
+    color: var(--green);
+  }
+
+  .sensor-data-value-boxes-mobile1 {
+    width: 100%;
+    border: 1px solid var(--reflected-light);
+    box-shadow: 0 11px 19px 1px #0000002e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    margin-top: -1rem;
+  }
+
+  .sensor-data-text-container-mobile1 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .sensor-left-column-mobile1 p,
+  .sensor-right-column-mobile1 p {
+    margin: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .sensor-left-column-mobile1 p {
+    color: var(--blue);
+  }
+
+  .sensor-right-column-mobile1 p {
+    color: var(--green);
+  }
+
+  /* Parent flex container for both sensor-data-value-boxes */
+  .sensor-data-boxes-row-mobile1 {
+    display: flex;
+    flex-direction: row; /* Place the boxes side by side */
+    justify-content: space-between; /* Space between the boxes */
+    width: 100%; /* Full width */
+    gap: 1rem; /* Optional: Adds space between the boxes */
+    padding: 1rem 0; /* Optional: Padding between the boxes */
+  }
+
+  /* Existing styles for individual sensor data boxes */
+  .sensor-data-value-boxes-mobile1 {
+    flex: 1; /* Allow boxes to take equal space */
+    border: 1px solid var(--reflected-light);
+    box-shadow: 0 11px 19px 1px #0000002e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem;
+    box-sizing: border-box;
+  }
+
+  /* Ensure the text container is still spaced well */
+  .sensor-data-text-container-mobile1 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .sensor-left-column-mobile1 p,
+  .sensor-right-column-mobile1 p {
+    margin: 0.2rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
+
+  .sensor-left-column-mobile1 p {
+    color: var(--blue);
+  }
+
+  .sensor-right-column-mobile1 p {
+    color: var(--green);
+  }
+  /* SENSOR RENAME BOX */
+  .sensor-rename-container-mobile {
+    display: flex;
+    flex-direction: column; /* Stack the top and bottom boxes vertically */
+    align-items: center; /* Center the content horizontally */
+    justify-content: center; /* Center the content vertically */
+    width: 100%; /* Keep your original width */
+    margin-top: -1rem;
+    border: 1px solid var(--reflected-light);
+    box-shadow: 0 11px 19px 1px #0000002e;
+    padding: 1rem; /* Add padding for a cleaner look */
+    box-sizing: border-box;
+  }
+
+  /* Center both the id-top-box and rename-bottom-box inside the parent */
+  .id-top-box-mobile,
+  .rename-bottom-box-mobile {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Vertically center content */
+    width: 100%; /* Take full width of the container */
+    box-sizing: border-box;
+  }
+
+  /* Align text-column to the left in the id-top-box */
+  .id-top-box-mobile {
+    justify-content: flex-start; /* Align to the left */
+  }
+  .rename-bottom-box-mobile {
+    justify-content: flex-start;
+  }
+
+  .text-column-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align text to the left */
+    text-align: left; /* Ensure left alignment for text */
+    width: 100%;
+  }
+
+  /* Rename-bottom-box centered */
+  .rename-bottom-box-mobile {
+    display: flex;
+    justify-content: flex-start; /* Align content to the left */
+    align-items: center; /* Vertically center content */
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Styling for text in the text-column */
+  .rename-title-mobile {
+    font-size: 0.8rem;
+    margin-bottom: 0.1rem;
+    color: var(--green);
+    font-weight: 500;
+  }
+
+  .device-id-mobile {
+    font-size: 0.79rem;
+    color: var(--blue);
+    margin-top: 0;
+    font-weight: 500;
+  }
+
+  /* Placeholder box */
+  .placeholder-box-mobile {
+    width: 75%;
+    height: 2rem;
+    border-style: none none solid;
+    border-width: 1px 1px 2px;
+    border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
+    color: var(--blue);
+    background-color: #00143642;
+    border-radius: 2px;
+    box-shadow: inset 1px 4px 5px #0003;
+    display: flex;
+    justify-content: flex-start; /* Align content to the left */
+    align-items: center; /* Vertically center content */
+  }
+
+  .rename-bottom-box-mobile {
+    display: flex;
+    justify-content: space-between; /* Ensure the button and placeholder box are spaced */
+    align-items: flex-start; /* Align items at the top */
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0; /* Ensure no padding inside the container */
+  }
+
+  .rename-button-mobile {
+    width: 20%;
+    padding: 0.2rem;
+    border: 1px solid var(--blue);
+    border-radius: 2px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    background-color: transparent;
+    color: var(--green);
+    cursor: pointer;
+    height: 2rem;
+    display: flex;
+    justify-content: center; /* Horizontally center content */
+    align-items: center; /* Vertically center content */
+    align-self: flex-start; /* Align the button to the top of the container */
+    margin: 0; /* Remove any margin */
+  }
 }
 @media (min-width: 1280px) {
   .sensor-twenty-five-width {

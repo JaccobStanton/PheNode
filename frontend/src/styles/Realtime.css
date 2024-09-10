@@ -408,20 +408,22 @@
   }
   .last-measurement-text {
     margin-top: 0;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
 
   .measurement-date {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
   .wifi-text,
   .cellular-text {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    margin-top: -0.5rem;
   }
 
   .signal-block {
-    width: 0.65rem;
-    height: 0.65rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    margin-top: -0.5rem;
   }
   /* PHENODE DIAGRAM ROW */
   .twenty-five-width {
