@@ -87,6 +87,30 @@ html,
 @media (min-width: 991px) {
   .grafana-box {
     width: 85%;
-    margin: 5rem auto 0 auto; /* Center horizontally */
+    margin: 2.5rem auto 0 auto; /* Center horizontally */
+  }
+}
+@media (min-width: 1280px) {
+  .grafana-box {
+    width: 100%;
+    margin: 4.5rem auto 0 auto; /* Center horizontally */
+  }
+}
+@media (min-width: 1440px) {
+  .grafana-box {
+    width: 100%;
+    margin: 4.5rem auto 0 auto; /* Center horizontally */
+  }
+}
+@media (min-width: 1920px) {
+  .grafana-box {
+    width: 100%;
+    margin: 4.5rem auto 0 auto; /* Center horizontally */
+  }
+}
+@media (min-width: 2560px) {
+  .grafana-box {
+    width: 100%;
+    margin: 4.5rem auto 0 auto; /* Center horizontally */
   }
 }
