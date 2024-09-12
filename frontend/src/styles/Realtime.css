@@ -547,7 +547,7 @@
   .gps-text2,
   .battery-text2 {
     font-size: 0.7rem;
-    margin-bottom: 2px;
+    margin-bottom: 4px; /*used to make gps/battery box even with see images box */
     font-weight: bold;
     text-align: center;
     color: var(--blue);
@@ -567,7 +567,7 @@
     justify-content: space-between; /* Center the items within the box */
     align-items: center; /* Center items horizontally */
     width: 100%; /* Ensure the box takes the full width */
-    height: 100%;
+    height: 99.5%; /*used to make gps/battery box even with see images box */
     text-align: center; /* Ensure text is centered */
     border: 1px solid var(--reflected-light);
     box-shadow: 0 11px 19px 1px #0000002e;
@@ -616,7 +616,7 @@
     align-items: center; /* Align vertically */
     border: 1px solid var(--reflected-light);
     box-shadow: 0 11px 19px 1px #0000002e;
-    padding: 1rem;
+    padding: 1.5rem; /*used to make gps/battery box even with see images box */
     width: 100%;
     box-sizing: border-box;
   }
