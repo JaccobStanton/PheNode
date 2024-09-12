@@ -926,7 +926,7 @@
     margin-right: 0; /* Remove right margin for the last button so aligned better with logout button end*/
   }
 }
-@media (min-width: 2520px) {
+@media (min-width: 2560px) {
   .navbar-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

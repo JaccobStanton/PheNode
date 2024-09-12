@@ -651,7 +651,7 @@
   }
 }
 
-@media (min-width: 2520px) {
+@media (min-width: 2560px) {
   .download-data-preferences-box {
     display: flex;
     justify-content: flex-end; /* Aligns content horizontally to the end */
