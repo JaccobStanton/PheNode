@@ -3,7 +3,7 @@ import "../styles/WSN.css";
 import Sensor from "../components/pages/wsn/Sensor";
 import WSNTitle from "../components/pages/wsn/Title";
 import SensorGrafana from "../components/pages/wsn/Grafana";
-import SensorMobile from "../components/layouts/breakpoints/mobile/SensorMobile";
+import SensorMobile from "../components/layouts/breakpoints/mobile/991px/SensorMobile";
 
 function WSN() {
   return (

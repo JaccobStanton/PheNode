@@ -5,7 +5,7 @@ import Title from "../components/pages/realtime/Title";
 import PheNode from "../components/pages/realtime/PheNode";
 import SensorData from "../components/pages/realtime/SensorData";
 import PhenodeGrafana from "../components/pages/realtime/Grafana";
-import RealtimeMobile from "../components/layouts/breakpoints/mobile/RealtimeMobile";
+import RealtimeMobile from "../components/layouts/breakpoints/mobile/991px/RealtimeMobile";
 
 const Realtime = () => {
   return (
