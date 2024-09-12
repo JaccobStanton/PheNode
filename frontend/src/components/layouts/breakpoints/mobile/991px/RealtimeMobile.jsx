@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../../../styles/Realtime.css";
-import PheNodeSvg from "../../../../assets/diagrams/Phenode-Diagram.svg";
-import SensorSvg from "../../../../assets/diagrams/Wireless-Sensors.svg";
-import ImageInactive from "../../../../assets/toggle_buttons/Imaging-Settings-Icon-Inactive.svg";
-import ImageActive from "../../../../assets/toggle_buttons/Imaging_Icon_Active.svg";
+import "../../../../../styles/Realtime.css";
+import PheNodeSvg from "../../../../../assets/diagrams/Phenode-Diagram.svg";
+import SensorSvg from "../../../../../assets/diagrams/Wireless-Sensors.svg";
+import ImageInactive from "../../../../../assets/toggle_buttons/Imaging-Settings-Icon-Inactive.svg";
+import ImageActive from "../../../../../assets/toggle_buttons/Imaging_Icon_Active.svg";
 
 function RealtimeMobile() {
   const [isHovered, setIsHovered] = useState(false);
