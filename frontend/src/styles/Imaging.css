@@ -165,6 +165,10 @@
   color: red; /* Hover color */
   text-shadow: 0 0.5px 1px red;
 }
+.action-button:focus,
+.action-button-delete:focus {
+  outline: none;
+}
 
 .separator {
   color: var(--box-outline-blue); /* Separator color */
@@ -209,6 +213,119 @@
   .last-photo-date {
     font-size: 0.75rem;
   }
+  /* CSS FOR IMAGING CONTAINER AND TABLE */
+  .images-main-container {
+    width: 100%;
+    margin: auto;
+    padding: 3rem;
+    border: 0.5px solid var(--box-outline-blue); /* Adjust border color as needed */
+    box-sizing: border-box;
+    margin-top: 2rem;
+    box-shadow: 0 8px 14px 2px #00000038;
+  }
+
+  .images-main-container {
+    width: 100%;
+    margin: auto;
+    padding: 2.5rem;
+    border: 0.5px solid var(--box-outline-blue);
+    box-sizing: border-box;
+    margin-top: 2rem;
+  }
+
+  .images-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .images-dropdown-menu {
+    width: 48%;
+    padding: 0.8rem;
+    font-size: 0.75rem;
+    border-radius: 2px;
+    box-sizing: border-box;
+  }
+
+  /* CSS FOR TABLE */
+  .table-container {
+    width: 100%;
+    height: 650px;
+    overflow-x: auto;
+    border: 1px solid var(--box-outline-blue);
+    overflow-y: auto; /* Enable vertical scrolling if the content exceeds the container height */
+    overflow-x: auto; /* Hide horizontal scrolling */
+  }
+
+  .table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+  }
+
+  .table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .table th,
+  .table td {
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  /* Style for the header with a checkbox */
+  .table th {
+    text-align: center;
+  }
+
+  .action-buttons-container {
+    display: flex;
+    margin: 0 auto; /* Center the container within the cell */
+    justify-content: center; /* Center the content */
+    align-items: center;
+  }
+
+  .action-button,
+  .action-button-delete {
+    background: none;
+    width: 35%;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: inherit; /* Inherit font size from the table cell */
+    padding: 0 0.1rem; /* Equal padding on each side */
+    text-decoration: none; /* Remove underline */
+  }
+
+  .separator {
+    color: var(--box-outline-blue); /* Separator color */
+    padding: 0 0.9rem; /* Equal padding on each side */
+    user-select: none; /* Make the separator unselectable */
+    /* display: none; */
+  }
+
+  /* CSS FOR BATCH DOWNLOAD BUTTON */
+  .batch-download-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .batch-download-button {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    background-color: transparent;
+    color: var(--green);
+    border: 1px solid var(--blue);
+    border-radius: 2px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 }
 
 @media (min-width: 1280px) {
@@ -219,6 +336,118 @@
   .last-photo-date {
     font-size: 0.85rem;
   }
+  /* CSS FOR IMAGING CONTAINER AND TABLE */
+  .images-main-container {
+    width: 100%;
+    margin: auto;
+    padding: 3rem;
+    border: 0.5px solid var(--box-outline-blue); /* Adjust border color as needed */
+    box-sizing: border-box;
+    margin-top: 2rem;
+    box-shadow: 0 8px 14px 2px #00000038;
+  }
+
+  .images-main-container {
+    width: 100%;
+    margin: auto;
+    padding: 3rem;
+    border: 0.5px solid var(--box-outline-blue);
+    box-sizing: border-box;
+    margin-top: 2rem;
+  }
+
+  .images-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .images-dropdown-menu {
+    width: 48%;
+    padding: 0.8rem;
+    font-size: 0.85rem;
+    border-radius: 2px;
+    box-sizing: border-box;
+  }
+
+  /* CSS FOR TABLE */
+  .table-container {
+    width: 100%;
+    height: 650px;
+    overflow-x: auto;
+    border: 1px solid var(--box-outline-blue);
+    overflow-y: auto; /* Enable vertical scrolling if the content exceeds the container height */
+    overflow-x: auto; /* Hide horizontal scrolling */
+  }
+
+  .table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+  }
+
+  .table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .table th,
+  .table td {
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+
+  /* Style for the header with a checkbox */
+  .table th {
+    text-align: center;
+  }
+
+  .action-buttons-container {
+    display: flex;
+    margin: 0 auto; /* Center the container within the cell */
+    justify-content: center; /* Center the content */
+    align-items: center;
+  }
+
+  .action-button,
+  .action-button-delete {
+    background: none;
+    width: 25%;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: inherit; /* Inherit font size from the table cell */
+    padding: 0 0.2rem; /* Equal padding on each side */
+    text-decoration: none; /* Remove underline */
+  }
+
+  .separator {
+    color: var(--box-outline-blue); /* Separator color */
+    padding: 0 0.5rem; /* Equal padding on each side */
+    user-select: none; /* Make the separator unselectable */
+  }
+
+  /* CSS FOR BATCH DOWNLOAD BUTTON */
+  .batch-download-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .batch-download-button {
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    background-color: transparent;
+    color: var(--green);
+    border: 1px solid var(--blue);
+    border-radius: 2px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 }
 
 @media (min-width: 1440px) {
@@ -228,6 +457,118 @@
 
   .last-photo-date {
     font-size: 0.95rem;
+  }
+  /* CSS FOR IMAGING CONTAINER AND TABLE */
+  .images-main-container {
+    width: 100%;
+    margin: auto;
+    padding: 3rem;
+    border: 0.5px solid var(--box-outline-blue); /* Adjust border color as needed */
+    box-sizing: border-box;
+    margin-top: 2rem;
+    box-shadow: 0 8px 14px 2px #00000038;
+  }
+
+  .images-main-container {
+    width: 100%;
+    margin: auto;
+    padding: 3rem;
+    border: 0.5px solid var(--box-outline-blue);
+    box-sizing: border-box;
+    margin-top: 2rem;
+  }
+
+  .images-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .images-dropdown-menu {
+    width: 48%;
+    padding: 0.8rem;
+    font-size: 0.95rem;
+    border-radius: 2px;
+    box-sizing: border-box;
+  }
+
+  /* CSS FOR TABLE */
+  .table-container {
+    width: 100%;
+    height: 669px;
+    overflow-x: auto;
+    border: 1px solid var(--box-outline-blue);
+    overflow-y: auto; /* Enable vertical scrolling if the content exceeds the container height */
+    overflow-x: auto; /* Hide horizontal scrolling */
+  }
+
+  .table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+  }
+
+  .table thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .table th,
+  .table td {
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  /* Style for the header with a checkbox */
+  .table th {
+    text-align: center;
+  }
+
+  .action-buttons-container {
+    display: flex;
+    margin: 0 auto; /* Center the container within the cell */
+    justify-content: center; /* Center the content */
+    align-items: center;
+  }
+
+  .action-button,
+  .action-button-delete {
+    background: none;
+    width: 25%;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: inherit; /* Inherit font size from the table cell */
+    padding: 0 0.5rem; /* Equal padding on each side */
+    text-decoration: none; /* Remove underline */
+  }
+
+  .separator {
+    color: var(--box-outline-blue); /* Separator color */
+    padding: 0 0.5rem; /* Equal padding on each side */
+    user-select: none; /* Make the separator unselectable */
+  }
+
+  /* CSS FOR BATCH DOWNLOAD BUTTON */
+  .batch-download-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .batch-download-button {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: transparent;
+    color: var(--green);
+    border: 1px solid var(--blue);
+    border-radius: 2px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 }
 
@@ -438,7 +779,6 @@
 }
 
 @media (min-width: 2560px) {
-  /* CSS FOR TITLE */
   .imaging-measurements-box {
     box-sizing: border-box;
     display: flex;

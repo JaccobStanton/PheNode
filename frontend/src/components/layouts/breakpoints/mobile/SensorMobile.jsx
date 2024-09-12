@@ -1,7 +1,7 @@
 import React from "react";
-import "../../styles/Realtime.css";
-import "../../styles/WSN.css";
-import SensorDiagram from "../../assets/diagrams/Wireless-Sensors-v4.svg";
+import "../../../../styles/Realtime.css";
+import "../../../../styles/WSN.css";
+import SensorDiagram from "../../../../assets/diagrams/Wireless-Sensors-v4.svg";
 
 function SensorMobile() {
   return (

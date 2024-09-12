@@ -570,6 +570,7 @@
     grid-template-columns: repeat(4, 1fr); /* Four equal-width columns */
     grid-template-rows: repeat(2, 1fr); /* Two equal-height rows */
     column-gap: 6.5rem; /* Gap between columns */
+    row-gap: 0;
     box-sizing: border-box;
     margin-top: 2rem;
   }

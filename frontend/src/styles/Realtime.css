@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   margin: auto;
-  width: 85%;
+  width: 90%;
   box-sizing: border-box;
   margin-top: 5rem;
   margin-bottom: 5rem;
@@ -85,28 +85,29 @@
 .bottom-box {
   box-sizing: border-box;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Keep spacing between child elements */
 }
 
 .wifi-container,
 .cellular-container {
   display: flex;
   align-items: center;
+  margin-left: auto; /* Push both containers to the right side */
 }
 
 .wifi-text,
 .cellular-text {
   font-size: 1.5rem;
   color: var(--blue);
-  margin-right: 0.5rem;
+  /* margin-right: 0.5rem; */
 }
 
 .signal-blocks {
   display: grid;
   grid-template-columns: repeat(4, 1.5rem);
   grid-row-gap: 1rem;
-  place-content: start;
-  place-items: center start;
+  place-content: end;
+  place-items: center end;
   height: auto;
 }
 
@@ -400,8 +401,14 @@
 }
 @media (min-width: 991px) {
   .realtime-grid {
-    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
     width: 90%;
+    box-sizing: border-box;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+    border-top: 1.3px solid orange;
   }
   .page-title {
     font-size: 1.3rem;
@@ -410,197 +417,249 @@
     margin-top: 0;
     font-size: 0.75rem;
   }
-
   .measurement-date {
     font-size: 0.75rem;
   }
   .wifi-text,
   .cellular-text {
     font-size: 0.8rem;
-    margin-top: -0.5rem;
   }
 
   .signal-block {
     width: 0.6rem;
     height: 0.6rem;
-    margin-top: -0.5rem;
-  }
-  /* PHENODE DIAGRAM ROW */
-  .twenty-five-width {
-    flex: 0 0 25%;
-    margin-top: 3rem;
-  }
-  /* //! wireless sensor count box */
-  .wireless-sensor-count-box {
-    width: 65%;
-    height: 100%;
-    padding: 1rem;
   }
 
-  .wireless-sensor-count-box .top-box,
-  .wireless-sensor-count-box .bottom-box {
-    width: 95%;
+  .realtime-desktop {
+    display: none;
+  }
+  .realtime-mobile {
+    display: flex;
+  }
+  .realtime-column2 {
+    display: flex;
+    flex-direction: column; /* Stack everything vertically */
+    width: 100%; /* Set the width of the entire column */
+    margin: 0 auto; /* Center the main column horizontally */
+    gap: 2rem; /* Space between rows */
+  }
+
+  .phenode-svg-row2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .phenode-svg-container2 {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .phenode-svg2 {
+    width: 100%;
+    height: auto;
+  }
+
+  /* Layout for the 3 columns */
+  .three-column-row2 {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem; /* Adjust the gap between the columns as needed */
+    width: 100%;
     box-sizing: border-box;
   }
 
-  .wireless-sensor-count-box .top-box {
-    height: 40%;
-    margin-bottom: 1rem;
-  }
-
-  .wireless-sensor-count-box .top-box .sensor-count {
-    font-size: 1.8rem;
-  }
-
-  .wireless-sensor-count-box .top-box .sensor-text {
-    font-size: 0.9rem;
-  }
-
-  .sensor-svg {
-    max-width: 90%;
-    max-height: 90%;
-  }
-
-  .img-grid-container {
-    flex: 0 0 50%;
-    position: relative; /* Make the container relative to position the SVG absolutely */
-    overflow: visible; /* Ensure the SVG can overflow the container */
-    margin-bottom: -3rem;
-  }
-
-  .phenode-svg-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
-
-  .phenode-svg {
-    width: 115%;
-    height: 115%;
-  }
-
-  /* //! IMAGE AND GPS BOX START */
-  .image-gps-box {
-    width: 65%;
-    height: 100%;
-    padding: 0 0 0 1rem;
-  }
-
-  .image-gps-box .top-image-box,
-  .image-gps-box .bottom-gps-box {
-    width: 95%;
-  }
-
-  .image-gps-box .top-image-box {
-    height: 50%;
-    margin-bottom: 1rem; /* Space between the top and bottom boxes */
+  /* Each column in the 3-column row */
+  .column2 {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .image-gps-box .top-image-box .image-box,
-  .image-gps-box .top-image-box .text-box {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
-  .image-gps-box .top-image-box .image-box {
-    height: 18%; /* Increase the height of the image box */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  /* First and third columns (data columns) */
+  /* First and third columns (data columns) */
+  .data-column2,
+  .data-column22 {
+    flex-grow: 1;
+    width: auto;
   }
 
-  .image-gps-box .top-image-box .images-svg {
-    max-width: 100%;
-    max-height: 100%;
-    width: 60%;
-    cursor: pointer;
+  .sensor-count-column2 {
+    flex: 0 0 30%;
+    width: 30%;
   }
 
-  .image-gps-box .top-image-box .text-box {
-    margin-top: 1rem; /* Space between the image box and text box */
-  }
-
-  .image-gps-box .top-image-box .image-sensor-text,
-  .image-gps-box .top-image-box .sensor-status-top-box,
-  .image-gps-box .top-image-box .sensor-text-operation,
-  .bottom-gps-box .gps-battery-box,
-  .gps-battery-box .gps-text,
-  .gps-battery-box .battery-text {
-    margin: 0.1rem 0; /* Increase vertical spacing between text elements */
-  }
-
-  .image-gps-box .top-image-box .image-sensor-text {
-    font-size: 0.8rem;
-    font-weight: 500;
-  }
-
-  .image-gps-box .top-image-box .sensor-status-top-box {
-    font-size: 0.8rem;
-    font-weight: 500;
-  }
-
-  .image-gps-box .top-image-box .sensor-text-operation {
-    font-size: 0.8rem;
-  }
-
-  /* //! bottom GPS/Battery box start */
-
-  .image-gps-box .bottom-gps-box {
-    height: 50%;
-  }
-
-  .bottom-gps-box .gps-battery-box {
-    width: 100%;
-    height: 50%;
-  }
-
-  .gps-battery-box .gps-text,
-  .gps-battery-box .battery-text {
-    font-size: 0.8rem;
-  }
-
-  .gps-coordinates {
-    font-size: 0.8rem;
-  }
-
-  .battery-percentage {
-    font-size: 0.8rem;
-  }
-
-  /* //!ROW THREE START*/
-  /* Container for the data value boxes */
-  .data-value-boxes-container {
-    display: flex;
-    justify-content: space-between; /* Distributes space evenly */
-    gap: 1.2rem; /* Adjust the gap as needed */
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 2rem;
-  }
-
-  .data-text-container {
-    display: flex;
+  .data-value-boxes2 {
     padding: 1rem;
-    justify-content: space-around;
+    background-color: transparent;
+    border-radius: 2px;
+    border: 1px solid var(--reflected-light);
+    box-shadow: 0 11px 19px 1px #0000002e;
+    margin: 0.1rem 0 1rem 0;
+    box-sizing: border-box;
+  }
+
+  .data-text-container2 {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
   }
 
-  .left-column p,
-  .right-column p {
+  .right-column2 {
+    display: flex; /* Enable flexbox for right-column2 */
+    flex-direction: column; /* Ensure items stack vertically */
+    justify-content: flex-end; /* Aligns content to the bottom of the container */
+    align-items: flex-end; /* Aligns text to the right side */
+    color: var(--green);
+  }
+
+  .left-column2 p,
+  .right-column2 p {
     margin: 0.1rem;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
+  .left-column2 {
+    color: var(--blue);
+  }
+  .right-column2 {
+    color: var(--green);
+  }
+
+  .bottom-gps-box2 {
+    border-radius: 2px;
+    border: 1px solid var(--reflected-light);
+    box-shadow: 0 11px 19px 1px #0000002e;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  .gps-battery-box2 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .gps-text2,
+  .battery-text2 {
+    font-size: 0.7rem;
+    margin-bottom: 2px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--blue);
+  }
+
+  .gps-coordinates2,
+  .battery-percentage2 {
+    font-size: 0.75rem;
+    text-align: center;
+    color: var(--green);
+    text-shadow: 0 1px 5px #007bff;
+  }
+
+  .wireless-sensor-count-box2 {
+    display: flex;
+    flex-direction: column; /* Stack the contents inside the box vertically */
+    justify-content: space-between; /* Center the items within the box */
+    align-items: center; /* Center items horizontally */
+    width: 100%; /* Ensure the box takes the full width */
+    height: 100%;
+    text-align: center; /* Ensure text is centered */
+    border: 1px solid var(--reflected-light);
+    box-shadow: 0 11px 19px 1px #0000002e;
+  }
+
+  .top-box2 {
+    margin-top: 1rem; /* Space between text and image */
+  }
+
+  .top-box-content2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .sensor-count2 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-top: 0; /* Ensure it starts at the top */
+    color: var(--green);
+    text-shadow: 0 1px 5px #007bff;
+  }
+
+  .sensor-text2 {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    color: var(--blue);
+  }
+
+  .bottom-box-svg-container2 {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center the SVG horizontally */
+    align-items: flex-end; /* Align the SVG at the bottom */
+  }
+
+  .sensor-svg2 {
+    width: 70%; /* Ensure the image is responsive */
+    height: auto;
+  }
+  .text-box2 {
+    display: flex; /* Arrange children in a row */
+    flex-direction: row; /* Items arranged side by side */
+    justify-content: space-around; /* Space between the columns */
+    align-items: center; /* Align vertically */
+    border: 1px solid var(--reflected-light);
+    box-shadow: 0 11px 19px 1px #0000002e;
+    padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .image-sensor-box2 {
+    display: flex;
+    flex-direction: column; /* Stack the SVG and text vertically */
+    align-items: center; /* Center align SVG and text */
+  }
+
+  .sensor-status-box2 {
+    display: flex;
+    flex-direction: column; /* Stack the text vertically */
+    justify-content: center;
+  }
+
+  .images-svg {
+    width: 35px; /* Adjust as needed */
+    height: auto;
+  }
+
+  .image-sensor-text2,
+  .sensor-status-top-box2,
+  .sensor-text-operation2 {
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    text-align: center;
+    color: var(--blue);
+  }
+
+  .sensor-text-operation2 {
+    color: var(--purple);
   }
 }
 
 @media (min-width: 1280px) {
+  .realtime-desktop {
+    display: flex;
+  }
+  .realtime-mobile {
+    display: none;
+  }
   .realtime-grid {
     margin-top: 3rem;
     width: 90%;
@@ -800,6 +859,12 @@
   }
 }
 @media (min-width: 1440px) {
+  .realtime-desktop {
+    display: flex;
+  }
+  .realtime-mobile {
+    display: none;
+  }
   .realtime-grid {
     margin-top: 3rem;
   }
@@ -1092,7 +1157,12 @@
   }
 }
 @media (min-width: 1920px) {
-  /* //! for all title components */
+  .realtime-desktop {
+    display: flex;
+  }
+  .realtime-mobile {
+    display: none;
+  }
   .page-title {
     display: flex;
     justify-content: flex-start;
@@ -1385,7 +1455,7 @@
     gap: 4rem; /* Adjust the gap as needed */
     width: 100%;
     box-sizing: border-box;
-    margin-top: 5rem;
+    margin-top: 6.5rem;
   }
 
   /* Individual data value boxes */
@@ -1427,7 +1497,12 @@
 }
 
 @media (min-width: 2560px) {
-  /* //! for all title components */
+  .realtime-desktop {
+    display: flex;
+  }
+  .realtime-mobile {
+    display: none;
+  }
   .page-title {
     display: flex;
     justify-content: flex-start;

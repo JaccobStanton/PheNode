@@ -197,6 +197,13 @@
   outline: none;
 }
 @media (min-width: 991px) {
+  .sensor-mobile {
+    display: flex;
+  }
+  .sensor-desktop {
+    display: none;
+  }
+
   /* THIS IS CSS CODE THE SENSOR MOBILE BREAKPOINT */
   .sensor-mobile-container {
     width: 85%;
@@ -242,7 +249,7 @@
   }
 
   .wsn-sensor-svg-mobile {
-    width: 70%;
+    width: 65%;
     height: auto;
   }
 
@@ -474,6 +481,12 @@
   }
 }
 @media (min-width: 1280px) {
+  .sensor-mobile {
+    display: none;
+  }
+  .sensor-desktop {
+    display: flex;
+  }
   .sensor-twenty-five-width {
     flex: 0 0 25%;
     margin-top: 3rem;
@@ -667,6 +680,12 @@
   }
 }
 @media (min-width: 1440px) {
+  .sensor-mobile {
+    display: none;
+  }
+  .sensor-desktop {
+    display: flex;
+  }
   .sensor-twenty-five-width {
     flex: 0 0 25%;
     margin-top: 3rem;
@@ -868,6 +887,12 @@
 }
 
 @media (min-width: 1920px) {
+  .sensor-mobile {
+    display: none;
+  }
+  .sensor-desktop {
+    display: flex;
+  }
   .sensor-twenty-five-width {
     flex: 0 0 25%;
     margin-top: 3rem;
@@ -1083,6 +1108,13 @@
 }
 
 @media (min-width: 2560px) {
+  .sensor-mobile {
+    display: none;
+  }
+  .sensor-desktop {
+    display: flex;
+  }
+
   /* //! SENSOR DATA LEFT COLUMN */
 
   .sensor-twenty-five-width {
