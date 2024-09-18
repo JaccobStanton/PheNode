@@ -93,6 +93,63 @@
 .fleet-card-content-data {
   font-size: 1.1rem;
 }
+@media (min-width: 767px) {
+  .fleet-overview-box {
+    width: 98%;
+    margin: 2rem auto;
+    padding: 0;
+    height: 67vh;
+    overflow-x: visible;
+  }
+  .fleet-overview-box::-webkit-scrollbar {
+    width: 7px; /* Width of the scrollbar */
+    height: 7px;
+  }
+  .fleet-overview-box::-webkit-scrollbar-corner {
+    background-color: transparent; /* Set the color of the scrollbar corner */
+  }
+
+  .fleet-cards-container {
+    gap: 1.1rem;
+  }
+
+  .fleet-card {
+    height: 95px;
+    width: 850px;
+  }
+
+  .fleet-card-content-section {
+    padding-right: 0.5rem;
+    padding-left: 1rem;
+  }
+
+  /* Specific section for the title */
+  .fleet-card-content-title-section {
+    margin-right: 0.5rem;
+  }
+
+  .fleet-card-content-title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+  /* Last measurements */
+  .fleet-card-content-date-label {
+    font-size: 0.65rem;
+  }
+  /* date */
+  .fleet-card-content-date-value {
+    font-size: 0.65rem;
+    font-weight: 600;
+  }
+  .fleet-card-content-label {
+    font-size: 0.7rem;
+  }
+
+  .fleet-card-content-data {
+    font-size: 0.7rem;
+  }
+}
 @media (min-width: 991px) {
   .fleet-overview-box {
     width: 98%;
@@ -158,6 +215,7 @@
 
   .fleet-card {
     height: 95px;
+    width: 99%;
   }
 
   .fleet-card-content-section {
@@ -204,6 +262,7 @@
 
   .fleet-card {
     height: 110px;
+    width: 99%;
   }
 
   .fleet-card-content-section {
@@ -283,7 +342,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-right: 5rem;
+    padding-right: 3rem;
     padding-left: 1rem;
   }
 

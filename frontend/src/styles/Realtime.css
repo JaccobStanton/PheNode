@@ -399,6 +399,229 @@
 .right-column p {
   color: var(--green);
 }
+@media (min-width: 767px) and (max-width: 991px) {
+  .realtime-grid {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 90%;
+    box-sizing: border-box;
+    margin-top: 1.5rem;
+    margin-bottom: 5rem;
+    border-top: 1.3px solid orange;
+  }
+  .realtime-desktop {
+    display: none;
+  }
+  .realtime-mobile-767 {
+    display: flex;
+  }
+  .page-title {
+    font-size: 1.1rem;
+  }
+  .last-measurement-text {
+    margin-top: 0;
+    font-size: 0.7rem;
+  }
+  .measurement-date {
+    font-size: 0.7rem;
+  }
+  .wifi-text,
+  .cellular-text {
+    font-size: 0.7rem;
+  }
+  .signal-blocks {
+    grid-template-columns: repeat(4, 1rem);
+  }
+
+  .signal-block {
+    width: 0.6rem;
+    height: 0.6rem;
+  }
+  .mobile-grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto) 1fr;
+    column-gap: 1rem;
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .data-value-boxes2 {
+    padding: 1rem;
+    background-color: transparent;
+    border-radius: 2px;
+    border: 1px solid var(--reflected-light);
+    box-shadow: 0 11px 19px 1px #0000002e;
+    margin: 0.1rem 0 1rem 0;
+    box-sizing: border-box;
+  }
+
+  .data-text-container2 {
+    display: flex;
+    justify-content: space-between; /* Space between columns */
+    align-items: flex-start; /* Ensure both columns start from the top */
+    width: 100%;
+  }
+
+  .left-column2,
+  .right-column2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Both columns will align items at the top */
+  }
+
+  .right-column2 {
+    align-items: flex-end; /* Aligns the entire column content to the right */
+    text-align: right; /* Aligns text in the right column to the right */
+    color: var(--green);
+  }
+
+  .left-column2 p,
+  .right-column2 p {
+    margin: 0.1rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
+
+  .left-column2 {
+    color: var(--blue);
+  }
+  .wireless-sensor-count-box2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 99.5%;
+    text-align: center;
+    border: 1px solid var(--reflected-light);
+    box-shadow: 0 11px 19px 1px #0000002e;
+  }
+
+  .top-box2 {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 100%; /* Ensure it takes the full width of the container */
+  }
+
+  .top-box-content2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .sensor-count2 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 0; /* Ensure it starts at the top */
+    color: var(--green);
+    text-shadow: 0 1px 5px #007bff;
+  }
+
+  .sensor-text2 {
+    font-size: 0.7rem;
+    margin-top: 0.2rem;
+    color: var(--blue);
+  }
+
+  .bottom-box-svg-container2 {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center the SVG horizontally */
+    align-items: flex-end; /* Align the SVG at the bottom */
+  }
+
+  .sensor-svg2 {
+    height: 70px;
+  }
+  .text-box2 {
+    display: flex; /* Arrange children in a row */
+    flex-direction: row; /* Items arranged side by side */
+    justify-content: space-around; /* Space between the columns */
+    align-items: center; /* Align vertically */
+    border: 1px solid var(--reflected-light);
+    box-shadow: 0 11px 19px 1px #0000002e;
+    padding: 1.5rem; /*used to make gps/battery box even with see images box */
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .image-sensor-box2 {
+    display: flex;
+    flex-direction: column; /* Stack the SVG and text vertically */
+    align-items: center; /* Center align SVG and text */
+  }
+
+  .sensor-status-box2 {
+    display: flex;
+    flex-direction: column; /* Stack the text vertically */
+    justify-content: center;
+  }
+
+  .images-svg {
+    margin-top: 0.5rem;
+    width: 35px; /* Adjust as needed */
+    height: 35px;
+  }
+
+  .image-sensor-text2,
+  .sensor-status-top-box2,
+  .sensor-text-operation2 {
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--blue);
+  }
+  .sensor-status-top-box2,
+  .sensor-text-operation2 {
+    margin-top: 0.5rem;
+  }
+
+  .sensor-text-operation2 {
+    color: var(--purple);
+  }
+
+  .bottom-gps-box2 {
+    grid-column: span 2; /* Spans both columns */
+    margin-top: 1rem;
+    height: 2rem; /* Adjust the height to make it thin */
+    border-radius: 2px;
+    border: 1px solid var(--reflected-light);
+    box-shadow: 0 11px 19px 1px #0000002e;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+  }
+
+  .gps-battery-box2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .gps-text2,
+  .battery-text2 {
+    font-size: 0.7rem;
+    margin-right: 5px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--blue);
+  }
+
+  .gps-coordinates2,
+  .battery-percentage2 {
+    font-size: 0.75rem;
+    text-align: center;
+    color: var(--green);
+    text-shadow: 0 1px 5px #007bff;
+  }
+}
 @media (min-width: 991px) {
   .realtime-grid {
     display: flex;
@@ -504,15 +727,21 @@
 
   .data-text-container2 {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Space between columns */
+    align-items: flex-start; /* Ensure both columns start from the top */
     width: 100%;
   }
 
+  .left-column2,
   .right-column2 {
-    display: flex; /* Enable flexbox for right-column2 */
-    flex-direction: column; /* Ensure items stack vertically */
-    justify-content: flex-end; /* Aligns content to the bottom of the container */
-    align-items: flex-end; /* Aligns text to the right side */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Both columns will align items at the top */
+  }
+
+  .right-column2 {
+    align-items: flex-end; /* Aligns the entire column content to the right */
+    text-align: right; /* Aligns text in the right column to the right */
     color: var(--green);
   }
 

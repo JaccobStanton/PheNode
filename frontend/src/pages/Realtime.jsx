@@ -6,6 +6,7 @@ import PheNode from "../components/pages/realtime/PheNode";
 import SensorData from "../components/pages/realtime/SensorData";
 import PhenodeGrafana from "../components/pages/realtime/Grafana";
 import RealtimeMobile from "../components/layouts/breakpoints/mobile/991px/RealtimeMobile";
+import RealtimeMobileSmall from "../components/layouts/breakpoints/mobile/767px/RealtimeMobileSmall";
 
 const Realtime = () => {
   return (
@@ -16,8 +17,11 @@ const Realtime = () => {
       <div className="row realtime-desktop">
         <PheNode />
       </div>
-      <div className="row realtime-mobile">
+      {/* <div className="row realtime-mobile">
         <RealtimeMobile />
+      </div> */}
+      <div className="row realtime-mobile-767">
+        <RealtimeMobileSmall />
       </div>
       {/* <div className="row">
         <SensorData />

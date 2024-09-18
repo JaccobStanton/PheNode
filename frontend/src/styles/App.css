@@ -85,6 +85,16 @@ html,
   margin-top: 5rem;
 }
 
+@media (min-width: 767px) {
+  .phenode-grafana-box {
+    width: 100%;
+    margin: 2.5rem auto 0 auto;
+  }
+  .sensor-grafana-box {
+    width: 100%;
+    margin: 2.5rem auto 0 auto;
+  }
+}
 @media (min-width: 991px) {
   .phenode-grafana-box {
     width: 100%;
