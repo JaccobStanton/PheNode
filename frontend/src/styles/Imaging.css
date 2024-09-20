@@ -233,7 +233,7 @@
 
   .last-photo-date {
     font-size: 0.65rem;
-    margin-left: -1px;
+    margin-left: 0.4px;
     text-align: left;
   }
 
@@ -326,10 +326,9 @@
   }
 
   .separator {
-    color: var(--box-outline-blue); /* Separator color */
+    color: var(--box-outline-blue);
     padding: 0 0.9rem; /* Equal padding on each side */
-    user-select: none; /* Make the separator unselectable */
-    /* display: none; */
+    user-select: none;
   }
 
   /* CSS FOR BATCH DOWNLOAD BUTTON */
