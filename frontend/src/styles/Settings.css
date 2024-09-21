@@ -604,6 +604,14 @@
     margin-bottom: 1rem; /* Equal spacing between boxes */
     padding: 0.5rem;
   }
+  .settings-ssid-input-box {
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  .settings-password-input-box {
+    margin-top: 1.8rem;
+    margin-bottom: 1.1rem;
+  }
 
   .settings-blue-text {
     background-color: #0000;
@@ -632,9 +640,6 @@
     box-shadow: 0 0 7px -5px var(--green);
     color: var(--green);
     text-shadow: 0 1px 5px #007bff;
-  }
-  .settings-button:focus {
-    outline: none;
   }
 
   /* CSS FOR BOTTOM 3 BOXES  */
