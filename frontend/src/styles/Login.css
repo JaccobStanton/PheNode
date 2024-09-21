@@ -1,6 +1,6 @@
 .login-container {
   width: 50vw; /* 60% of the viewport width */
-  height: 60vh; /* 50% of the viewport height */
+  height: 70vh; /* 50% of the viewport height */
   display: flex;
   justify-content: center;
   align-items: center;
