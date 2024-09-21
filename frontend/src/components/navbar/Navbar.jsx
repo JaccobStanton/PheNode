@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../../styles/Navbar.css";
 import Logo from "../../assets/logo/Logo.svg";
 import HomeIconInactive from "../../assets/toggle_buttons/Home_Icon_Inactive.svg";
@@ -15,6 +15,11 @@ import DownloadIconActive from "../../assets/toggle_buttons/Download_Icon_Active
 import SettingsIconActive from "../../assets/toggle_buttons/Settings_Icon_Active.svg";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleNavigateLogin = () => {
+    navigate("/");
+  };
   //dropdown logic
   const [showDropdownOptions, setDropdownOptions] = useState(false);
 
@@ -52,7 +57,12 @@ const Navbar = () => {
       <div className="grid-item-right-corner">
         <div className="user-logout-container">
           <div className="inner-box logout-box">User 0000</div>
-          <button className="inner-box logout-button">Logout</button>
+          <button
+            className="inner-box logout-button"
+            onClick={handleNavigateLogin}
+          >
+            Logout
+          </button>
         </div>
       </div>
       <div className="grid-item-left">

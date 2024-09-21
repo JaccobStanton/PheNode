@@ -1,7 +1,7 @@
 :root {
   --midnight-blue-2: #000d30;
   --medium-grey: #797979;
-  --blue: #1a75e0;
+  --blue: #1a76e0;
   --background-blue: #001f449c;
   --transparent: #48f7f500;
   --green: #48f7f5;
@@ -54,6 +54,10 @@ html,
   background-color: var(--midnight-blue);
   min-height: 100vh;
   padding: 3rem;
+}
+.login-background {
+  background-image: radial-gradient(circle at 50% 15%, #00438f, #00102f);
+  min-height: 100vh;
 }
 
 .background-box {
