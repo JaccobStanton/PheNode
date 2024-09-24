@@ -399,7 +399,7 @@
 .right-column p {
   color: var(--green);
 }
-@media (min-width: 767px) and (max-width: 991px) {
+@media (min-width: 767px) and (max-width: 990px) {
   .realtime-grid {
     display: flex;
     flex-direction: column;
@@ -410,12 +410,7 @@
     margin-bottom: 5rem;
     border-top: 1.3px solid orange;
   }
-  .realtime-desktop {
-    display: none;
-  }
-  .realtime-mobile-767 {
-    display: flex;
-  }
+
   .page-title {
     font-size: 1.1rem;
   }
@@ -653,12 +648,6 @@
     height: 0.6rem;
   }
 
-  .realtime-desktop {
-    display: none;
-  }
-  .realtime-mobile {
-    display: flex;
-  }
   .realtime-column2 {
     display: flex;
     flex-direction: column; /* Stack everything vertically */
@@ -883,12 +872,6 @@
 }
 
 @media (min-width: 1280px) {
-  .realtime-desktop {
-    display: flex;
-  }
-  .realtime-mobile {
-    display: none;
-  }
   .realtime-grid {
     margin-top: 3rem;
     width: 90%;
@@ -1088,12 +1071,6 @@
   }
 }
 @media (min-width: 1440px) {
-  .realtime-desktop {
-    display: flex;
-  }
-  .realtime-mobile {
-    display: none;
-  }
   .realtime-grid {
     margin-top: 3rem;
   }
@@ -1359,7 +1336,7 @@
     gap: 1.2rem; /* Adjust the gap as needed */
     width: 100%;
     box-sizing: border-box;
-    margin-top: 2rem;
+    margin-top: 3rem;
   }
 
   .data-text-container {
@@ -1386,12 +1363,6 @@
   }
 }
 @media (min-width: 1920px) {
-  .realtime-desktop {
-    display: flex;
-  }
-  .realtime-mobile {
-    display: none;
-  }
   .page-title {
     display: flex;
     justify-content: flex-start;
@@ -1726,12 +1697,6 @@
 }
 
 @media (min-width: 2560px) {
-  .realtime-desktop {
-    display: flex;
-  }
-  .realtime-mobile {
-    display: none;
-  }
   .page-title {
     display: flex;
     justify-content: flex-start;
