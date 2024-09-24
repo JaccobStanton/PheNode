@@ -11,8 +11,6 @@ function Home() {
       <div className="row">
         <FleetOverview />
       </div>
-      <div className="row">{/* <SensorData /> */}</div>
-      {/* <PhenodeGrafana /> */}
     </div>
   );
 }
