@@ -69,6 +69,13 @@
   color: var(--green);
   margin-bottom: 1rem;
 }
+.health-offline {
+  color: orange;
+}
+
+.health-check {
+  color: magenta;
+}
 /* Last measurements */
 .fleet-card-content-date-label {
   color: var(--blue);
