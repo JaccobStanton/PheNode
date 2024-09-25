@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import "../../styles/Navbar.css";
+
 import Logo from "../../assets/logo/Logo.svg";
+
 import HomeIconInactive from "../../assets/toggle_buttons/Home_Icon_Inactive.svg";
 import RealTimeIconInactive from "../../assets/toggle_buttons/Real_Time_Icon_Inactive.svg";
 import WirelessSensorIconInactive from "../../assets/toggle_buttons/Wireless_Sensor_Inactive_Icon.svg";
@@ -15,13 +18,20 @@ import DownloadIconActive from "../../assets/toggle_buttons/Download_Icon_Active
 import SettingsIconActive from "../../assets/toggle_buttons/Settings_Icon_Active.svg";
 
 const Navbar = () => {
+  const { logout, username } = useAuth(); // Destructure the logout function from useAuth
   const navigate = useNavigate();
 
-  const handleNavigateLogin = () => {
-    navigate("/");
-  };
-  //dropdown logic
   const [showDropdownOptions, setDropdownOptions] = useState(false);
+
+  //logic for toggle buttons
+  const [hoveredButton, setHoveredButton] = useState(null);
+  const location = useLocation();
+
+  // Handle the logout action
+  const handleLogout = () => {
+    logout(); // Clear the token and reset any authentication state
+    navigate("/"); // Redirect to the login page
+  };
 
   const handleNavDropdownChange = (e, setDropdownOptions) => {
     if (e.target.value === "Flag with custom value") {
@@ -31,9 +41,6 @@ const Navbar = () => {
     }
   };
   //----------------
-  //logic for toggle buttons
-  const [hoveredButton, setHoveredButton] = useState(null);
-  const location = useLocation();
 
   //logic for toggle button hovering
   const handleMouseEnter = (button) => {
@@ -56,11 +63,10 @@ const Navbar = () => {
       </div>
       <div className="grid-item-right-corner">
         <div className="user-logout-container">
-          <div className="inner-box logout-box">User 0000</div>
-          <button
-            className="inner-box logout-button"
-            onClick={handleNavigateLogin}
-          >
+          <div className="inner-box logout-box">
+            {username ? `${username}` : "User - - - -"}
+          </div>
+          <button className="inner-box logout-button" onClick={handleLogout}>
             Logout
           </button>
         </div>
