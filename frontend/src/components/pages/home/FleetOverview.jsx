@@ -1,54 +1,116 @@
 import React from "react";
 import "../../../styles/Home.css";
-
-const mockData = [
-  { id: 1, name: "PheNode 1" },
-  { id: 2, name: "PheNode 2" },
-  { id: 3, name: "PheNode 3" },
-  { id: 4, name: "PheNode 4" },
-  { id: 5, name: "PheNode 5" },
-  { id: 6, name: "PheNode 6" },
-  { id: 7, name: "PheNode 7" },
-  { id: 8, name: "PheNode 8" },
-];
+import useFleetData from "../../../hooks/useFleetData";
+import { useAuth } from "../../../context/AuthContext";
+import { convertCelsiusToFahrenheit } from "../../../utils/temperatureUtils";
 
 function FleetOverview() {
+  const { accessToken, loading: authLoading, error: authError } = useAuth(); // Get the accessToken from useAuth
+
+  // If authentication is still loading, show a loading spinner
+  if (authLoading) {
+    return <div>Authenticating...</div>;
+  }
+
+  // If there's an error during authentication, display it
+  if (authError) {
+    return <div>Error: {authError}</div>;
+  }
+
+  // Don't render fleet data until accessToken is available
+  if (!accessToken) {
+    return <div>No access token available. Please log in.</div>;
+  }
+
+  // Fetch fleet data using accessToken
+  const { data, loading, error } = useFleetData(accessToken);
+
+  if (loading) {
+    return <div>Loading fleet data...</div>;
+  }
+
+  if (error) {
+    return <div>Error fetching fleet data: {error}</div>;
+  }
+
   return (
     <div className="fleet-overview-box">
       <div className="fleet-cards-container">
-        {mockData.map((item) => (
-          <div key={item.id} className="fleet-card">
+        {data.map((item) => (
+          <div key={item._id} className="fleet-card">
             <div className="fleet-card-content">
+              {/* Device Label */}
               <div className="fleet-card-content-section fleet-card-content-title-section">
-                <div className="fleet-card-content-title">{item.name}</div>
+                <div className="fleet-card-content-title">{item.label}</div>
                 <div className="fleet-card-content-date-label">
                   Last measurements taken:
                 </div>
                 <div className="fleet-card-content-date-value">
-                  October 31, 2022, 12:34pm
+                  {item.lastMeasurement
+                    ? new Date(item.lastMeasurement).toLocaleString()
+                    : "No data available"}
                 </div>
               </div>
+
+              {/* Device Status */}
               <div className="fleet-card-content-section">
-                <div className="fleet-card-content-label">Status:</div>
-                <div className="fleet-card-content-data">Operational</div>
+                <div className="fleet-card-content-label">Health Status:</div>
+                <div
+                  className="fleet-card-content-data"
+                  style={{
+                    color:
+                      item.health === "Offline"
+                        ? "orange"
+                        : item.health === "Check"
+                        ? "magenta"
+                        : "#48f7f5",
+                  }}
+                >
+                  {item.health || "Unknown"}
+                </div>
               </div>
+
+              {/* Temperature */}
               <div className="fleet-card-content-section">
                 <div className="fleet-card-content-label">Temperature:</div>
-                <div className="fleet-card-content-data">00.00°F</div>
+                <div className="fleet-card-content-data">
+                  {item.airSensor?.temperature
+                    ? `${convertCelsiusToFahrenheit(
+                        item.airSensor.temperature
+                      ).toFixed(2)}°F`
+                    : "N/A"}
+                </div>
               </div>
+              {/* Rainfall */}
               <div className="fleet-card-content-section">
                 <div className="fleet-card-content-label">
                   Today's Rainfall:
                 </div>
-                <div className="fleet-card-content-data">00.00"</div>
+                <div className="fleet-card-content-data">
+                  {item.rainfallSensor?.hourlyRainfall
+                    ? `${item.rainfallSensor.hourlyRainfall}"`
+                    : "N/A"}
+                </div>
               </div>
+
+              {/* Wind Speed */}
               <div className="fleet-card-content-section">
                 <div className="fleet-card-content-label">Wind Speed:</div>
-                <div className="fleet-card-content-data">12.34 mph</div>
+                <div className="fleet-card-content-data">
+                  {item.windSensor?.windSpeed !== "-9999.00"
+                    ? `${item.windSensor.windSpeed} mph`
+                    : "N/A"}
+                </div>
               </div>
+
+              {/* Battery */}
               <div className="fleet-card-content-section">
                 <div className="fleet-card-content-label">Battery:</div>
-                <div className="fleet-card-content-data">92.08%</div>
+                <div className="fleet-card-content-data">
+                  {item.battery?.batteryPercent
+                    ? `${item.battery.batteryPercent}%`
+                    : "N/A"}
+                </div>
               </div>
             </div>
           </div>
