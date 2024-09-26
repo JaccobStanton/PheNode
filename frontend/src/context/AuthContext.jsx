@@ -1,14 +1,12 @@
 import { createContext, useContext, useState } from "react";
 
-// Create a context for authentication
 const AuthContext = createContext();
 
-// Custom hook to use the AuthContext
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [accessToken, setAccessToken] = useState(null);
-  const [username, setUsername] = useState(null); // State for storing username
+  const [username, setUsername] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -27,10 +25,11 @@ export const AuthProvider = ({ children }) => {
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
           body: new URLSearchParams({
             client_id: import.meta.env.VITE_CLIENT_ID,
-            username: username, // Pass username to the request
+            username: username,
             password: password,
             grant_type: "password",
           }),
+          credentials: "include", // Include credentials (cookies) for cross-origin requests
         }
       );
 
@@ -41,6 +40,8 @@ export const AuthProvider = ({ children }) => {
       const data = await response.json();
       setAccessToken(data.access_token);
       setUsername(username);
+
+      // Backend should set the HTTP-only, secure cookie containing the token
     } catch (err) {
       setError(err.message);
     } finally {
@@ -52,10 +53,14 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setAccessToken(null);
     setUsername(null);
-    console.log("User logged out");
+
+    // Optionally, call an endpoint to invalidate the session on the server
+    fetch(`${import.meta.env.VITE_API_URL}/logout`, {
+      method: "POST",
+      credentials: "include", // Include credentials to clear cookies on the server
+    });
   };
 
-  // Provide the auth state and functions to children
   return (
     <AuthContext.Provider
       value={{ accessToken, username, login, logout, loading, error }}

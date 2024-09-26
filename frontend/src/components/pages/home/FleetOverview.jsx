@@ -37,7 +37,7 @@ function FleetOverview() {
     <div className="fleet-overview-box">
       <div className="fleet-cards-container">
         {data.map((item) => (
-          <div key={item._id} className="fleet-card">
+          <div key={item._id ? item._id : "unknown"} className="fleet-card">
             <div className="fleet-card-content">
               {/* Device Label */}
               <div className="fleet-card-content-section fleet-card-content-title-section">
