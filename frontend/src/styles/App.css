@@ -89,6 +89,14 @@ html,
   margin-top: 5rem;
 }
 
+.health-offline {
+  color: orange;
+}
+
+.health-check {
+  color: magenta;
+}
+
 @media (min-width: 767px) {
   .phenode-grafana-box {
     width: 100%;

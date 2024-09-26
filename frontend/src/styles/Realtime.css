@@ -1923,7 +1923,7 @@
 
   .image-gps-box .top-image-box .sensor-text-operation {
     color: var(--purple);
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   /* GPS AND BATTERY BOX */

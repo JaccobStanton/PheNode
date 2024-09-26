@@ -68,14 +68,11 @@
   font-weight: bold;
   color: var(--green);
   margin-bottom: 1rem;
-}
-.health-offline {
-  color: orange;
+  white-space: nowrap; /* Prevent text from wrapping to a new line */
+  overflow: hidden; /* Hide the overflowing content */
+  text-overflow: ellipsis; /* Show "..." when text overflows */
 }
 
-.health-check {
-  color: magenta;
-}
 /* Last measurements */
 .fleet-card-content-date-label {
   color: var(--blue);
@@ -139,6 +136,9 @@
     font-size: 0.9rem;
     font-weight: 500;
     margin-bottom: 0.8rem;
+    text-align: left;
+    width: 230px;
+    max-width: 230px;
   }
   /* Last measurements */
   .fleet-card-content-date-label {
@@ -190,6 +190,9 @@
     font-size: 0.9rem;
     font-weight: 500;
     margin-bottom: 0.8rem;
+    text-align: left;
+    width: 230px;
+    max-width: 230px;
   }
   /* Last measurements */
   .fleet-card-content-date-label {
@@ -239,6 +242,9 @@
     font-size: 1rem;
     font-weight: 500;
     margin-bottom: 0.8rem;
+    text-align: left;
+    width: 230px;
+    max-width: 230px;
   }
   /* Last measurements */
   .fleet-card-content-date-label {
@@ -286,6 +292,9 @@
     font-size: 1.2rem;
     font-weight: 500;
     margin-bottom: 0.8rem;
+    text-align: left;
+    width: 230px;
+    max-width: 230px;
   }
   /* Last measurements */
   .fleet-card-content-date-label {
@@ -360,10 +369,13 @@
   }
 
   .fleet-card-content-title {
+    text-align: left;
     font-size: 1.6rem;
     font-weight: bold;
     color: var(--green);
     margin-bottom: 1rem;
+    width: 240px;
+    max-width: 240px;
   }
   /* Last measurements */
   .fleet-card-content-date-label {
@@ -464,6 +476,9 @@
     font-weight: bold;
     color: var(--green);
     margin-bottom: 1rem;
+    text-align: left;
+    width: 230px;
+    max-width: 230px;
   }
   /* Last measurements */
   .fleet-card-content-date-label {

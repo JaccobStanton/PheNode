@@ -1243,20 +1243,20 @@
   }
 
   .button-icon {
-    width: 105px;
-    height: 45px;
+    width: 115px;
+    height: 55px;
   }
   .wsn-button-icon {
-    width: 105px;
-    height: 45px;
+    width: 115px;
+    height: 55px;
   }
   .settings-button-icon {
-    width: 105px;
-    height: 45px;
+    width: 115px;
+    height: 55px;
   }
   .download-button-icon {
-    width: 105px;
-    height: 45px;
+    width: 70px;
+    height: 55px;
   }
 
   .toggle-button:hover {
