@@ -295,6 +295,7 @@
 .image-gps-box .top-image-box .sensor-text-operation {
   color: var(--purple);
   font-size: 1rem;
+  font-weight: 500;
 }
 
 /* //! bottom box start */
@@ -1415,8 +1416,7 @@
   /* Specific widths for second row items */
   .twenty-five-width {
     flex: 0 0 25%;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 4rem;
   }
 
   /* phenode diagram */
@@ -1424,7 +1424,7 @@
     flex: 0 0 50%;
     position: relative; /* Make the container relative to position the SVG absolutely */
     overflow: visible; /* Ensure the SVG can overflow the container */
-    margin-top: -0.5rem;
+    /* margin-top: -0.5rem; */
     /* margin-bottom: 3rem; */
   }
 
@@ -1437,14 +1437,14 @@
   }
 
   .phenode-svg {
-    width: 115%;
-    height: 115%;
+    width: 110%;
+    height: 110%;
   }
 
   /* //! wireless sensor count box */
   .wireless-sensor-count-box {
     width: 70%;
-    height: 100%;
+    height: 115%;
     border: 1px solid var(--reflected-light);
     box-shadow: 0 11px 19px 1px #0000002e;
     display: flex;
@@ -1502,7 +1502,7 @@
   /* RIGHT BOXES/ IMAGE AND GPS BOXES */
   .image-gps-box {
     width: 50%;
-    height: 100%;
+    height: 115%;
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* Ensures the top box is at the top and the bottom box is at the bottom */
@@ -1584,12 +1584,12 @@
 
   .image-gps-box .top-image-box .sensor-status-top-box {
     color: var(--blue);
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 
   .image-gps-box .top-image-box .sensor-text-operation {
     color: var(--purple);
-    font-size: 0.9rem;
+    font-size: 1.05rem;
   }
 
   /* GPS AND BATTERY BOX */
