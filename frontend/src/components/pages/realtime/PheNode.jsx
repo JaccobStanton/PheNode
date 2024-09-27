@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+//When a card is clicked, the app should navigate to the PheNode.jsx component and display the data of the device that corresponds to the clicked card.
+
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../context/AuthContext";
 import useFleetData from "../../../hooks/useFleetData";
+import { convertToDMS } from "../../../utils/coordinateUtils";
+import { useSelectedDevice } from "../../../context/SelectedDeviceContext";
 import "../../../styles/Realtime.css";
 import PheNodeDiagram from "../../../assets/diagrams/Phenode-Diagram.svg";
 import SensorSvg from "../../../assets/diagrams/Wireless-Sensors.svg";
@@ -9,8 +12,8 @@ import ImageInactive from "../../../assets/toggle_buttons/Imaging-Settings-Icon-
 import ImageActive from "../../../assets/toggle_buttons/Imaging_Icon_Active.svg";
 
 function PheNode() {
-  const { accessToken } = useAuth(); // We don't need to pass this to useFleetData
-  const { data: [deviceData] = [], loading, error } = useFleetData(); // Use useFleetData without arguments
+  const { data: fleetData, loading, error } = useFleetData(); // Get all devices
+  const { selectedDevice, setSelectedDevice } = useSelectedDevice(); // Get and set the selected device
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
@@ -18,6 +21,13 @@ function PheNode() {
   const handleNavigate = () => {
     navigate("/imaging");
   };
+
+  // Set the first device as the selected device on component mount if none is selected
+  useEffect(() => {
+    if (!selectedDevice && fleetData.length > 0) {
+      setSelectedDevice(fleetData[0]);
+    }
+  }, [fleetData, selectedDevice, setSelectedDevice]);
 
   // Show loading or error states if necessary
   if (loading) {
@@ -28,7 +38,7 @@ function PheNode() {
     return <div>Error fetching device data: {error}</div>;
   }
 
-  if (!deviceData) {
+  if (!selectedDevice) {
     return <div>No device data available.</div>;
   }
 
@@ -39,8 +49,9 @@ function PheNode() {
           <div className="top-box">
             <div className="top-box-content">
               <span className="sensor-count">
-                {deviceData.connectedSensors || "N/A"}
+                {selectedDevice.connectedSensors ?? "N/A"}
               </span>
+
               <span className="sensor-text">Wireless Sensors connected</span>
             </div>
           </div>
@@ -76,33 +87,38 @@ function PheNode() {
                 className="sensor-text-operation"
                 style={{
                   color:
-                    deviceData.health === "Offline"
+                    selectedDevice.camera?.cameraHealth === "Offline"
                       ? "orange"
-                      : deviceData.health === "Check"
+                      : selectedDevice.camera?.cameraHealth === "Check"
                       ? "magenta"
                       : "#8955e2",
                 }}
               >
-                {deviceData.health || "Unknown"}
+                {selectedDevice.camera?.cameraHealth || "Unknown"}
               </span>
             </div>
           </div>
           <div className="bottom-gps-box">
             <div className="gps-battery-box">
               <span className="gps-text">GPS:</span>
-              {/* //!fix coorinates below */}
               <span className="gps-coordinates">
-                {deviceData.gps?.latitude || "N/A"}°N
+                {selectedDevice.gps?.latitude !== undefined
+                  ? convertToDMS(selectedDevice.gps.latitude, true)
+                  : "N/A"}
+                ,
               </span>
               <span className="gps-coordinates">
-                {deviceData.gps?.longitude || "N/A"}°W
+                {selectedDevice.gps?.longitude !== undefined
+                  ? convertToDMS(selectedDevice.gps.longitude, false)
+                  : "N/A"}
               </span>
             </div>
+
             <div className="gps-battery-box">
               <span className="battery-text">Battery:</span>
               <span className="battery-percentage">
-                {deviceData.battery?.batteryPercent != undefined
-                  ? `${deviceData.battery.batteryPercent}%`
+                {selectedDevice.battery?.batteryPercent != undefined
+                  ? `${selectedDevice.battery.batteryPercent}%`
                   : "N/A"}
               </span>
             </div>
