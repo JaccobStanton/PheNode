@@ -1,11 +1,23 @@
+// The component sets the clicked device in the global context using setSelectedDevice.
+// The application navigates to the PheNode.jsx component.
+// The <PheNode.jsx /> component will use the selected device from the context to display the relevant data.
+// This new behavior works in conjunction with the existing logic. -> If the user navigates to the PheNode
+// component without selecting a device (either from a card or the navbar), the component will show the first device by default.
+//! change the above if END UP GRAYING OUT TOGGLE BUTTONS, BECAUSE THEN ABOVE WILL BE UNUSED CODE
+
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../../../styles/Home.css";
 import useFleetData from "../../../hooks/useFleetData";
 import { useAuth } from "../../../context/AuthContext";
+import { useSelectedDevice } from "../../../context/SelectedDeviceContext"; // Import the context
 import { convertCelsiusToFahrenheit } from "../../../utils/temperatureUtils";
 
 function FleetOverview() {
-  const { accessToken, loading: authLoading, error: authError } = useAuth(); // Get the accessToken from useAuth
+  const { accessToken, loading: authLoading, error: authError } = useAuth();
+  const { data, loading, error } = useFleetData(accessToken);
+  const { setSelectedDevice } = useSelectedDevice(); // Get the setter function from the context
+  const navigate = useNavigate();
 
   // If authentication is still loading, show a loading spinner
   if (authLoading) {
@@ -22,9 +34,6 @@ function FleetOverview() {
     return <div>No access token available. Please log in.</div>;
   }
 
-  // Fetch fleet data using accessToken
-  const { data, loading, error } = useFleetData(accessToken);
-
   if (loading) {
     return <div>Loading fleet data...</div>;
   }
@@ -33,11 +42,21 @@ function FleetOverview() {
     return <div>Error fetching fleet data: {error}</div>;
   }
 
+  // Handle card click
+  const handleCardClick = (device) => {
+    setSelectedDevice(device); // Set the selected device in the context
+    navigate("/realtime"); // Navigate to the PheNode component
+  };
+
   return (
     <div className="fleet-overview-box">
       <div className="fleet-cards-container">
         {data.map((item) => (
-          <div key={item._id ? item._id : "unknown"} className="fleet-card">
+          <div
+            key={item._id ? item._id : "unknown"}
+            className="fleet-card"
+            onClick={() => handleCardClick(item)} // Add the onClick handler
+          >
             <div className="fleet-card-content">
               {/* Device Label */}
               <div className="fleet-card-content-section fleet-card-content-title-section">
