@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import FleetDropdown from "./FleetDropdownMenu";
 import "../../styles/Navbar.css";
 
 import Logo from "../../assets/logo/Logo.svg";
@@ -21,8 +22,6 @@ const Navbar = () => {
   const { logout, username } = useAuth(); // Destructure the logout function from useAuth
   const navigate = useNavigate();
 
-  const [showDropdownOptions, setDropdownOptions] = useState(false);
-
   //logic for toggle buttons
   const [hoveredButton, setHoveredButton] = useState(null);
   const location = useLocation();
@@ -31,14 +30,6 @@ const Navbar = () => {
   const handleLogout = () => {
     logout(); // Clear the token and reset any authentication state
     navigate("/"); // Redirect to the login page
-  };
-
-  const handleNavDropdownChange = (e, setDropdownOptions) => {
-    if (e.target.value === "Flag with custom value") {
-      setDropdownOptions(true);
-    } else {
-      setDropdownOptions(false);
-    }
   };
   //----------------
 
@@ -54,6 +45,11 @@ const Navbar = () => {
   // Function to determine if the button should show the active icon
   const isActive = (path) => {
     return location.pathname === path || hoveredButton === path;
+  };
+
+  // Handle selection from FleetDropdown
+  const handleDropdownSelect = (value) => {
+    console.log("Selected value:", value);
   };
 
   return (
@@ -72,20 +68,8 @@ const Navbar = () => {
         </div>
       </div>
       <div className="grid-item-left">
-        <div className="navbar-dropdown">
-          <select
-            className="navbar-dropdown-menu"
-            onChange={(e) => handleNavDropdownChange(e, setDropdownOptions)}
-          >
-            <option value="" disabled selected>
-              Select PheNode...
-            </option>
-            <option>PheNode_001</option>
-            <option>PheNode_002</option>
-            <option>PheNode_003</option>
-            <option>PheNode_004</option>
-          </select>
-        </div>
+        {/* Use FleetDropdown component */}
+        <FleetDropdown onSelect={handleDropdownSelect} />
       </div>
       <div className="grid-item-right-corner-bottom">
         <div className="toggle-buttons-container">
