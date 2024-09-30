@@ -55,14 +55,29 @@ export const AuthProvider = ({ children }) => {
       );
 
       if (!response.ok) {
-        throw new Error("Login failed");
+        // Check for specific status codes and set a custom error message
+        if (response.status === 401) {
+          throw new Error("Invalid credentials. Username/Password incorrect");
+        } else {
+          throw new Error("An error occurred during login");
+        }
       }
 
       const data = await response.json();
+
+      // Ensure access_token exists before proceeding
+      if (!data.access_token) {
+        throw new Error("Access token not received");
+      }
+
       setAccessToken(data.access_token);
       setUsername(username);
     } catch (err) {
       setError(err.message);
+      // Only show alert if the error is related to credentials
+      if (err.message === "Invalid credentials. Username/Password incorrect") {
+        alert(err.message); // Show the popup
+      }
     } finally {
       setLoading(false);
     }
@@ -84,7 +99,7 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
-  // Session Management: Add event listeners for logout on window close, tab switch, or inactivity
+  // Session Management: Add event listeners for logout on window close or inactivity
   useEffect(() => {
     let timeoutId;
 
@@ -96,14 +111,13 @@ export const AuthProvider = ({ children }) => {
       }, 15 * 60 * 1000); // 15 minutes
     };
 
-    // Function to handle browser close or tab switch
+    // Function to handle browser close
     const handleBeforeUnload = () => {
       logout();
     };
 
     // Add event listeners
     window.addEventListener("beforeunload", handleBeforeUnload);
-    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     // Reset the session timeout on user interactions
     const events = ["click", "mousemove", "keydown", "scroll", "touchstart"];
