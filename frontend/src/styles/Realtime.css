@@ -643,6 +643,11 @@
   .cellular-text {
     font-size: 0.8rem;
   }
+  .signal-blocks {
+    display: grid;
+    grid-template-columns: repeat(4, 1rem);
+    grid-row-gap: 1rem;
+  }
 
   .signal-block {
     width: 0.6rem;
