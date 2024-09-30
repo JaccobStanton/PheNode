@@ -60,7 +60,9 @@ function FleetOverview() {
             <div className="fleet-card-content">
               {/* Device Label */}
               <div className="fleet-card-content-section fleet-card-content-title-section">
-                <div className="fleet-card-content-title">{item.label}</div>
+                <div className="fleet-card-content-title">
+                  {item.label || "No Device Name"}
+                </div>
                 <div className="fleet-card-content-date-label">
                   Last measurements taken:
                 </div>
