@@ -55,10 +55,6 @@ html,
   min-height: 100vh;
   padding: 3rem;
 }
-.login-background {
-  background-image: radial-gradient(circle at 50% 15%, #00438f, #00102f);
-  min-height: 100vh;
-}
 
 .background-box {
   border: 1.5px solid var(--box-outline-blue);
