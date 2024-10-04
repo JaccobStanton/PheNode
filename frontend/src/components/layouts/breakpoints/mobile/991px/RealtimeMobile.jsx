@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../../../../styles/Realtime.css";
+import { useAppContext } from "../../../../../context/AppContext"; // Import useAppContext
+import { convertToDMS } from "../../../../../utils/coordinateUtils";
+import { convertCelsiusToFahrenheit } from "../../../../../utils/temperatureUtils";
+import { convertDegreesToDirection } from "../../../../../utils/windDirectionUtils";
 import PheNodeSvg from "../../../../../assets/diagrams/Phenode-Diagram.svg";
 import SensorSvg from "../../../../../assets/diagrams/Wireless-Sensors.svg";
 import ImageInactive from "../../../../../assets/toggle_buttons/Imaging-Settings-Icon-Inactive.svg";
@@ -8,8 +12,27 @@ import ImageActive from "../../../../../assets/toggle_buttons/Imaging_Icon_Activ
 
 function RealtimeMobile() {
   const [isHovered, setIsHovered] = useState(false);
-
   const navigate = useNavigate();
+  const { selectedDevice } = useAppContext(); // Use useAppContext to get selectedDevice
+
+  // If no selected device, render a message
+  if (!selectedDevice) {
+    return (
+      <div>
+        No device selected. Please select a device to view its sensor data.
+      </div>
+    );
+  }
+
+  // Destructure necessary values from the selected device
+  const {
+    airSensor,
+    rainfallSensor,
+    atmos41Sensor,
+    soilSensors,
+    windSensor,
+    battery,
+  } = selectedDevice;
 
   const handleNavigate = () => {
     navigate("/imaging");
@@ -37,26 +60,68 @@ function RealtimeMobile() {
                 <p>Sensor Status:</p>
               </div>
               <div className="right-column2">
-                <p>68.7 F</p>
-                <p>12%</p>
-                <p>19 kPa</p>
-                <p>Operational</p>
+                <p>
+                  {airSensor?.temperature
+                    ? `${convertCelsiusToFahrenheit(
+                        airSensor.temperature
+                      ).toFixed(2)} °F`
+                    : "N/A"}
+                </p>
+                <p>{airSensor?.humidity ? `${airSensor.humidity}%` : "N/A"}</p>
+                <p>
+                  {airSensor?.airPressure
+                    ? `${airSensor.airPressure} kPa`
+                    : "N/A"}
+                </p>
+                <p
+                  style={{
+                    color:
+                      airSensor?.sensorHealth === "Offline"
+                        ? "orange"
+                        : airSensor?.sensorHealth === "Check"
+                        ? "magenta"
+                        : "#8955e2",
+                  }}
+                >
+                  {airSensor?.sensorHealth || "Unknown"}
+                </p>
               </div>
             </div>
           </div>
           <div className="grid-item data-value-boxes2">
             <div className="data-text-container2">
               <div className="left-column2">
-                <p>Temperature:</p>
-                <p>Humidity:</p>
-                <p>Air Pressure:</p>
+                <p>Hourly Rainfall:</p>
+                <p>Today's Rainfall:</p>
+                <p>Solar Radiation:</p>
                 <p>Sensor Status:</p>
               </div>
               <div className="right-column2">
-                <p>68.7 F</p>
-                <p>12%</p>
-                <p>19 kPa</p>
-                <p>Operational</p>
+                <p>
+                  {rainfallSensor?.hourlyRainfall
+                    ? `${rainfallSensor.hourlyRainfall} mm`
+                    : "N/A"}
+                </p>
+                <p>
+                  {rainfallSensor?.hourlyRainfall
+                    ? `${rainfallSensor.hourlyRainfall} mm`
+                    : "N/A"}
+                </p>
+                <p>
+                  {atmos41Sensor?.solar ? `${atmos41Sensor.solar} W/m²` : "N/A"}
+                </p>
+                <p
+                  style={{
+                    color:
+                      rainfallSensor?.sensorHealth === "Offline"
+                        ? "orange"
+                        : rainfallSensor?.sensorHealth === "Check"
+                        ? "magenta"
+                        : "#8955e2",
+                  }}
+                >
+                  {rainfallSensor?.sensorHealth || "Unknown"}
+                </p>
               </div>
             </div>
           </div>
@@ -64,12 +129,23 @@ function RealtimeMobile() {
           <div className="bottom-gps-box2">
             <div className="gps-battery-box2">
               <span className="gps-text2">GPS:</span>
-              <span className="gps-coordinates2">38°39'34.7"N</span>
-              <span className="gps-coordinates2">90°19'58.9"W</span>
+              <span className="gps-coordinates2">
+                {selectedDevice.gps?.latitude !== undefined
+                  ? convertToDMS(selectedDevice.gps.latitude, true)
+                  : "N/A"}
+                ,
+              </span>
+              <span className="gps-coordinates2">
+                {selectedDevice.gps?.longitude !== undefined
+                  ? convertToDMS(selectedDevice.gps.longitude, false)
+                  : "N/A"}
+              </span>
             </div>
             <div className="gps-battery-box2">
               <span className="battery-text2">Battery:</span>
-              <span className="battery-percentage2">94.87%</span>
+              <span className="battery-percentage2">
+                {battery?.batteryPercent ? `${battery.batteryPercent}%` : "N/A"}
+              </span>
             </div>
           </div>
         </div>
@@ -79,7 +155,9 @@ function RealtimeMobile() {
           <div className="wireless-sensor-count-box2">
             <div className="top-box2">
               <div className="top-box-content2">
-                <span className="sensor-count2">9</span>
+                <span className="sensor-count2">
+                  {selectedDevice?.connectedSensors ?? "N/A"}
+                </span>
                 <span className="sensor-text2">Wireless Sensors connected</span>
               </div>
             </div>
@@ -94,32 +172,81 @@ function RealtimeMobile() {
           <div className="grid-item data-value-boxes2">
             <div className="data-text-container2">
               <div className="left-column2">
-                <p>Temperature:</p>
-                <p>Humidity:</p>
-                <p>Air Pressure:</p>
+                <p>Wind Speed:</p>
+                <p>Wind Gust:</p>
+                <p>Wind Direction:</p>
                 <p>Sensor Status:</p>
               </div>
               <div className="right-column2">
-                <p>68.7 F</p>
-                <p>12%</p>
-                <p>19 kPa</p>
-                <p>Operational</p>
+                <p>
+                  {windSensor?.windSpeed
+                    ? `${windSensor.windSpeed} mph`
+                    : "N/A"}
+                </p>
+                <p>
+                  {windSensor?.windGustSpeed
+                    ? `${windSensor.windGustSpeed} mph`
+                    : "N/A"}
+                </p>
+                <p>
+                  {windSensor?.windDirection !== undefined
+                    ? convertDegreesToDirection(windSensor.windDirection)
+                    : "N/A"}
+                </p>
+                <p
+                  style={{
+                    color:
+                      windSensor?.sensorHealth === "Offline"
+                        ? "orange"
+                        : windSensor?.sensorHealth === "Check"
+                        ? "magenta"
+                        : "#8955e2",
+                  }}
+                >
+                  {windSensor?.sensorHealth || "Unknown"}
+                </p>
               </div>
             </div>
           </div>
           <div className="grid-item data-value-boxes2">
             <div className="data-text-container2">
               <div className="left-column2">
-                <p>Temperature:</p>
-                <p>Humidity:</p>
-                <p>Air Pressure:</p>
+                <p>Soil Moisture:</p>
+                <p>Soil Temp:</p>
+                <p>Soil Salinity:</p>
                 <p>Sensor Status:</p>
               </div>
               <div className="right-column2">
-                <p>68.7 F</p>
-                <p>12%</p>
-                <p>19 kPa</p>
-                <p>Operational</p>
+                <p>
+                  {soilSensors && soilSensors[0]?.vwc
+                    ? `${soilSensors[0].vwc}%`
+                    : "N/A"}
+                </p>
+                <p>
+                  {soilSensors && soilSensors[0]?.soilTemperature
+                    ? `${convertCelsiusToFahrenheit(
+                        soilSensors[0].soilTemperature
+                      ).toFixed(2)} °F`
+                    : "N/A"}
+                </p>
+                <p>
+                  {soilSensors && soilSensors[0]?.electricalConductivity
+                    ? `${soilSensors[0].electricalConductivity} ds/m`
+                    : "N/A"}
+                </p>
+                <p
+                  style={{
+                    color:
+                      soilSensors && soilSensors[0]?.sensorHealth === "Offline"
+                        ? "orange"
+                        : soilSensors &&
+                          soilSensors[0]?.sensorHealth === "Check"
+                        ? "magenta"
+                        : "#8955e2",
+                  }}
+                >
+                  {(soilSensors && soilSensors[0]?.sensorHealth) || "Unknown"}
+                </p>
               </div>
             </div>
           </div>
@@ -142,7 +269,19 @@ function RealtimeMobile() {
 
             <div className="sensor-status-box2">
               <span className="sensor-status-top-box2">Sensor Status:</span>
-              <span className="sensor-text-operation2">Operational</span>
+              <span
+                className="sensor-text-operation2"
+                style={{
+                  color:
+                    selectedDevice.camera?.cameraHealth === "Offline"
+                      ? "orange"
+                      : selectedDevice.camera?.cameraHealth === "Check"
+                      ? "magenta"
+                      : "#8955e2",
+                }}
+              >
+                {selectedDevice.camera?.cameraHealth || "Unknown"}
+              </span>
             </div>
           </div>
         </div>

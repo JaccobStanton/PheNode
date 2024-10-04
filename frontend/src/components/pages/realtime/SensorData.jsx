@@ -1,11 +1,11 @@
 import React from "react";
 import "../../../styles/Realtime.css";
-import { useSelectedDevice } from "../../../context/SelectedDeviceContext";
+import { useAppContext } from "../../../context/AppContext";
 import { convertCelsiusToFahrenheit } from "../../../utils/temperatureUtils";
 import { convertDegreesToDirection } from "../../../utils/windDirectionUtils";
 
 function SensorData() {
-  const { selectedDevice } = useSelectedDevice(); // Get the selected device from context
+  const { selectedDevice } = useAppContext(); // Get the selected device from AppContext
 
   // If no selected device, render a message
   if (!selectedDevice) {

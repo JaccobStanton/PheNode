@@ -1,10 +1,7 @@
-//When a card is clicked, the app should navigate to the PheNode.jsx component and display the data of the device that corresponds to the clicked card.
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import useFleetData from "../../../hooks/useFleetData";
+import { useAppContext } from "../../../context/AppContext"; // Import useAppContext
 import { convertToDMS } from "../../../utils/coordinateUtils";
-import { useSelectedDevice } from "../../../context/SelectedDeviceContext";
 import "../../../styles/Realtime.css";
 import PheNodeDiagram from "../../../assets/diagrams/Phenode-Diagram.svg";
 import SensorSvg from "../../../assets/diagrams/Wireless-Sensors.svg";
@@ -12,8 +9,7 @@ import ImageInactive from "../../../assets/toggle_buttons/Imaging-Settings-Icon-
 import ImageActive from "../../../assets/toggle_buttons/Imaging_Icon_Active.svg";
 
 function PheNode() {
-  const { data: fleetData, loading, error } = useFleetData(); // Get all devices
-  const { selectedDevice, setSelectedDevice } = useSelectedDevice(); // Get and set the selected device
+  const { selectedDevice, setSelectedDevice, devices } = useAppContext(); // Use AppContext
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
@@ -22,24 +18,16 @@ function PheNode() {
     navigate("/imaging");
   };
 
-  // Set the first device as the selected device on component mount if none is selected
+  // Automatically select the first device if none is selected (this helps in fallback scenarios)
   useEffect(() => {
-    if (!selectedDevice && fleetData.length > 0) {
-      setSelectedDevice(fleetData[0]);
+    if (!selectedDevice && devices.length > 0) {
+      setSelectedDevice(devices[0]);
     }
-  }, [fleetData, selectedDevice, setSelectedDevice]);
+  }, [devices, selectedDevice, setSelectedDevice]);
 
   // Show loading or error states if necessary
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error fetching device data: {error}</div>;
-  }
-
   if (!selectedDevice) {
-    return <div>No device data available.</div>;
+    return <div>Loading device data...</div>;
   }
 
   return (
@@ -51,7 +39,6 @@ function PheNode() {
               <span className="sensor-count">
                 {selectedDevice.connectedSensors ?? "N/A"}
               </span>
-
               <span className="sensor-text">Wireless Sensors connected</span>
             </div>
           </div>
@@ -117,7 +104,7 @@ function PheNode() {
             <div className="gps-battery-box">
               <span className="battery-text">Battery:</span>
               <span className="battery-percentage">
-                {selectedDevice.battery?.batteryPercent != undefined
+                {selectedDevice.battery?.batteryPercent !== undefined
                   ? `${selectedDevice.battery.batteryPercent}%`
                   : "N/A"}
               </span>

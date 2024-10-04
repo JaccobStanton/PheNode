@@ -1,9 +1,9 @@
 import React from "react";
 import "../../../styles/Realtime.css";
-import { useSelectedDevice } from "../../../context/SelectedDeviceContext";
+import { useAppContext } from "../../../context/AppContext"; // Import useAppContext
 
 function Title() {
-  const { selectedDevice } = useSelectedDevice(); // Get the selected device from context
+  const { selectedDevice } = useAppContext(); // Use AppContext to get the selected device
 
   // Return a message if no device is selected
   if (!selectedDevice) {
