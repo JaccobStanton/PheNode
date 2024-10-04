@@ -1,22 +1,20 @@
 import React, { useEffect } from "react";
-import useFleetData from "../../hooks/useFleetData";
-import { useSelectedDevice } from "../../context/SelectedDeviceContext";
+import { useAppContext } from "../../context/AppContext";
 
 const FleetDropdownMenu = () => {
-  const { data: fleetData, loading, error } = useFleetData();
-  const { selectedDevice, setSelectedDevice } = useSelectedDevice();
+  const { devices, selectedDevice, setSelectedDevice } = useAppContext(); // Access devices and selectedDevice from AppContext
 
-  // Automatically sets the initial device if selectedDevice is not already set.
+  // Automatically set the initial device if selectedDevice is not already set
   useEffect(() => {
-    if (!selectedDevice && fleetData.length > 0) {
-      setSelectedDevice(fleetData[0]); // Set the first device by default
+    if (!selectedDevice && devices.length > 0) {
+      setSelectedDevice(devices[0]); // Set the first device by default
     }
-  }, [fleetData, selectedDevice, setSelectedDevice]);
+  }, [devices, selectedDevice, setSelectedDevice]);
 
-  // Updates the context with the selected device when the user selects an option from the dropdown.
+  // Update the context with the selected device when the user selects an option from the dropdown
   const handleDropdownChange = (e) => {
     const selectedLabel = e.target.value;
-    const selectedDeviceData = fleetData.find(
+    const selectedDeviceData = devices.find(
       (device) => device.label === selectedLabel
     );
     setSelectedDevice(selectedDeviceData);
@@ -32,16 +30,12 @@ const FleetDropdownMenu = () => {
         <option value="" disabled>
           Select PheNode...
         </option>
-        {loading && <option>Loading...</option>}
-        {error && <option>Error loading data</option>}
-        {!loading &&
-          !error &&
-          fleetData.map((item) => (
-            //The dropdown's value is set to selectedDevice.label to reflect the currently selected PheNode.
-            <option key={item.id} value={item.label}>
-              {item.label}
-            </option>
-          ))}
+        {devices.length === 0 && <option>Loading...</option>}
+        {devices.map((item) => (
+          <option key={item._id} value={item.label || "No Label"}>
+            {item.label || "No Label"}
+          </option>
+        ))}
       </select>
     </div>
   );
