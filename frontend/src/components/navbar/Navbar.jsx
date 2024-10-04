@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
+import { useKeycloak } from "@react-keycloak/web";
+// import { useAuth } from "../../context/Auth/AuthContext";
 import FleetDropdown from "./FleetDropdownMenu";
 import "../../styles/Navbar.css";
 
@@ -19,20 +20,18 @@ import DownloadIconActive from "../../assets/toggle_buttons/Download_Icon_Active
 import SettingsIconActive from "../../assets/toggle_buttons/Settings_Icon_Active.svg";
 
 const Navbar = () => {
-  const { logout, username } = useAuth(); // Destructure the logout function from useAuth
+  const { keycloak } = useKeycloak(); // Use useKeycloak for keycloak instance
   const navigate = useNavigate();
 
-  //logic for toggle buttons
+  // Logic for toggle buttons
   const [hoveredButton, setHoveredButton] = useState(null);
   const location = useLocation();
 
   // Handle the logout action
   const handleLogout = () => {
-    logout(); // Clear the token and reset any authentication state
+    keycloak.logout(); // Call keycloak.logout() to log out
     navigate("/"); // Redirect to the login page
   };
-  //----------------
-
   //logic for toggle button hovering
   const handleMouseEnter = (button) => {
     setHoveredButton(button);
@@ -60,7 +59,7 @@ const Navbar = () => {
       <div className="grid-item-right-corner">
         <div className="user-logout-container">
           <div className="inner-box logout-box">
-            {username ? `${username}` : "User - - - -"}
+            {keycloak.tokenParsed?.preferred_username || "User - - - -"}
           </div>
           <button className="inner-box logout-button" onClick={handleLogout}>
             Logout
