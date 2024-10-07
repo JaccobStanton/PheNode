@@ -10,6 +10,8 @@ const AuthWrapper = ({ children }) => {
   const [delayCompleted, setDelayCompleted] = useState(false);
   const [loadingText, setLoadingText] = useState("Authenticating User");
 
+  const logoutInProgress = localStorage.getItem("logoutInProgress") === "true";
+
   useEffect(() => {
     let timer;
 
@@ -22,7 +24,7 @@ const AuthWrapper = ({ children }) => {
       // Set loading text for authenticated state
       setLoadingText("Setting up your environment");
 
-      // Start the 15-second timer when the user is authenticated
+      // Start the 11-second timer when the user is authenticated
       timer = setTimeout(() => {
         console.log("Delay completed.");
         setDelayCompleted(true);
@@ -39,15 +41,19 @@ const AuthWrapper = ({ children }) => {
 
   // Show Loading component while Keycloak is initializing
   if (!initialized) {
-    console.log("Keycloak is not initialized yet, showing loading page...");
-    return <Loading loadingText="Authenticating User" />;
+    if (logoutInProgress || location.pathname === "/logout") {
+      console.log(
+        "Keycloak is not initialized, but logout is in progress. Showing logout screen..."
+      );
+      return <Loading loadingText="Logging out" />;
+    } else {
+      console.log("Keycloak is not initialized yet, showing loading page...");
+      return <Loading loadingText="Authenticating User" />;
+    }
   }
 
   // If Keycloak is initialized but the user is not authenticated
   if (!keycloak.authenticated) {
-    const logoutInProgress =
-      localStorage.getItem("logoutInProgress") === "true";
-
     if (logoutInProgress || location.pathname === "/logout") {
       console.log(
         "User is not authenticated and logout is in progress. Showing logout screen..."

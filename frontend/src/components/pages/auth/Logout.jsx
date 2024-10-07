@@ -13,7 +13,7 @@ const Logout = () => {
     // Delay the logout to show the 'Logging out' screen
     const timer = setTimeout(() => {
       keycloak.logout({ redirectUri: window.location.origin + "/" });
-    }, 5000); // 2 seconds delay
+    }, 5000); // 5 seconds delay
 
     return () => {
       clearTimeout(timer);

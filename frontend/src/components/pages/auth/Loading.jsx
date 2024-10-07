@@ -1,6 +1,8 @@
 // Loading.jsx
 import React from "react";
 import PheNodeLogo from "../../../assets/logo/Logo.svg";
+import "../../../styles/App.css";
+import "../../../index.css";
 
 const Loading = ({ loadingText }) => {
   return (

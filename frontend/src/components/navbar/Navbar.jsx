@@ -29,6 +29,7 @@ const Navbar = () => {
 
   // Handle the logout action
   const handleLogout = () => {
+    // Navigate to the logout route
     navigate("/logout");
   };
   //logic for toggle button hovering
