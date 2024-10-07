@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from "react";
 import { useKeycloak } from "@react-keycloak/web";
 import { useLocation } from "react-router-dom";
-import Loading from "./Loading"; // Adjust the import path accordingly
+import Loading from "./Loading";
+import useSessionTimeout from "../../../hooks/useSessionTimeout";
 
 const AuthWrapper = ({ children }) => {
   const { keycloak, initialized } = useKeycloak();
@@ -11,6 +12,9 @@ const AuthWrapper = ({ children }) => {
   const [loadingText, setLoadingText] = useState("Authenticating User");
 
   const logoutInProgress = localStorage.getItem("logoutInProgress") === "true";
+
+  // Use the custom hook for session timeout
+  useSessionTimeout(keycloak, isAuthenticated);
 
   useEffect(() => {
     let timer;
