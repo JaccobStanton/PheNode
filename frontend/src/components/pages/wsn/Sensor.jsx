@@ -1,9 +1,38 @@
 import React from "react";
 import "../../../styles/Realtime.css";
 import "../../../styles/WSN.css";
+import { useAppContext } from "../../../context/AppContext";
 import SensorDiagram from "../../../assets/diagrams/Wireless-Sensors-v4.svg";
+import SensorDropdownMenu from "./SensorDropdownMenu";
 
 function Sensor() {
+  const { selectedWirelessSensor, sensorsLoading, sensorsError } =
+    useAppContext(); // Get selectedWirelessSensor from AppContext
+
+  console.log(
+    "Rendering Sensor component. Selected Sensor:",
+    selectedWirelessSensor
+  );
+
+  // Show loading or error states if necessary
+  if (sensorsLoading) {
+    return <div>Loading sensor data...</div>;
+  }
+
+  if (sensorsError) {
+    return <div>Error loading sensors: {sensorsError.message}</div>;
+  }
+
+  if (!selectedWirelessSensor) {
+    return (
+      <div>No sensor selected. Please select a sensor to view its data.</div>
+    );
+  }
+
+  // Destructure necessary values from the selected sensor
+  const { gasSensor, soilSensors, battery, lux, location } =
+    selectedWirelessSensor;
+
   return (
     <>
       {/* LEFT COLUMN SENSOR DATA */}
@@ -19,9 +48,17 @@ function Sensor() {
                   <p>Sensor Status:</p>
                 </div>
                 <div className="sensor-right-column">
-                  <p>68.7 F</p>
-                  <p>12%</p>
-                  <p>19 kPa</p>
+                  <p>
+                    {gasSensor?.temperature
+                      ? `${convertCelsiusToFahrenheit(
+                          gasSensor.temperature
+                        ).toFixed(2)} °F`
+                      : "N/A"}
+                  </p>
+                  <p>
+                    {gasSensor?.humidity ? `${gasSensor.humidity}%` : "N/A"}
+                  </p>
+                  <p>{lux !== undefined ? `${lux}` : "N/A"}</p>
                   <p>Operational</p>
                 </div>
               </div>
@@ -35,9 +72,23 @@ function Sensor() {
                   <p>Sensor Status:</p>
                 </div>
                 <div className="sensor-right-column">
-                  <p>68.7 F</p>
-                  <p>12%</p>
-                  <p>19 kPa</p>
+                  <p>
+                    {soilSensors && soilSensors[0]?.soilMoisture
+                      ? `${soilSensors[0].soilMoisture}`
+                      : "N/A"}
+                  </p>
+                  <p>
+                    {soilSensors && soilSensors[0]?.soilTemperature
+                      ? `${convertCelsiusToFahrenheit(
+                          soilSensors[0].soilTemperature
+                        ).toFixed(2)} °F`
+                      : "N/A"}
+                  </p>
+                  <p>
+                    {soilSensors && soilSensors[0]?.electricalConductivity
+                      ? `${soilSensors[0].electricalConductivity} ds/m`
+                      : "N/A"}
+                  </p>
                   <p>Operational</p>
                 </div>
               </div>
@@ -51,20 +102,7 @@ function Sensor() {
         <div className="wireless-sensor-svg-container">
           <img src={SensorDiagram} alt="sensor" className="wsn-sensor-svg" />
         </div>
-        <div className="dropdown-wsn">
-          {/* Dropdown to select wireless sensor */}
-          <select
-            className="dropdown-menu-wsn"
-            onChange={(e) => handleDropdownChange(e)}
-          >
-            <option value="" disabled selected>
-              Select Wireless Sensor...
-            </option>
-            <option>Option 1</option>
-            <option>Option 2</option>
-            <option>Option 3</option>
-          </select>
-        </div>
+        <SensorDropdownMenu />
       </div>
 
       {/* RIGHT COLUMN GPS-RENAMING SENSOR */}
@@ -75,10 +113,15 @@ function Sensor() {
               <div className="sensor-gps-coordinates-box">
                 <div className="sensor-gps-text">GPS</div>
                 <div className="sensor-gps-coordinates">
-                  38°39'34.7"N 90°19'58.9"W
+                  {location?.latitude ? `${location.latitude}` : "N/A"}{" "}
+                  {location?.longitude ? `${location.longitude}` : "N/A"}
                 </div>
                 <div className="sensor-gps-text">Battery</div>
-                <div className="sensor-gps-coordinates">95%</div>
+                <div className="sensor-gps-coordinates">
+                  {battery?.batteryPercent
+                    ? `${battery.batteryPercent}%`
+                    : "N/A"}
+                </div>
               </div>
             </div>
 
@@ -87,7 +130,9 @@ function Sensor() {
                 <div className="id-top-box">
                   <div className="text-column">
                     <p className="rename-title">Rename this sensor:</p>
-                    <p className="device-id">WS-AB:62:EB:09:90:32</p>
+                    <p className="device-id">
+                      {selectedWirelessSensor.externalSensorId}
+                    </p>
                   </div>
                 </div>
                 <div className="rename-bottom-box">

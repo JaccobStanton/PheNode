@@ -1,5 +1,9 @@
 import React, { useState, createContext, useContext, useEffect } from "react";
-import { useMyDevices } from "../services/swrHooks";
+import {
+  useMyDevices,
+  useMySensors,
+  useWirelessSensor,
+} from "../services/swrHooks";
 import { useKeycloak } from "@react-keycloak/web"; // Import Keycloak
 
 const AppContext = createContext(null);
@@ -71,34 +75,37 @@ export const AppContextProvider = ({ children }) => {
     }
   }, [selectedDevice]);
 
-  /* Wireless sensor section */
-  // Load wirelessSensorList from sessionStorage
-  useEffect(() => {
-    const storedWirelessSensorList =
-      sessionStorage.getItem("wirelessSensorList");
-    if (storedWirelessSensorList) {
-      try {
-        setWirelessSensorList(JSON.parse(storedWirelessSensorList));
-      } catch (e) {
-        console.log(
-          "Error parsing wireless sensor list from sessionStorage",
-          e
-        );
-      }
-    } else {
-      console.log("Setting empty wireless sensor list");
-    }
-  }, []);
+  /* WIRELESS SENSOR SELECTION START */
+  // Use SWR to fetch sensors
+  const { sensorsData, sensorsLoading, sensorsError } = useMySensors(
+    keycloak.token
+  );
 
-  // Save wirelessSensorList to sessionStorage
+  // Use SWR to fetch detailed data for the selected sensor
+  const { sensorData, sensorLoading, sensorError } = useWirelessSensor(
+    keycloak.token,
+    selectedWirelessSensor?._id // Fetch data for the selected sensor
+  );
+
+  // Update sensor list and save it to sessionStorage
+  // Update sensor list and save it to sessionStorage
   useEffect(() => {
-    if (wirelessSensorList) {
+    if (sensorsData && Array.isArray(sensorsData.sensors)) {
+      setWirelessSensorList(sensorsData.sensors);
       sessionStorage.setItem(
         "wirelessSensorList",
-        JSON.stringify(wirelessSensorList)
+        JSON.stringify(sensorsData.sensors)
       );
+
+      // Automatically select the first sensor if none is selected
+      if (!selectedWirelessSensor && sensorsData.sensors.length > 0) {
+        setSelectedWirelessSensor(sensorsData.sensors[0]);
+      }
+    } else {
+      setWirelessSensorList([]);
+      sessionStorage.setItem("wirelessSensorList", JSON.stringify([]));
     }
-  }, [wirelessSensorList]);
+  }, [sensorsData, selectedWirelessSensor]);
 
   // Load selectedWirelessSensor from sessionStorage
   useEffect(() => {
@@ -117,7 +124,7 @@ export const AppContextProvider = ({ children }) => {
     }
   }, []);
 
-  // Save selectedWirelessSensor to sessionStorage
+  // Save selectedWirelessSensor to sessionStorage whenever it changes
   useEffect(() => {
     if (selectedWirelessSensor) {
       sessionStorage.setItem(
@@ -130,13 +137,17 @@ export const AppContextProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        devices: deviceList || [], // Pass deviceList to the context
+        devices: deviceList || [],
         devicesLoading,
         devicesError,
-        selectedDevice, // Provide selectedDevice to the context
-        setSelectedDevice, // Provide setSelectedDevice to the context
+        selectedDevice,
+        setSelectedDevice,
         wirelessSensorList,
-        setWirelessSensorList,
+        sensorsLoading,
+        sensorsError,
+        sensorData, // Provide detailed sensor data to the context
+        sensorLoading,
+        sensorError,
         selectedWirelessSensor,
         setSelectedWirelessSensor,
         dataDownloadPreferences,

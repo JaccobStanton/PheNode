@@ -93,6 +93,71 @@ html,
   color: magenta;
 }
 
+/* CSS for loading page */
+/* LoadingPage.css */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  background-image: radial-gradient(circle at 50% 15%, #00438f, #00102f);
+  /* background-image: radial-gradient(
+    circle farthest-corner at 100% 50%,
+    #043e83,
+    var(--bg-dark-color) 65%,
+    #7b00ff24 102%
+  ); */
+}
+
+.loading-logo-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+}
+
+.loading-logo {
+  width: 60%;
+  filter: drop-shadow(0 0 10px #007bff);
+}
+
+.loading-text {
+  color: var(--green);
+  font-size: 24px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.dot {
+  animation: blink 1s infinite;
+}
+
+.dot1 {
+  animation-delay: 0s;
+}
+
+.dot2 {
+  animation-delay: 0.2s;
+}
+
+.dot3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @media (min-width: 767px) {
   .phenode-grafana-box {
     width: 100%;

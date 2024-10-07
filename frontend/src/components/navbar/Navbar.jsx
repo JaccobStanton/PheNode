@@ -29,8 +29,7 @@ const Navbar = () => {
 
   // Handle the logout action
   const handleLogout = () => {
-    keycloak.logout(); // Call keycloak.logout() to log out
-    navigate("/"); // Redirect to the login page
+    navigate("/logout");
   };
   //logic for toggle button hovering
   const handleMouseEnter = (button) => {
@@ -72,7 +71,7 @@ const Navbar = () => {
       </div>
       <div className="grid-item-right-corner-bottom">
         <div className="toggle-buttons-container">
-          <Link to="/home">
+          <Link to="/">
             <button
               className={`toggle-button ${isActive("/home") ? "active" : ""}`}
               onMouseEnter={() => handleMouseEnter("/home")}

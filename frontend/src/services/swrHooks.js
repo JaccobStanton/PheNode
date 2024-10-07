@@ -3,6 +3,7 @@
 // This is useful for creating performant and efficient data fetching logic in React applications
 import useSWR from "swr";
 import { API_URL } from "./api";
+import { useKeycloak } from "@react-keycloak/web";
 import { fetcherWithToken } from "./fetcher";
 
 // useSWR is used to fetch data from an API endpoint. It provides data, error, and other states like mutate for managing the fetched data.
@@ -40,18 +41,33 @@ export function useDevices(userToken) {
  * @param userToken
  * @returns object
  */
-export function useMyDevices(userToken) {
+export function useMyDevices() {
+  const { keycloak } = useKeycloak();
+
+  const fetcher = (url) => {
+    if (!keycloak.authenticated) {
+      throw new Error("User is not authenticated");
+    }
+
+    const token = keycloak.token;
+
+    return fetcherWithToken(url, "GET", null, token);
+  };
+
   const { data, error, mutate } = useSWR(
-    `${API_URL}/devices`,
-    () => fetcherWithToken(`${API_URL}/devices`, "GET", null, userToken), // Pass userToken to fetcherWithToken
+    keycloak.authenticated ? `${API_URL}/devices/my-devices` : null,
+    fetcher,
     { refreshInterval: 30000 }
   );
+
+  console.log("useMyDevices - Fetched data:", data); // Debugging line
+  console.log("useMyDevices - Error:", error); // Debugging line
 
   return {
     devicesData: data,
     devicesLoading: !error && !data,
     devicesError: error,
-    mutate: mutate,
+    mutate,
   };
 }
 
@@ -63,19 +79,6 @@ export function useMyDevices(userToken) {
  * @param deviceId
  * @returns object
  */
-export function useDevice(userToken, deviceId) {
-  const { data, error } = useSWR(
-    [`${API_URL}/devices/${deviceId}`, userToken],
-    fetcherWithToken,
-    { refreshInterval: 30000 }
-  );
-
-  return {
-    deviceData: data,
-    deviceLoading: !error && !data,
-    deviceError: error,
-  };
-}
 
 /**
  * Fetch the specified device images from DB via API.
@@ -106,10 +109,22 @@ export function useDeviceImages(userToken, deviceId) {
  * @param userToken
  * @returns object
  */
-export function useMySensors(userToken) {
+export function useMySensors() {
+  const { keycloak } = useKeycloak();
+
+  const fetcher = (url) => {
+    if (!keycloak.authenticated) {
+      throw new Error("User is not authenticated");
+    }
+
+    const token = keycloak.token;
+
+    return fetcherWithToken(url, "GET", null, token);
+  };
+
   const { data, error, mutate } = useSWR(
-    [`${API_URL}/wireless-sensors/my-sensors`, userToken],
-    fetcherWithToken,
+    keycloak.authenticated ? `${API_URL}/wireless-sensors/my-sensors` : null,
+    fetcher,
     { refreshInterval: 30000 }
   );
 
@@ -117,7 +132,7 @@ export function useMySensors(userToken) {
     sensorsData: data,
     sensorsLoading: !error && !data,
     sensorsError: error,
-    mutate: mutate,
+    mutate,
   };
 }
 
@@ -129,10 +144,23 @@ export function useMySensors(userToken) {
  * @param sensorId
  * @returns object
  */
-export function useWirelessSensor(userToken, sensorId) {
+export function useWirelessSensor(sensorId) {
+  const { keycloak } = useKeycloak();
+
+  const fetcher = (url) => {
+    if (!keycloak.authenticated) {
+      throw new Error("User is not authenticated");
+    }
+
+    const token = keycloak.token;
+    return fetcherWithToken(url, "GET", null, token);
+  };
+
+  const shouldFetch = keycloak.authenticated && sensorId;
+
   const { data, error, mutate } = useSWR(
-    [`${API_URL}/wireless-sensors/${sensorId}`, userToken],
-    fetcherWithToken,
+    shouldFetch ? `${API_URL}/wireless-sensors/${sensorId}` : null,
+    fetcher,
     { refreshInterval: 30000 }
   );
 
@@ -140,6 +168,6 @@ export function useWirelessSensor(userToken, sensorId) {
     sensorData: data,
     sensorLoading: !error && !data,
     sensorError: error,
-    mutate: mutate,
+    mutate,
   };
 }
