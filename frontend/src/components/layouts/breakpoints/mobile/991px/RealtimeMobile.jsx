@@ -32,6 +32,9 @@ function RealtimeMobile() {
     soilSensors,
     windSensor,
     battery,
+    gps,
+    connectedSensors,
+    camera,
   } = selectedDevice;
 
   const handleNavigate = () => {
@@ -130,13 +133,13 @@ function RealtimeMobile() {
             <div className="gps-battery-box2">
               <span className="gps-text2">GPS:</span>
               <span className="gps-coordinates2">
-                {selectedDevice.gps?.latitude !== undefined
+                {gps?.latitude !== undefined
                   ? convertToDMS(selectedDevice.gps.latitude, true)
                   : "N/A"}
                 ,
               </span>
               <span className="gps-coordinates2">
-                {selectedDevice.gps?.longitude !== undefined
+                {gps?.longitude !== undefined
                   ? convertToDMS(selectedDevice.gps.longitude, false)
                   : "N/A"}
               </span>
@@ -156,7 +159,7 @@ function RealtimeMobile() {
             <div className="top-box2">
               <div className="top-box-content2">
                 <span className="sensor-count2">
-                  {selectedDevice?.connectedSensors ?? "N/A"}
+                  {connectedSensors ?? "N/A"}
                 </span>
                 <span className="sensor-text2">Wireless Sensors connected</span>
               </div>
@@ -273,14 +276,14 @@ function RealtimeMobile() {
                 className="sensor-text-operation2"
                 style={{
                   color:
-                    selectedDevice.camera?.cameraHealth === "Offline"
+                    camera?.cameraHealth === "Offline"
                       ? "orange"
-                      : selectedDevice.camera?.cameraHealth === "Check"
+                      : camera?.cameraHealth === "Check"
                       ? "magenta"
                       : "#8955e2",
                 }}
               >
-                {selectedDevice.camera?.cameraHealth || "Unknown"}
+                {camera?.cameraHealth || "Unknown"}
               </span>
             </div>
           </div>
