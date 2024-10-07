@@ -12,6 +12,7 @@ const AuthWrapper = ({ children }) => {
   const [loadingText, setLoadingText] = useState("Authenticating User");
 
   const logoutInProgress = localStorage.getItem("logoutInProgress") === "true";
+  const isAuthenticated = initialized && keycloak.authenticated;
 
   // Use the custom hook for session timeout
   useSessionTimeout(keycloak, isAuthenticated);
@@ -78,9 +79,7 @@ const AuthWrapper = ({ children }) => {
   }
 
   // User is authenticated and delay is completed
-  console.log(
-    "User is authenticated and delay completed. Rendering the application..."
-  );
+
   return <>{children}</>;
 };
 
