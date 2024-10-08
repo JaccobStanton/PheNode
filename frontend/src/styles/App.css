@@ -120,7 +120,7 @@ html,
 
 .loading-logo {
   width: 60%;
-  filter: drop-shadow(0 0 2px #007bff);
+  filter: drop-shadow(0 0 3px #007bff);
 }
 
 .loading-text {
@@ -245,10 +245,33 @@ html,
     width: 100%;
     margin: 4.5rem auto 0 auto; /* Center horizontally */
   }
+  .loading-logo-container {
+    width: 65%;
+  }
+
+  .loading-logo {
+    width: 55%;
+  }
+
+  .loading-text {
+    font-size: 20px;
+  }
 }
 @media (min-width: 2560px) {
   .phenode-grafana-box {
     width: 100%;
     margin: 4.5rem auto 0 auto; /* Center horizontally */
+  }
+  .loading-logo-container {
+    width: 60%;
+  }
+
+  .loading-logo {
+    width: 50%;
+  }
+
+  .loading-text {
+    font-size: 25px;
+    margin-top: 55px;
   }
 }

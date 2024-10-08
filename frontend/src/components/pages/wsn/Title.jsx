@@ -1,6 +1,22 @@
 import React from "react";
+import { useAppContext } from "../../../context/AppContext";
 
 function WSNTitle() {
+  const { sensorData } = useAppContext();
+
+  // Check if sensorData is available
+  if (!sensorData || !sensorData.sensor) {
+    return <div>Loading last measurement...</div>;
+  }
+
+  // Extract lastMeasurement from sensorData.sensor
+  const { lastMeasurement } = sensorData.sensor;
+
+  // Format the last measurement date
+  const formattedDate = lastMeasurement
+    ? new Date(lastMeasurement).toLocaleString()
+    : "N/A";
+
   return (
     <>
       <div className="grid-item page-title">Wireless Sensor Network</div>
@@ -10,7 +26,7 @@ function WSNTitle() {
             <span className="imaging-last-photo-text">
               Last measurements taken:
             </span>
-            <span className="last-photo-date">October 31, 2022, 12:34pm</span>
+            <span className="last-photo-date">{formattedDate}</span>
           </div>
         </div>
       </div>

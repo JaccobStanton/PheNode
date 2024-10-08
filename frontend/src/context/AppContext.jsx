@@ -5,6 +5,7 @@ import {
   useWirelessSensor,
 } from "../services/swrHooks";
 import { useKeycloak } from "@react-keycloak/web"; // Import Keycloak
+import { mapSensors } from "../utils/mapSensors"; // Import the updated mapSensors function
 
 const AppContext = createContext(null);
 
@@ -18,10 +19,10 @@ const dataDownloadPref = {
 };
 
 export const AppContextProvider = ({ children }) => {
-  const { keycloak } = useKeycloak(); // Access Keycloak for token
+  const { keycloak } = useKeycloak(); // Access Keycloak
   const [deviceList, setDeviceList] = useState([]);
   const [selectedDevice, setSelectedDevice] = useState(null);
-  const [wirelessSensorList, setWirelessSensorList] = useState(null);
+  const [wirelessSensorList, setWirelessSensorList] = useState([]);
   const [selectedWirelessSensor, setSelectedWirelessSensor] = useState(null);
   const [dataDownloadPreferences, setDataDownloadPreferences] =
     useState(dataDownloadPref);
@@ -39,9 +40,7 @@ export const AppContextProvider = ({ children }) => {
   }, []); // Only run this effect on mount
 
   // Use SWR to fetch devices and store them in the context
-  const { devicesData, devicesLoading, devicesError } = useMyDevices(
-    keycloak.token
-  );
+  const { devicesData, devicesLoading, devicesError } = useMyDevices();
 
   // Update device list and save it to sessionStorage
   useEffect(() => {
@@ -77,35 +76,28 @@ export const AppContextProvider = ({ children }) => {
 
   /* WIRELESS SENSOR SELECTION START */
   // Use SWR to fetch sensors
-  const { sensorsData, sensorsLoading, sensorsError } = useMySensors(
-    keycloak.token
-  );
+  const { sensorsData, sensorsLoading, sensorsError } = useMySensors();
 
-  // Use SWR to fetch detailed data for the selected sensor
-  const { sensorData, sensorLoading, sensorError } = useWirelessSensor(
-    keycloak.token,
-    selectedWirelessSensor?._id // Fetch data for the selected sensor
-  );
-
-  // Update sensor list and save it to sessionStorage
-  // Update sensor list and save it to sessionStorage
+  // Map sensors and update sensor list
   useEffect(() => {
     if (sensorsData && Array.isArray(sensorsData.sensors)) {
-      setWirelessSensorList(sensorsData.sensors);
+      const mappedSensors = mapSensors(sensorsData.sensors);
+
+      setWirelessSensorList(mappedSensors);
       sessionStorage.setItem(
         "wirelessSensorList",
-        JSON.stringify(sensorsData.sensors)
+        JSON.stringify(mappedSensors)
       );
 
       // Automatically select the first sensor if none is selected
-      if (!selectedWirelessSensor && sensorsData.sensors.length > 0) {
-        setSelectedWirelessSensor(sensorsData.sensors[0]);
+      if (!selectedWirelessSensor && mappedSensors.length > 0) {
+        setSelectedWirelessSensor(mappedSensors[0]);
       }
     } else {
       setWirelessSensorList([]);
       sessionStorage.setItem("wirelessSensorList", JSON.stringify([]));
     }
-  }, [sensorsData, selectedWirelessSensor]);
+  }, [sensorsData]);
 
   // Load selectedWirelessSensor from sessionStorage
   useEffect(() => {
@@ -114,7 +106,10 @@ export const AppContextProvider = ({ children }) => {
     );
     if (storedSelectedWirelessSensor) {
       try {
-        setSelectedWirelessSensor(JSON.parse(storedSelectedWirelessSensor));
+        const parsedSensor = JSON.parse(storedSelectedWirelessSensor);
+
+        // No need to manually assign id here since mapSensors already did it
+        setSelectedWirelessSensor(parsedSensor);
       } catch (e) {
         console.log(
           "Error parsing selected wireless sensor from sessionStorage",
@@ -133,6 +128,11 @@ export const AppContextProvider = ({ children }) => {
       );
     }
   }, [selectedWirelessSensor]);
+
+  // Use SWR to fetch detailed data for the selected sensor
+  const { sensorData, sensorLoading, sensorError } = useWirelessSensor(
+    selectedWirelessSensor?.externalSensorId
+  );
 
   return (
     <AppContext.Provider

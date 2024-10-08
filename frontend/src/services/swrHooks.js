@@ -60,9 +60,6 @@ export function useMyDevices() {
     { refreshInterval: 30000 }
   );
 
-  console.log("useMyDevices - Fetched data:", data); // Debugging line
-  console.log("useMyDevices - Error:", error); // Debugging line
-
   return {
     devicesData: data,
     devicesLoading: !error && !data,
@@ -153,6 +150,7 @@ export function useWirelessSensor(sensorId) {
     }
 
     const token = keycloak.token;
+
     return fetcherWithToken(url, "GET", null, token);
   };
 
@@ -163,7 +161,6 @@ export function useWirelessSensor(sensorId) {
     fetcher,
     { refreshInterval: 30000 }
   );
-
   return {
     sensorData: data,
     sensorLoading: !error && !data,
