@@ -74,12 +74,12 @@ const Navbar = () => {
         <div className="toggle-buttons-container">
           <Link to="/">
             <button
-              className={`toggle-button ${isActive("/home") ? "active" : ""}`}
-              onMouseEnter={() => handleMouseEnter("/home")}
+              className={`toggle-button ${isActive("/") ? "active" : ""}`}
+              onMouseEnter={() => handleMouseEnter("/")}
               onMouseLeave={handleMouseLeave}
             >
               <img
-                src={isActive("/home") ? HomeIconActive : HomeIconInactive}
+                src={isActive("/") ? HomeIconActive : HomeIconInactive}
                 alt="Home Icon"
                 className="button-icon"
               />
