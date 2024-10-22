@@ -172,6 +172,20 @@
   border-radius: 2px;
   box-shadow: inset 1px 4px 5px #0003;
 }
+.placeholder-box:hover,
+.placeholder-box-mobile:hover {
+  border-bottom: 1px solid var(--dark-blue);
+}
+.placeholder-box:focus,
+.placeholder-box-mobile:focus {
+  border-bottom: 1px solid var(--dark-blue); /* Blue bottom border when focused */
+  outline: none; /* Remove default outline */
+}
+
+.placeholder-box::placeholder,
+.placeholder-box-mobile::placeholder {
+  color: var(--blue); /* Red placeholder text */
+}
 
 .rename-button {
   width: 40%;
@@ -618,6 +632,7 @@
   .placeholder-box-mobile {
     width: 75%;
     height: 2rem;
+    font-size: 0.8rem;
     border-style: none none solid;
     border-width: 1px 1px 2px;
     border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
@@ -816,6 +831,7 @@
   .placeholder-box {
     width: 75%;
     height: 1.8rem;
+    font-size: 0.8rem;
     border-style: none none solid;
     border-width: 1px 1px 2px;
     border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
@@ -1016,6 +1032,7 @@
   .placeholder-box {
     width: 75%;
     height: 2rem;
+    font-size: 0.9rem;
     border-style: none none solid;
     border-width: 1px 1px 2px;
     border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
@@ -1221,6 +1238,7 @@
   .placeholder-box {
     width: 70%;
     height: 3rem;
+    font-size: 1rem;
     border-style: none none solid;
     border-width: 1px 1px 2px;
     border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
@@ -1437,6 +1455,7 @@
   .placeholder-box {
     width: 70%;
     height: 3rem;
+    font-size: 1rem;
     border-style: none none solid;
     border-width: 1px 1px 2px;
     border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
