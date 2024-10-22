@@ -2,7 +2,7 @@ import Keycloak from "keycloak-js";
 
 console.log("Creating Keycloak instance...");
 const keycloak = new Keycloak({
-  url: "https://auth.phenode.cloud",
+  url: "https://auth.phenode.live",
   realm: "grafana",
   clientId: "phenode",
 });
