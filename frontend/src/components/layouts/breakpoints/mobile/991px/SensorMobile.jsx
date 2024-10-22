@@ -90,7 +90,7 @@ function SensorMobile() {
           </div>
         </div>
         <div className="rename-bottom-box-mobile">
-          <div className="placeholder-box-mobile"></div>
+          <input type="text" className="placeholder-box-mobile" />
           <button className="rename-button-mobile">Rename</button>
         </div>
       </div>
