@@ -1,16 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useAppContext } from "../../../context/AppContext";
 
 function WSNTitle() {
-  const { sensorData } = useAppContext();
+  const { sensorData, sensorLoading, sensorError } = useAppContext();
 
-  // Check if sensorData is available
-  if (!sensorData || !sensorData.sensor) {
+  // State to hold the current title data
+  const [currentTitleData, setCurrentTitleData] = useState(null);
+
+  // Update currentTitleData when new data arrives
+  useEffect(() => {
+    if (sensorData && sensorData.sensor) {
+      // Extract the necessary data for the title
+      const titleData = {
+        lastMeasurement: sensorData.sensor.lastMeasurement,
+      };
+      setCurrentTitleData(titleData);
+    }
+  }, [sensorData]);
+
+  // Handle errors
+  if (sensorError) {
+    return <div>Error: {sensorError.message}</div>;
+  }
+
+  // Display loading only if there's no current data and sensor is loading
+  if (!currentTitleData && sensorLoading) {
     return <div>Loading last measurement...</div>;
   }
 
-  // Extract lastMeasurement from sensorData.sensor
-  const { lastMeasurement } = sensorData.sensor;
+  // Display message if no data is available
+  if (!currentTitleData && !sensorLoading) {
+    return <div>No data available.</div>;
+  }
+
+  // Use currentTitleData to render the component
+  const { lastMeasurement } = currentTitleData;
 
   // Format the last measurement date
   const formattedDate = lastMeasurement
@@ -34,4 +58,5 @@ function WSNTitle() {
   );
 }
 
-export default WSNTitle;
+// Wrap the component with React.memo to prevent unnecessary re-renders
+export default React.memo(WSNTitle);
