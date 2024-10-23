@@ -137,13 +137,27 @@ export const resetDevice = async (id, body) => {
   return handleResponse(response);
 };
 
-export const updateSensor = async (id, body) => {
+// Ensure you have this function in your API service file
+
+import { API_URL } from "../config"; // Adjust the import based on your project structure
+
+export const updateSensor = async (id, userToken, body) => {
   console.log("Updating sensor with body: ", body);
   console.log("Sensor id: ", id);
   const response = await fetch(`${API_URL}/wireless-sensors/${id}`, {
     method: "PUT",
-    headers: await fetcherWithToken(),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${userToken}`,
+    },
     body: JSON.stringify(body),
   });
-  return handleResponse(response);
+
+  // Check if the response is OK
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Failed to update sensor");
+  }
+
+  return response.json();
 };
