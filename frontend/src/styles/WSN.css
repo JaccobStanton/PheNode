@@ -1247,6 +1247,7 @@
     margin-bottom: 1rem;
     border-radius: 2px;
     box-shadow: inset 1px 4px 5px #0003;
+    text-align: center;
   }
 
   .rename-button {
