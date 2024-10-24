@@ -5,6 +5,7 @@ import useSWR from "swr";
 import { API_URL } from "./api";
 import { useKeycloak } from "@react-keycloak/web";
 import { fetcherWithToken } from "./fetcher";
+import { updateSensor } from "./api";
 
 // useSWR is used to fetch data from an API endpoint. It provides data, error, and other states like mutate for managing the fetched data.
 // Each custom hook (useDevices, useMyDevices, useDevice, etc.) calls useSWR, passing the endpoint URL and fetcherWithToken as arguments. It:
@@ -159,12 +160,34 @@ export function useWirelessSensor(sensorId) {
   const { data, error, mutate } = useSWR(
     shouldFetch ? `${API_URL}/wireless-sensors/${sensorId}` : null,
     fetcher,
-    { refreshInterval: 30000 }
+    {
+      refreshInterval: 30000,
+    }
   );
+
+  // Add the update function
+  const updateSensorLabel = async (newLabel) => {
+    if (!keycloak.authenticated) {
+      throw new Error("User is not authenticated");
+    }
+
+    const token = keycloak.token;
+
+    try {
+      const body = { label: newLabel };
+      await updateSensor(sensorId, token, body);
+      // Revalidate the data after updating
+      await mutate();
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return {
     sensorData: data,
     sensorLoading: !error && !data,
     sensorError: error,
     mutate,
+    updateSensorLabel, // Expose the update function
   };
 }
