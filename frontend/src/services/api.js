@@ -137,10 +137,6 @@ export const resetDevice = async (id, body) => {
   return handleResponse(response);
 };
 
-// Ensure you have this function in your API service file
-
-import { API_URL } from "../config"; // Adjust the import based on your project structure
-
 export const updateSensor = async (id, userToken, body) => {
   console.log("Updating sensor with body: ", body);
   console.log("Sensor id: ", id);
