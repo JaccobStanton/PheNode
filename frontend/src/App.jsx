@@ -13,6 +13,8 @@ import BackgroundBox from "./components/layouts/Background";
 import AuthWrapper from "./components/pages/auth/AuthWrapper";
 import { AppContextProvider } from "./context/AppContext";
 import Logout from "./components/pages/auth/Logout";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AppContent = () => {
   return (
@@ -51,6 +53,7 @@ const App = () => {
     <Router>
       <AuthWrapper>
         <AppContextProvider>
+          <ToastContainer position="bottom-right" autoClose={5000} />
           <AppContent />
         </AppContextProvider>
       </AuthWrapper>
