@@ -48,15 +48,6 @@
   box-shadow: 0 8px 14px 2px #00000038;
 }
 
-.images-main-container {
-  width: 100%;
-  margin: auto;
-  padding: 3rem;
-  border: 0.5px solid var(--box-outline-blue);
-  box-sizing: border-box;
-  margin-top: 2rem;
-}
-
 .images-row {
   display: flex;
   justify-content: space-between;
@@ -82,12 +73,45 @@
 
 .images-dropdown-menu:hover {
   border-color: var(--green);
-  box-shadow: 0 0 7px -5px var(--green);
   color: var(--green);
-  text-shadow: 0 1px 5px #007bff;
 }
 .images-dropdown-menu:focus {
   outline: none;
+}
+
+/* CSS for MUI COMPONENTS */
+.images-dropdown-menu .MuiInputBase-root {
+  color: var(--green);
+}
+
+/* Target the label */
+.images-dropdown-menu .MuiInputLabel-root {
+  color: var(--blue);
+}
+/* .images-dropdown-menu .MuiInputLabel-root.Mui-focused {
+  color: var(--green);
+} */
+
+/* Target the dropdown icon */
+.images-dropdown-menu .MuiSvgIcon-root {
+  color: var(--green);
+}
+
+.images-dropdown-menu .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: var(--box-outline-blue); /* Default border color */
+}
+/* Change border color on hover */
+.images-dropdown-menu
+  .MuiOutlinedInput-root:hover
+  .MuiOutlinedInput-notchedOutline {
+  border-color: var(--green);
+}
+
+/* Change border color when the field is focused */
+.images-dropdown-menu
+  .MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border: 0.5px solid var(--green);
 }
 
 /* CSS FOR TABLE */
@@ -261,7 +285,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .images-dropdown-menu {
@@ -270,6 +294,19 @@
     font-size: 0.75rem;
     border-radius: 2px;
     box-sizing: border-box;
+  }
+
+  /* MUI COMPONENTS */
+  /* //! css for these in the actual component itself */
+  .images-dropdown-menu .MuiInputLabel-root,
+  .images-dropdown-menu .MuiInputBase-input {
+    font-size: 0.7rem;
+    padding-bottom: 15px;
+    padding-top: -10px;
+  }
+  /* sizing of text inside select date component  */
+  .images-dropdown-menu .MuiOutlinedInput-root {
+    font-size: 0.7rem;
   }
 
   /* CSS FOR TABLE */
@@ -369,28 +406,29 @@
     box-shadow: 0 8px 14px 2px #00000038;
   }
 
-  .images-main-container {
-    width: 100%;
-    margin: auto;
-    padding: 2.5rem;
-    border: 0.5px solid var(--box-outline-blue);
-    box-sizing: border-box;
-    margin-top: 2rem;
-  }
-
   .images-row {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   .images-dropdown-menu {
     width: 48%;
-    padding: 0.8rem;
-    font-size: 0.75rem;
+    padding: 0.6rem;
     border-radius: 2px;
     box-sizing: border-box;
+  }
+
+  /* MUI COMPONENTS */
+  /* //! css for these in the actual component itself */
+  .images-dropdown-menu .MuiInputLabel-root,
+  .images-dropdown-menu .MuiInputBase-input {
+    font-size: 0.8rem;
+  }
+  /* sizing of text inside select date component  */
+  .images-dropdown-menu .MuiOutlinedInput-root {
+    font-size: 0.8rem;
   }
 
   /* CSS FOR TABLE */
@@ -511,9 +549,18 @@
   .images-dropdown-menu {
     width: 48%;
     padding: 0.8rem;
-    font-size: 0.85rem;
     border-radius: 2px;
     box-sizing: border-box;
+  }
+
+  /* MUI COMPONENTS */
+  .images-dropdown-menu .MuiInputLabel-root,
+  .images-dropdown-menu .MuiInputBase-input {
+    font-size: 0.85rem;
+  }
+  /* sizing of text inside select date component  */
+  .images-dropdown-menu .MuiOutlinedInput-root {
+    font-size: 0.85rem;
   }
 
   /* CSS FOR TABLE */
@@ -614,15 +661,6 @@
     box-shadow: 0 8px 14px 2px #00000038;
   }
 
-  .images-main-container {
-    width: 100%;
-    margin: auto;
-    padding: 3rem;
-    border: 0.5px solid var(--box-outline-blue);
-    box-sizing: border-box;
-    margin-top: 2rem;
-  }
-
   .images-row {
     display: flex;
     justify-content: space-between;
@@ -633,9 +671,19 @@
   .images-dropdown-menu {
     width: 48%;
     padding: 0.8rem;
-    font-size: 0.95rem;
     border-radius: 2px;
     box-sizing: border-box;
+  }
+
+  /* MUI COMPONENTS */
+  .images-dropdown-menu .MuiInputLabel-root,
+  .images-dropdown-menu .MuiInputBase-input {
+    font-size: 0.95rem;
+  }
+
+  /* sizing of text inside select date component  */
+  .images-dropdown-menu .MuiOutlinedInput-root {
+    font-size: 0.95rem;
   }
 
   /* CSS FOR TABLE */
@@ -756,15 +804,6 @@
     box-shadow: 0 8px 14px 2px #00000038;
   }
 
-  .images-main-container {
-    width: 100%;
-    margin: auto;
-    padding: 3rem;
-    border: 0.5px solid var(--box-outline-blue);
-    box-sizing: border-box;
-    margin-top: 2rem;
-  }
-
   .images-row {
     display: flex;
     justify-content: space-between;
@@ -775,7 +814,6 @@
   .images-dropdown-menu {
     width: 48%;
     padding: 1rem;
-    font-size: 1.2rem;
     border: 1.2px solid var(--reflected-light);
     background-color: var(--drf);
     border-radius: 2px;
@@ -788,14 +826,15 @@
     appearance: none; /* Removes default arrow in other browsers */
   }
 
-  .images-dropdown-menu:hover {
-    border-color: var(--green);
-    box-shadow: 0 0 7px -5px var(--green);
-    color: var(--green);
-    text-shadow: 0 1px 5px #007bff;
+  /* MUI COMPONENTS */
+  .images-dropdown-menu .MuiInputLabel-root,
+  .images-dropdown-menu .MuiInputBase-input {
+    font-size: 1.1rem;
   }
-  .images-dropdown-menu:focus {
-    outline: none;
+
+  /* sizing of text inside select date component  */
+  .images-dropdown-menu .MuiOutlinedInput-root {
+    font-size: 1.1rem;
   }
 
   /* CSS FOR TABLE */
@@ -877,15 +916,6 @@
     text-decoration: none; /* Remove underline */
   }
 
-  .action-button:hover {
-    color: var(--green); /* Hover color */
-    text-shadow: 0 0.5px 1px var(--green);
-  }
-  .action-button-delete:hover {
-    color: red; /* Hover color */
-    text-shadow: 0 0.5px 1px red;
-  }
-
   .separator {
     color: var(--box-outline-blue); /* Separator color */
     padding: 0 0.5rem; /* Equal padding on each side */
@@ -909,17 +939,6 @@
     border-radius: 2px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .batch-download-button:hover {
-    border-color: var(--green);
-    box-shadow: 0 0 7px -5px var(--green);
-    color: var(--green);
-    text-shadow: 0 1px 5px #007bff;
-  }
-
-  .batch-download-button:focus {
-    outline: none;
   }
 }
 
@@ -961,15 +980,6 @@
     box-shadow: 0 8px 14px 2px #00000038;
   }
 
-  .images-main-container {
-    width: 100%;
-    margin: auto;
-    padding: 3rem;
-    border: 0.5px solid var(--box-outline-blue);
-    box-sizing: border-box;
-    margin-top: 2rem;
-  }
-
   .images-row {
     display: flex;
     justify-content: space-between;
@@ -980,7 +990,6 @@
   .images-dropdown-menu {
     width: 48%;
     padding: 1rem;
-    font-size: 1.2rem;
     border: 1.2px solid var(--reflected-light);
     background-color: var(--drf);
     border-radius: 2px;
@@ -993,16 +1002,16 @@
     appearance: none; /* Removes default arrow in other browsers */
   }
 
-  .images-dropdown-menu:hover {
-    border-color: var(--green);
-    box-shadow: 0 0 7px -5px var(--green);
-    color: var(--green);
-    text-shadow: 0 1px 5px #007bff;
-  }
-  .images-dropdown-menu:focus {
-    outline: none;
+  /* MUI COMPONENTS */
+  .images-dropdown-menu .MuiInputLabel-root,
+  .images-dropdown-menu .MuiInputBase-input {
+    font-size: 1.2rem;
   }
 
+  /* sizing of text inside select date component  */
+  .images-dropdown-menu .MuiOutlinedInput-root {
+    font-size: 1.2rem;
+  }
   /* CSS FOR TABLE */
   .table-container {
     width: 100%;
@@ -1082,15 +1091,6 @@
     text-decoration: none; /* Remove underline */
   }
 
-  .action-button:hover {
-    color: var(--green); /* Hover color */
-    text-shadow: 0 0.5px 1px var(--green);
-  }
-  .action-button-delete:hover {
-    color: red; /* Hover color */
-    text-shadow: 0 0.5px 1px red;
-  }
-
   .separator {
     color: var(--box-outline-blue); /* Separator color */
     padding: 0 0.5rem; /* Equal padding on each side */
@@ -1114,16 +1114,5 @@
     border-radius: 2px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .batch-download-button:hover {
-    border-color: var(--green);
-    box-shadow: 0 0 7px -5px var(--green);
-    color: var(--green);
-    text-shadow: 0 1px 5px #007bff;
-  }
-
-  .batch-download-button:focus {
-    outline: none;
   }
 }
