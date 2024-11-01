@@ -14,6 +14,7 @@ export async function fetcherWithToken(
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
+    credentials: "include",
   };
 
   const response = await fetch(url, {
