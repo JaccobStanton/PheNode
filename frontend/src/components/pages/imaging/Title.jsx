@@ -1,7 +1,18 @@
 import React from "react";
 import "../../../styles/Imaging.css";
+import { useAppContext } from "../../../context/AppContext";
 
 function ImagingTitle() {
+  const { selectedDevice } = useAppContext();
+
+  // Extract necessary values from the selected device
+  const lastImage = selectedDevice?.camera?.lastImage;
+
+  // Format the last image date
+  const formattedDateImages = lastImage
+    ? new Date(lastImage).toLocaleString()
+    : "N/A";
+
   return (
     <>
       <div className="grid-item page-title">Imaging</div>
@@ -11,7 +22,7 @@ function ImagingTitle() {
             <span className="imaging-last-photo-text">
               Last image captured:
             </span>
-            <span className="last-photo-date">October 31, 2022, 12:34pm</span>
+            <span className="last-photo-date">{formattedDateImages}</span>
           </div>
         </div>
       </div>
