@@ -82,19 +82,35 @@ export function useMyDevices() {
  * Fetch the specified device images from DB via API.
  * Data is revalidated every 60 seconds.
  *
- * @param userToken
  * @param deviceId
  * @returns object
  */
-export function useDeviceImages(userToken, deviceId) {
+export function useDeviceImages(deviceId) {
+  const { keycloak } = useKeycloak();
+
+  const fetcher = (url) => {
+    if (!keycloak.authenticated) {
+      throw new Error("User is not authenticated");
+    }
+
+    const token = keycloak.token;
+
+    return fetcherWithToken(url, "GET", null, token);
+  };
+
   const { data, error } = useSWR(
-    [`${API_URL}/devices/${deviceId}/images`, userToken],
-    fetcherWithToken,
+    keycloak.authenticated && deviceId
+      ? `${API_URL}/devices/${deviceId}/images`
+      : null,
+    fetcher,
     { refreshInterval: 60000 }
   );
 
+  console.log("SWR data:", data); // Add this line
+  console.log("SWR error:", error); // Add this line
+
   return {
-    images: data,
+    images: data ? data.images : [],
     imagesLoading: !error && !data,
     imagesError: error,
   };
