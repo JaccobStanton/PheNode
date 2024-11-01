@@ -1,17 +1,32 @@
 // FleetOverview.jsx
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../../styles/Home.css";
 import { useAppContext } from "../../../context/AppContext";
 import { convertCelsiusToFahrenheit } from "../../../utils/temperatureUtils";
+import Box from "@mui/material/Box";
+import CircularProgressWithLabel from "@mui/material/CircularProgress";
 
 function FleetOverview({ devices, devicesLoading, devicesError }) {
   const { setSelectedDevice } = useAppContext(); // Access setSelectedDevice from context
   const navigate = useNavigate();
+  const [progress, setProgress] = useState(0);
 
   // Show loading or error states if necessary
   if (devicesLoading) {
-    return <div style={{ color: "#48f7f5" }}>Loading fleet data...</div>;
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "50vh", // Full height of the viewport to center vertically
+          width: "100%", // Ensure full width
+        }}
+      >
+        <CircularProgressWithLabel value={progress} />
+      </Box>
+    );
   }
 
   if (devicesError) {
