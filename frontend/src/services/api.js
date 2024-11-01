@@ -1,7 +1,11 @@
 import { fetcherWithToken } from "./fetcher";
 
 export const API_URL = import.meta.env.VITE_API_URL;
-export const DASHBOARD_ID = import.meta.env.REACT_APP_GRAFANA_DASHBOARD;
+export const DASHBOARD_ID = import.meta.env.VITE_APP_GRAFANA_DASHBOARD;
+export const KEYCLOAK_REALM = import.meta.env.VITE_REALM;
+export const KEYCLOAK_CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
+export const TOKEN_EXPIRATION =
+  Number(import.meta.env.VITE_APP_TOKEN_EXPIRATION) || 4 * 60;
 
 // API functions
 export const updateDevice = async (id, body) => {
