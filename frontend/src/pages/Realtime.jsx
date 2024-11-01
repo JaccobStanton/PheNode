@@ -4,7 +4,7 @@ import "../styles/Realtime.css";
 import Title from "../components/pages/realtime/Title";
 import PheNode from "../components/pages/realtime/PheNode";
 import SensorData from "../components/pages/realtime/SensorData";
-import PhenodeGrafana from "../components/pages/realtime/Grafana";
+import PhenodeGrafana from "../components/pages/realtime/grafana/Grafana";
 import RealtimeMobile from "../components/layouts/breakpoints/mobile/991px/RealtimeMobile";
 import RealtimeMobileSmall from "../components/layouts/breakpoints/mobile/767px/RealtimeMobileSmall";
 
