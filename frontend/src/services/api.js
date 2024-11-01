@@ -1,6 +1,7 @@
 import { fetcherWithToken } from "./fetcher";
 
 export const API_URL = import.meta.env.VITE_API_URL;
+export const DASHBOARD_ID = import.meta.env.REACT_APP_GRAFANA_DASHBOARD;
 
 // API functions
 export const updateDevice = async (id, body) => {
@@ -59,17 +60,63 @@ export const fetchAllDeviceData = async (id, from, to, body) => {
   );
   return handleResponse(response);
 };
+//----------------
+//
+//
+//-----------------
+export const fetchAllDeviceImages = async (id, body) => {
+  console.log("Entered fetchAllDeviceImages with deviceId:", id);
+  const response = await fetch(`${API_URL}/devices/${id}/images/`, {
+    method: "PUT",
+    headers: await fetcherWithToken(),
+    body: JSON.stringify(body),
+  });
 
-export const fetchAllImages = async (id, from, to, body) => {
+  // Check if response is JSON, otherwise handle the error
+  // Check if response is JSON, otherwise handle the error
+  if (!response.ok) {
+    console.error("Error fetching images:", response.statusText);
+    throw new Error(`Failed to fetch images: ${response.statusText}`);
+  }
+
+  const contentType = response.headers.get("content-type");
+  if (contentType && contentType.includes("application/json")) {
+    return response.json(); // Parse JSON response
+  } else {
+    console.error(
+      "Expected JSON response, but received HTML or another format"
+    );
+    throw new Error("Invalid response format");
+  }
+};
+//-------------
+//
+//
+export const fetchSpecificDeviceImages = async (id, from, to, body) => {
   const response = await fetch(
     `${API_URL}/devices/${id}/images/download/${from}/${to}`,
     {
-      method: "POST",
+      method: "PUT", //!is this wrong?
       headers: await fetcherWithToken(),
       body: JSON.stringify(body),
     }
   );
-  return handleResponse(response);
+
+  // Check if response is JSON, otherwise handle the error
+  if (!response.ok) {
+    console.error("Error fetching images:", response.statusText);
+    throw new Error(`Failed to fetch images: ${response.statusText}`);
+  }
+
+  const contentType = response.headers.get("content-type");
+  if (contentType && contentType.includes("application/json")) {
+    return response.json(); // Parse JSON response
+  } else {
+    console.error(
+      "Expected JSON response, but received HTML or another format"
+    );
+    throw new Error("Invalid response format");
+  }
 };
 
 export const fetchUserPreferences = async () => {
