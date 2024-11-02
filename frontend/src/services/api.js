@@ -69,14 +69,12 @@ export const fetchAllDeviceData = async (id, from, to, body) => {
 //
 //-----------------
 export const fetchAllDeviceImages = async (id, body) => {
-  console.log("Entered fetchAllDeviceImages with deviceId:", id);
   const response = await fetch(`${API_URL}/devices/${id}/images/`, {
     method: "PUT",
     headers: await fetcherWithToken(),
     body: JSON.stringify(body),
   });
 
-  // Check if response is JSON, otherwise handle the error
   // Check if response is JSON, otherwise handle the error
   if (!response.ok) {
     console.error("Error fetching images:", response.statusText);
