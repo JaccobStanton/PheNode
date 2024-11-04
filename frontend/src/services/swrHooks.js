@@ -58,7 +58,7 @@ export function useMyDevices() {
   const { data, error, mutate } = useSWR(
     keycloak.authenticated ? `${API_URL}/devices/my-devices` : null,
     fetcher,
-    { refreshInterval: 30000 }
+    { refreshInterval: 30000, revalidateOnFocus: true }
   );
 
   return {
@@ -103,7 +103,7 @@ export function useDeviceImages(deviceId) {
       ? `${API_URL}/devices/${deviceId}/images`
       : null,
     fetcher,
-    { refreshInterval: 60000 }
+    { refreshInterval: 60000, revalidateOnFocus: true }
   );
 
   console.log("SWR data:", data); // Add this line
@@ -139,7 +139,7 @@ export function useMySensors() {
   const { data, error, mutate } = useSWR(
     keycloak.authenticated ? `${API_URL}/wireless-sensors/my-sensors` : null,
     fetcher,
-    { refreshInterval: 30000 }
+    { refreshInterval: 30000, revalidateOnFocus: true }
   );
 
   return {
@@ -178,6 +178,7 @@ export function useWirelessSensor(sensorId) {
     fetcher,
     {
       refreshInterval: 30000,
+      revalidateOnFocus: true,
     }
   );
 
