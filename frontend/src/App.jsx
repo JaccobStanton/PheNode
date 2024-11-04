@@ -9,6 +9,9 @@ import Settings from "./pages/Settings";
 import Home from "./pages/Home";
 import Preferences from "./pages/Preferences";
 import Imaging from "./pages/Imaging";
+import NoMatch from "./components/routing/NoMatch";
+import PrivateRoute from "./components/routing/privateRoute";
+
 import BackgroundBox from "./components/layouts/Background";
 import AuthWrapper from "./components/pages/auth/AuthWrapper";
 import { AppContextProvider } from "./context/AppContext";
@@ -22,6 +25,15 @@ const AppContent = () => {
       {/* Route for Logout - rendered without Navbar, BackgroundBox, or app-background */}
       <Route path="/logout" element={<Logout />} />
 
+      <Route
+        path="/nomatch"
+        element={
+          <PrivateRoute>
+            <NoMatch />
+          </PrivateRoute>
+        }
+      />
+
       {/* Routes for the rest of the application */}
       <Route
         path="/*"
@@ -31,13 +43,63 @@ const AppContent = () => {
               <Navbar />
 
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/realtime" element={<Realtime />} />
-                <Route path="/wsn" element={<WSN />} />
-                <Route path="/download" element={<Download />} />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/preferences" element={<Preferences />} />
-                <Route path="/imaging" element={<Imaging />} />
+                <Route
+                  path="/"
+                  element={
+                    <PrivateRoute>
+                      <Home />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/realtime"
+                  element={
+                    <PrivateRoute>
+                      <Realtime />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/wsn"
+                  element={
+                    <PrivateRoute>
+                      <WSN />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/download"
+                  element={
+                    <PrivateRoute>
+                      <Download />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/settings"
+                  element={
+                    <PrivateRoute>
+                      <Settings />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/preferences"
+                  element={
+                    <PrivateRoute>
+                      <Preferences />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/imaging"
+                  element={
+                    <PrivateRoute>
+                      <Imaging />
+                    </PrivateRoute>
+                  }
+                />
+
                 {/* Add other routes as needed */}
               </Routes>
             </BackgroundBox>
