@@ -8,11 +8,7 @@ function Home() {
   const { devices, devicesLoading, devicesError } = useAppContext(); // Fetch devices from context
 
   // Debugging: Log devices data, loading state, and errors
-  useEffect(() => {
-    console.log("Devices in Home:", devices);
-    console.log("Devices Loading in Home:", devicesLoading);
-    console.log("Devices Error in Home:", devicesError);
-  }, [devices, devicesLoading, devicesError]);
+  useEffect(() => {}, [devices, devicesLoading, devicesError]);
 
   return (
     <div className="realtime-grid">
