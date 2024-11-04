@@ -7,9 +7,6 @@ const Logout = () => {
   const { keycloak } = useKeycloak();
 
   useEffect(() => {
-    // Set the 'logoutInProgress' flag in localStorage
-    localStorage.setItem("logoutInProgress", "true");
-
     // Delay the logout to show the 'Logging out' screen
     const timer = setTimeout(() => {
       keycloak.logout({ redirectUri: window.location.origin + "/" });
