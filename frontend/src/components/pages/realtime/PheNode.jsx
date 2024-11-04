@@ -9,17 +9,17 @@ import ImageInactive from "../../../assets/toggle_buttons/Imaging-Settings-Icon-
 import ImageActive from "../../../assets/toggle_buttons/Imaging_Icon_Active.svg";
 
 function PheNode() {
-  const { selectedDevice, setSelectedDevice, devices } = useAppContext(); // Use AppContext
+  const { selectedDevice, setSelectedDevice, devices, loading, error } =
+    useAppContext(); // Updated to include loading and error
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
-  const { battery, gps, connectedSensors, camera } = selectedDevice;
   // Handle navigation to imaging
   const handleNavigate = () => {
     navigate("/imaging");
   };
 
-  // Automatically select the first device if none is selected (this helps in fallback scenarios)
+  // Automatically select the first device if none is selected (fallback logic)
   useEffect(() => {
     if (!selectedDevice && devices.length > 0) {
       setSelectedDevice(devices[0]);
@@ -27,9 +27,20 @@ function PheNode() {
   }, [devices, selectedDevice, setSelectedDevice]);
 
   // Show loading or error states if necessary
-  if (!selectedDevice) {
-    return <div>Loading device data...</div>;
+  if (loading) {
+    return <div>Loading device data...</div>; // Loading state
   }
+
+  if (error) {
+    return <div>Error loading device data: {error.message}</div>; // Error state
+  }
+
+  if (!selectedDevice) {
+    return <div>No device selected. Please choose a device.</div>; // Fallback state if no device is selected
+  }
+
+  // Safely destructure properties from selectedDevice
+  const { battery, gps, connectedSensors, camera } = selectedDevice || {};
 
   return (
     <>
@@ -89,13 +100,13 @@ function PheNode() {
               <span className="gps-text">GPS:</span>
               <span className="gps-coordinates">
                 {gps?.latitude !== undefined
-                  ? convertToDMS(selectedDevice.gps.latitude, true)
+                  ? convertToDMS(gps.latitude, true)
                   : "N/A"}
                 ,
               </span>
               <span className="gps-coordinates">
                 {gps?.longitude !== undefined
-                  ? convertToDMS(selectedDevice.gps.longitude, false)
+                  ? convertToDMS(gps.longitude, false)
                   : "N/A"}
               </span>
             </div>
