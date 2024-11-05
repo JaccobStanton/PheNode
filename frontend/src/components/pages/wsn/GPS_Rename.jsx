@@ -60,7 +60,7 @@ function GPS_Rename({ location, battery, externalSensorId }) {
       <div className="sensor-data-value-boxes-container">
         <div className="grid-item sensor-data-value-boxes">
           <div className="sensor-gps-coordinates-box">
-            <div className="sensor-gps-text">GPS</div>
+            <div className="sensor-gps-text">GPS:</div>
             <div className="sensor-gps-coordinates">
               {location?.latitude !== undefined
                 ? convertToDMS(location.latitude, true)
@@ -70,7 +70,7 @@ function GPS_Rename({ location, battery, externalSensorId }) {
                 ? convertToDMS(location.longitude, true)
                 : "N/A"}
             </div>
-            <div className="sensor-gps-text">Battery</div>
+            <div className="sensor-gps-text">Battery:</div>
             <div className="sensor-gps-coordinates">
               {battery?.batteryPercent !== undefined
                 ? `${battery.batteryPercent}%`
