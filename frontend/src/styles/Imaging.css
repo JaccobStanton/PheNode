@@ -35,6 +35,7 @@
   color: var(--green);
   font-size: 1.2rem; /* Slightly larger text */
   margin-left: 0.5rem; /* Space between the two texts */
+  text-shadow: 0 1px 5px #007bff;
 }
 
 /* CSS FOR IMAGING CONTAINER AND TABLE */

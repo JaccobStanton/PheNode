@@ -79,6 +79,7 @@
   color: var(--green);
   font-size: 1.2rem; /* Slightly larger text */
   margin-left: 0.5rem; /* Space between the two texts */
+  text-shadow: 0 1px 5px #007bff;
 }
 
 /* cellular and wifi signal blocks */
@@ -341,6 +342,7 @@
   overflow: hidden; /* Hide overflow */
   text-overflow: ellipsis; /* Add ellipsis for overflow text */
   font-weight: 500;
+  text-shadow: 0 1px 5px #007bff;
 }
 
 .battery-text {
@@ -351,6 +353,7 @@
   color: var(--green);
   font-size: 1.4rem;
   font-weight: 500;
+  text-shadow: 0 1px 5px #007bff;
 }
 
 /* //!row 3 start */
