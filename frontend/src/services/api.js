@@ -2,6 +2,8 @@ import { fetcherWithToken } from "./fetcher";
 
 export const API_URL = import.meta.env.VITE_API_URL;
 export const DASHBOARD_ID = import.meta.env.VITE_APP_GRAFANA_DASHBOARD;
+export const WIRELESS_DASHBOARD_ID = import.meta.env
+  .VITE_APP_GRAFANA_WIRELESS_DASHBOARD;
 export const KEYCLOAK_REALM = import.meta.env.VITE_REALM;
 export const KEYCLOAK_CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 export const TOKEN_EXPIRATION =
@@ -120,6 +122,33 @@ export const fetchSpecificDeviceImages = async (id, from, to, body) => {
     throw new Error("Invalid response format");
   }
 };
+//
+//
+//-------------------------DELETE IMAGES-------------------------------
+export const deleteDeviceImage = async (deviceId, imageId, token) => {
+  try {
+    const response = await fetch(
+      `${API_URL}/devices/${deviceId}/images/${imageId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to delete image: ${response.statusText}`);
+    }
+
+    return true; // Return success status
+  } catch (error) {
+    console.error("Error deleting image:", error);
+    throw error; // Rethrow the error so it can be caught in the component
+  }
+};
+//
+//
 
 export const fetchUserPreferences = async () => {
   const response = await fetch(`${API_URL}/user-preferences`, {
