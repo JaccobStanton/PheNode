@@ -48,6 +48,7 @@ function SensorData() {
               </p>
               <p
                 style={{
+                  textShadow: "none",
                   color:
                     airSensor.sensorHealth === "Offline"
                       ? "orange"
@@ -86,6 +87,7 @@ function SensorData() {
               </p>
               <p
                 style={{
+                  textShadow: "none",
                   color:
                     rainfallSensor.sensorHealth === "Offline"
                       ? "orange"
@@ -128,6 +130,7 @@ function SensorData() {
               </p>
               <p
                 style={{
+                  textShadow: "none",
                   color:
                     soilSensors && soilSensors[0]?.sensorHealth === "Offline"
                       ? "orange"
@@ -165,6 +168,7 @@ function SensorData() {
               </p>
               <p
                 style={{
+                  textShadow: "none",
                   color:
                     windSensor.sensorHealth === "Offline"
                       ? "orange"

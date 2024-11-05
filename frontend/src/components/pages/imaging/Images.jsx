@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../../styles/Imaging.css";
 import { useAppContext } from "../../../context/AppContext";
+import { deleteDeviceImage } from "../../../services/api";
 import { useDeviceImages } from "../../../services/swrHooks";
 import dayjs from "dayjs"; // For date formatting
 import CircularProgressWithLabel from "@mui/material/CircularProgress";
@@ -13,10 +14,13 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useKeycloak } from "@react-keycloak/web";
-import { API_URL } from "../../../services/api";
 
-import JSZip from "jszip";
-import { saveAs } from "file-saver";
+import { toast } from "react-toastify";
+
+import {
+  downloadImage,
+  batchDownload,
+} from "../../../utils/imageDownloadUtils";
 
 // MUI imports
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -37,7 +41,6 @@ function Images() {
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
-  const [progress, setProgress] = useState(0);
   const [openModal, setOpenModal] = useState(false);
   const [modalImage, setModalImage] = useState(null);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
@@ -48,13 +51,6 @@ function Images() {
 
   // Use the useDeviceImages hook
   const { images, imagesLoading, imagesError } = useDeviceImages(deviceId);
-
-  useEffect(() => {
-    if (images && images.length > 0) {
-      // Calculate the progress based on images loaded
-      setProgress((images.length / images.length) * 100);
-    }
-  }, [images]);
 
   // State to hold the filtered images
   const [filteredImages, setFilteredImages] = useState([]);
@@ -139,57 +135,12 @@ function Images() {
 
   // Function to download the image
   const handleDownloadImage = (image) => {
-    if (image.base64encoded) {
-      const link = document.createElement("a");
-      link.href = `data:image/jpeg;base64,${image.base64encoded}`;
-      link.download = image.filename || "downloaded_image.jpg"; // Default filename if not provided
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } else {
-      console.error("Base64-encoded image data is missing.");
-    }
+    downloadImage(image);
   };
 
   //function to download in batch as a zip file
-  const handleBatchDownload = async () => {
-    if (selectedRows.length === 0) {
-      console.error("No images selected for batch download.");
-      return;
-    }
-
-    const zip = new JSZip();
-    const folder = zip.folder("phenode_images");
-
-    for (const imageId of selectedRows) {
-      const image = filteredImages.find((img) => img._id === imageId);
-      if (image && image.base64encoded) {
-        const base64Content = image.base64encoded.includes(",")
-          ? image.base64encoded.split(",")[1]
-          : image.base64encoded;
-
-        if (base64Content) {
-          folder.file(image.filename || `${image._id}.jpg`, base64Content, {
-            base64: true,
-          });
-        } else {
-          console.error(
-            `Invalid or empty base64 content for image ID: ${imageId}`
-          );
-        }
-      } else {
-        console.warn(
-          `Skipping image ID ${imageId} as it does not have base64 data.`
-        );
-      }
-    }
-
-    try {
-      const content = await zip.generateAsync({ type: "blob" });
-      saveAs(content, "phenode_images.zip");
-    } catch (error) {
-      console.error("Error generating ZIP file:", error);
-    }
+  const handleBatchDownload = () => {
+    batchDownload(selectedRows, filteredImages);
   };
 
   const handleCloseModal = () => {
@@ -204,21 +155,28 @@ function Images() {
 
   const confirmDeleteImage = async () => {
     try {
-      // Replace with your API call or delete logic
-      await fetch(
-        `${API_URL}/devices/${deviceId}/images/${imageToDelete._id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${keycloak.token}`,
-          },
-        }
+      await deleteDeviceImage(
+        selectedDevice.deviceId,
+        imageToDelete._id,
+        keycloak.token
       );
-      // Refresh the images list after deletion
-      // You may need to trigger a re-fetch or mutate the SWR cache
+
+      // Revalidate SWR data after a successful deletion
+      await mutate();
+
       setOpenDeleteDialog(false);
+
+      // Show success toast notification
+      toast.success("Image successfully deleted!", {
+        position: "bottom-right",
+        autoClose: 3000,
+      });
     } catch (error) {
-      console.error("Error deleting image:", error);
+      // Show error toast notification
+      toast.error("Failed to delete image. Please try again.", {
+        position: "bottom-right",
+        autoClose: 3000,
+      });
     }
   };
 
@@ -249,7 +207,7 @@ function Images() {
             height: "50vh", // Adjust height as needed
           }}
         >
-          <CircularProgressWithLabel value={progress} />
+          <CircularProgressWithLabel />
         </Box>
       )}
       {imagesError && <div>Error: {imagesError.message}</div>}
