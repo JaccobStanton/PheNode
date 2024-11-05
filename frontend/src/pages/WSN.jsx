@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/WSN.css";
 import Sensor from "../components/pages/wsn/Sensor";
 import WSNTitle from "../components/pages/wsn/Title";
-import SensorGrafana from "../components/pages/wsn/Grafana";
+import SensorGrafana from "../components/pages/wsn/grafana/Grafana";
 import SensorMobile from "../components/layouts/breakpoints/mobile/991px/SensorMobile";
 
 function WSN() {
