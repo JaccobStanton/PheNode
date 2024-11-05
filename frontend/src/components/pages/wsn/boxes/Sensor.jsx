@@ -91,7 +91,7 @@ function SensorBox({ gasSensor, lux }) {
             </p>
             <p>
               {gasSensor?.humidity !== undefined && gasSensor.humidity !== null
-                ? `${gasSensor.humidity.toFixed(2)} %`
+                ? `${gasSensor.humidity.toFixed()} %`
                 : "N/A"}
             </p>
             <p>
