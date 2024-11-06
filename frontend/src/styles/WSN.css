@@ -30,15 +30,40 @@
   justify-content: space-around;
   align-items: center;
   box-sizing: border-box;
+  position: relative; /* added for sensor-data-title */
+  flex-direction: column; /* added for sensor-data-title */
+  padding-left: 4rem; /* added for sensor-data-title */
+  padding-right: 4rem; /* added for sensor-data-title */
+}
+
+.sensor-data-title-container {
+  display: flex;
+  justify-content: space-between; /* Ensures the title and button group are on opposite sides */
+  align-items: center;
+  width: 100%;
+}
+
+.sensor-data-title {
+  /* added for sensor-data-title */
+  text-align: center;
+  /* margin-top: 10px; */
+  font-weight: 600;
+  color: #646cff;
 }
 
 .sensor-data-text-container {
   display: flex;
-  padding: 1.5rem;
+  padding: 1rem;
   justify-content: space-between;
   width: 100%;
+  margin-top: -30px; /* added for sensor-data-title */
 }
 
+.sensor-right-column p,
+.right-column {
+  text-shadow: 0 1px 5px #007bff;
+  text-align: right;
+}
 /* //! WIRELESS SENSOR DIAGRAM  */
 .wireless-sensor-img-grid-container {
   flex: 1 0 50%;
@@ -694,6 +719,18 @@
     justify-content: space-around;
     align-items: center;
     box-sizing: border-box;
+    padding-left: 1.5rem; /* added for sensor-data-title */
+    padding-right: 1.5rem; /* added for sensor-data-title */
+  }
+  .sensor-data-title-container {
+    height: 5%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 10px;
+  }
+  .sensor-data-title {
+    font-size: 1rem;
+    text-align: center;
   }
 
   .sensor-data-text-container {
@@ -888,11 +925,22 @@
     justify-content: space-around;
     align-items: center;
     box-sizing: border-box;
+    padding-left: 1rem; /* added for sensor-data-title */
+    padding-right: 1rem; /* added for sensor-data-title */
   }
-
+  .sensor-data-title-container {
+    height: 5%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-top: 10px;
+  }
+  .sensor-data-title {
+    font-size: 1.1rem;
+    text-align: center;
+  }
   .sensor-data-text-container {
     display: flex;
-    padding: 1rem;
+    padding: 0.5rem;
     justify-content: space-between;
     width: 100%;
   }
@@ -1091,11 +1139,24 @@
     justify-content: space-around;
     align-items: center;
     box-sizing: border-box;
+    padding-left: 2rem; /* added for sensor-data-title */
+    padding-right: 2rem; /* added for sensor-data-title */
+  }
+
+  .sensor-data-title-container {
+    height: 5%;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    margin-top: 15px;
+  }
+  .sensor-data-title {
+    font-size: 1.4rem;
+    text-align: center;
   }
 
   .sensor-data-text-container {
     display: flex;
-    padding: 2.5rem;
+    padding: 1.2rem;
     justify-content: space-between;
     width: 100%;
   }
@@ -1312,9 +1373,20 @@
     box-sizing: border-box;
   }
 
+  .sensor-data-title-container {
+    height: 5%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 30px;
+  }
+  .sensor-data-title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
   .sensor-data-text-container {
     display: flex;
-    padding: 3rem;
+    padding: 2rem;
     justify-content: space-between;
     width: 100%;
   }
