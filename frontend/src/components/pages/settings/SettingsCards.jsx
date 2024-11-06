@@ -1,20 +1,14 @@
 import React from "react";
 import "../../../styles/Settings.css";
-import ApiKeySvg from "../../../assets/settings/API-Key.svg";
 import UsersSvg from "../../../assets/settings/Users.svg";
 import ResetSvg from "../../../assets/settings/Reset.svg";
+import DeviceRename from "./DeviceRename";
+import CopyAccessToken from "./AccessToken";
 
 const SettingsCards = () => {
   return (
     <div className="settings-grid-container">
-      <div className="settings-card">
-        <div className="card-content-container">
-          <div className="settings-title">Rename this PheNode</div>
-          <div className="settings-blue-text">0001:</div>
-          <div className="settings-input-box"></div>
-          <button className="settings-button">Rename</button>
-        </div>
-      </div>
+      <DeviceRename />
 
       <div className="settings-card">
         <div className="card-content-container">
@@ -48,15 +42,7 @@ const SettingsCards = () => {
         </div>
       </div>
 
-      <div className="settings-card">
-        <div className="card-content-container">
-          <div className="settings-title">Get API access token</div>
-          <div className="settings-svg-container">
-            <img src={ApiKeySvg} alt="API Key Icon" className="settings-svg" />
-          </div>
-          <button className="settings-button">Copy access token</button>
-        </div>
-      </div>
+      <CopyAccessToken />
 
       <div className="settings-card">
         <div className="card-content-container">
