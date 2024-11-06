@@ -7,7 +7,12 @@ import { useMySensors } from "../../../../services/swrHooks";
 function WSNGrafana() {
   const { keycloak, initialized } = useKeycloak();
   const { selectedWirelessSensor } = useAppContext();
-  const { sensorsData, sensorsLoading, sensorsError } = useMySensors();
+
+  // Pass the keycloak token to useMySensors
+  const { sensorsData, sensorsLoading, sensorsError } = useMySensors(
+    keycloak.token
+  );
+
   const [sensors, setSensors] = useState([]);
 
   useEffect(() => {
@@ -29,51 +34,50 @@ function WSNGrafana() {
 
       setSensors(allSensors);
     }
-  }, [sensorsData, selectedWirelessSensor]);
+    if (sensorsError) {
+      console.error("Error fetching sensors data:", sensorsError);
+    }
+  }, [sensorsData, selectedWirelessSensor, sensorsError]);
 
-  if (!initialized) {
+  if (!initialized || !keycloak.authenticated) {
+    console.log("Keycloak is not initialized or authenticated.");
+    return <div>Loading...</div>;
+  }
+
+  if (keycloak) {
+    const sensorsUrl = sensors
+      ? "&var-sensor=" +
+        sensors.map((sensor) => sensor.externalSensorId).join("&var-sensor=")
+      : "&var-sensor=";
+
+    const url = `https://grafana.phenode.live/${WIRELESS_DASHBOARD_ID}?orgId=1&kiosk=tv&auth_token=${keycloak.token}&refresh=30m&from=now-6h&to=now${sensorsUrl}`;
+
+    if (keycloak.authenticated) {
+      return (
+        <iframe
+          className="sensor-grafana-box"
+          title="grafana iframe"
+          src={url}
+          width="100%"
+          height="100%"
+        ></iframe>
+      );
+    } else {
+      console.log("Keycloak is not authenticated.");
+      return (
+        <div className="sensor-grafana-box" style={{ marginTop: "100px" }}>
+          Unable to authenticate!
+        </div>
+      );
+    }
+  } else {
+    console.log("Keycloak is not initialized.");
     return (
-      <div
-        className="grafana-div-block grafana-ws"
-        style={{ marginTop: "100px" }}
-      >
+      <div className="sensor-grafana-box" style={{ marginTop: "100px" }}>
         Initializing Keycloak...
       </div>
     );
   }
-
-  if (!keycloak.authenticated) {
-    return (
-      <div
-        className="grafana-div-block grafana-ws"
-        style={{ marginTop: "100px" }}
-      >
-        Unable to authenticate!
-      </div>
-    );
-  }
-
-  // Construct the sensors URL parameter
-  const sensorsUrl = sensors
-    .map((sensor) => `&var-sensor=${sensor.externalSensorId}`)
-    .join("");
-
-  const url = `https://grafana.phenode.live/${WIRELESS_DASHBOARD_ID}?orgId=1&kiosk=tv&auth_token=${keycloak.token}&refresh=30m&from=now-6h&to=now${sensorsUrl}`;
-
-  return (
-    <div
-      className="grafana-div-block grafana-ws"
-      style={{ marginTop: "100px", marginBottom: "50px" }}
-    >
-      <iframe
-        title="grafana iframe"
-        src={url}
-        width="100%"
-        height="100%"
-      ></iframe>
-      <br />
-    </div>
-  );
 }
 
 export default WSNGrafana;
