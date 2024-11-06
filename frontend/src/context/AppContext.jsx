@@ -40,7 +40,12 @@ export const AppContextProvider = ({ children }) => {
   }, []); // Only run this effect on mount
 
   // Use SWR to fetch devices and store them in the context
-  const { devicesData, devicesLoading, devicesError } = useMyDevices();
+  const {
+    devicesData,
+    devicesLoading,
+    devicesError,
+    mutate: mutateDevices,
+  } = useMyDevices();
 
   // Update device list and save it to sessionStorage
   useEffect(() => {
@@ -140,6 +145,7 @@ export const AppContextProvider = ({ children }) => {
         devices: deviceList || [],
         devicesLoading,
         devicesError,
+        mutateDevices,
         selectedDevice,
         setSelectedDevice,
         wirelessSensorList,
