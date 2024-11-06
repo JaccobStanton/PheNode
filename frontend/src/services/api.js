@@ -10,6 +10,7 @@ export const TOKEN_EXPIRATION =
   Number(import.meta.env.VITE_APP_TOKEN_EXPIRATION) || 4 * 60;
 
 // API functions
+
 export const updateDevice = async (id, body) => {
   const response = await fetch(`${API_URL}/devices/${id}`, {
     method: "PUT",
@@ -17,6 +18,24 @@ export const updateDevice = async (id, body) => {
     body: JSON.stringify(body),
   });
   return handleResponse(response);
+};
+
+export const updateDeviceLabel = async (deviceId, newLabel, token) => {
+  const response = await fetch(`${API_URL}/devices/${deviceId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ label: newLabel }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Failed to update device label");
+  }
+
+  return await response.json();
 };
 
 export const fetchDeviceSensorData = async (id, from, to, body) => {
