@@ -20,28 +20,20 @@ export default function RealtimeGrafana() {
   const [device, setDevice] = useState(null);
   const [sensors, setSensors] = useState(null);
 
-  useEffect(() => {
-    console.log("Keycloak initialized:", initialized);
-    console.log("Keycloak authenticated:", keycloak.authenticated);
-  }, [initialized, keycloak]);
+  useEffect(() => {}, [initialized, keycloak]);
 
-  useEffect(() => {
-    console.log("Selected Device from context:", selectedDevice);
-  }, [selectedDevice]);
+  useEffect(() => {}, [selectedDevice]);
 
   useEffect(() => {
     if (deviceData) {
-      console.log("Device data fetched:", deviceData);
       setDevice(deviceData.device);
     }
     if (deviceIsError) {
-      console.error("Error fetching device data:", deviceIsError);
     }
   }, [deviceData, deviceIsError]);
 
   useEffect(() => {
     if (sensorsData) {
-      console.log("Sensors data fetched:", sensorsData);
       setSensors(sensorsData.sensors);
     }
     if (sensorsError) {
@@ -64,15 +56,12 @@ export default function RealtimeGrafana() {
 
     const url = `https://grafana.phenode.cloud/${DASHBOARD_ID}?orgId=1&kiosk=tv&auth_token=${keycloak.token}&refresh=30m&from=now-6h&to=now&var-device=${deviceName}${sensorsUrl}`;
 
-    console.log("Constructed Grafana URL:", url);
-
     if (keycloak.authenticated) {
       return (
         <iframe
+          className="phenode-grafana-box"
           title="grafana iframe"
           src={url}
-          width="100%"
-          height="100%"
         ></iframe>
       );
     } else {
