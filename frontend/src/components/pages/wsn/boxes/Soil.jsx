@@ -67,8 +67,8 @@ function SoilBox({ soilSensors }) {
           size="small"
           style={{ marginLeft: "auto" }}
         >
-          {renderButton("0", "1 foot", '12"')}
-          {renderButton("1", "2 feet", '24"')}
+          {renderButton("0", "Depth 1", 'D1"')}
+          {renderButton("1", "Depth 2", 'D2"')}
         </ToggleButtonGroup>
       </div>
       <div className="sensor-data-text-container">
