@@ -50,7 +50,7 @@ function WSNGrafana() {
         sensors.map((sensor) => sensor.externalSensorId).join("&var-sensor=")
       : "&var-sensor=";
 
-    const url = `https://grafana.phenode.live/${WIRELESS_DASHBOARD_ID}?orgId=1&kiosk=tv&auth_token=${keycloak.token}&refresh=30m&from=now-6h&to=now${sensorsUrl}`;
+    const url = `https://grafana.phenode.cloud/${WIRELESS_DASHBOARD_ID}?orgId=1&kiosk=tv&auth_token=${keycloak.token}&refresh=30m&from=now-6h&to=now${sensorsUrl}`;
 
     if (keycloak.authenticated) {
       return (
