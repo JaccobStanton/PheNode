@@ -26,8 +26,9 @@ function SensorBox({ gasSensor, lux }) {
             xs: "0.70rem",
             sm: "0.45rem",
             md: "0.45rem",
-            lg: "0.7rem",
-            xl: "0.7rem",
+            lg: "0.6rem",
+            xl: "0.6rem",
+            customXL: "0.85rem",
           },
           padding: "2px 8px",
           color: "var(--dark-blue)",
@@ -65,7 +66,7 @@ function SensorBox({ gasSensor, lux }) {
           style={{ marginLeft: "auto" }}
         >
           {renderButton("climate", "Climate", "C")}
-          {renderButton("indicators", "Indicators", "I")}
+          {renderButton("indicators", "Indicators", "In")}
         </ToggleButtonGroup>
       </div>
 
