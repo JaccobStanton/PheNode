@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { convertToDMS } from "../../../utils/coordinateUtils";
 import { useWirelessSensor } from "../../../services/swrHooks";
 import { useAppContext } from "../../../context/AppContext";
 import { mutate } from "swr";
 import { API_URL } from "../../../services/api";
 import { toast } from "react-toastify";
+import StatsBox from "./boxes/Stats";
 
 function GPS_Rename({ location, battery, externalSensorId }) {
   const [tempName, setTempName] = useState("");
@@ -58,7 +58,12 @@ function GPS_Rename({ location, battery, externalSensorId }) {
   return (
     <div className="sensor-page-data-box">
       <div className="sensor-data-value-boxes-container">
-        <div className="grid-item sensor-data-value-boxes">
+        <StatsBox
+          location={location}
+          battery={battery}
+          externalSensorId={externalSensorId}
+        />
+        {/* <div className="grid-item sensor-data-value-boxes">
           <div className="sensor-gps-coordinates-box">
             <div className="sensor-gps-text">GPS:</div>
             <div className="sensor-gps-coordinates">
@@ -75,16 +80,14 @@ function GPS_Rename({ location, battery, externalSensorId }) {
               {battery?.batteryPercent !== undefined
                 ? `${battery.batteryPercent}%`
                 : "N/A"}
-            </div>
-          </div>
-        </div>
+            </div>*/}
 
         <div className="grid-item sensor-data-value-boxes">
           <div className="sensor-rename-container">
             <div className="id-top-box">
               <div className="text-column">
                 <p className="rename-title">Rename this sensor:</p>
-                <p className="device-id">{externalSensorId}</p>
+                {/* <p className="device-id">{externalSensorId}</p> */}
               </div>
             </div>
             <div className="rename-bottom-box">
