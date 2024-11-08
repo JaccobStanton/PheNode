@@ -1,15 +1,15 @@
 import React from "react";
 import "../../../styles/Settings.css";
-import UsersSvg from "../../../assets/settings/Users.svg";
 import ResetSvg from "../../../assets/settings/Reset.svg";
 import DeviceRename from "./DeviceRename";
 import CopyAccessToken from "./AccessToken";
+import ManageAccount from "./ManageAccount";
+import SetWifiCredentials from "./SetWifiCredentials";
 
 const SettingsCards = () => {
   return (
     <div className="settings-grid-container">
       <DeviceRename />
-
       <div className="settings-card">
         <div className="card-content-container">
           <div className="settings-title">Set image capture interval</div>
@@ -33,26 +33,10 @@ const SettingsCards = () => {
         </div>
       </div>
 
-      <div className="settings-card">
-        <div className="card-content-container">
-          <div className="settings-title">Set Wi-Fi credentials</div>
-          <div className="settings-ssid-input-box">SSID</div>
-          <div className="settings-password-input-box">Password</div>
-          <button className="settings-button">Set</button>
-        </div>
-      </div>
+      <SetWifiCredentials />
 
       <CopyAccessToken />
-
-      <div className="settings-card">
-        <div className="card-content-container">
-          <div className="settings-title">Manage Account </div>
-          <div className="settings-svg-container">
-            <img src={UsersSvg} alt="Users Icon" className="settings-svg" />
-          </div>
-          <button className="settings-button">Manage Account</button>
-        </div>
-      </div>
+      <ManageAccount />
 
       <div className="settings-card">
         <div className="card-content-container">
