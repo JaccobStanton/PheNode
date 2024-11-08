@@ -72,6 +72,34 @@
   padding: 0.5rem;
 }
 
+.settings-input-box:hover {
+  border-bottom-color: var(--dark-blue); /* Set border color on focus */
+  outline: none;
+  transition: border-bottom-color 0.3s;
+}
+
+.settings-input-box:focus {
+  border-bottom-color: var(--dark-blue); /* Set border color on focus */
+  outline: none;
+}
+
+.settings-ssid-input-box::placeholder,
+.settings-password-input-box::placeholder {
+  color: var(--dark-blue);
+}
+
+.settings-ssid-input-box:focus,
+.settings-password-input-box:focus {
+  outline: none; /* Removes default focus outline */
+  border-bottom-color: var(--dark-blue); /* Change the border color on focus */
+}
+
+.settings-ssid-input-box:hover,
+.settings-password-input-box:hover {
+  border-bottom-color: var(--dark-blue); /* Set border color on focus */
+  outline: none;
+  transition: border-bottom-color 0.3s;
+}
 .settings-blue-text {
   background-color: #0000;
   border: none;
@@ -142,7 +170,7 @@
     background-color: var(--sensor-card-colors);
     border-radius: 0;
     width: 100%; /* Ensure the card fills its grid cell */
-    height: 90%;
+    height: 250px;
     box-shadow: 0 11px 19px 1px #00000038;
     display: flex;
     justify-content: center;
@@ -236,7 +264,7 @@
     background-color: var(--sensor-card-colors);
     border-radius: 0;
     width: 100%; /* Ensure the card fills its grid cell */
-    height: 90%;
+    height: 250px;
     box-shadow: 0 11px 19px 1px #00000038;
     display: flex;
     justify-content: center;
@@ -328,7 +356,7 @@
     grid-template-columns: repeat(4, 1fr); /* Four equal-width columns */
     grid-template-rows: repeat(2, 1fr); /* Two equal-height rows */
     column-gap: 2.5rem; /* Gap between columns */
-    row-gap: 2rem;
+    row-gap: 3rem;
     box-sizing: border-box;
     margin-top: 2rem;
   }
@@ -338,7 +366,7 @@
     background-color: var(--sensor-card-colors);
     border-radius: 0;
     width: 100%; /* Ensure the card fills its grid cell */
-    height: 100%;
+    height: 250px;
     box-shadow: 0 11px 19px 1px #00000038;
     display: flex;
     justify-content: center;
@@ -429,7 +457,7 @@
     grid-template-columns: repeat(4, 1fr); /* Four equal-width columns */
     grid-template-rows: repeat(2, 1fr); /* Two equal-height rows */
     column-gap: 2.5rem; /* Gap between columns */
-    row-gap: 2rem;
+    row-gap: 4rem;
     box-sizing: border-box;
     margin-top: 2rem;
   }
@@ -439,7 +467,7 @@
     background-color: var(--sensor-card-colors);
     border-radius: 0;
     width: 100%; /* Ensure the card fills its grid cell */
-    height: 100%;
+    height: 280px;
     box-shadow: 0 11px 19px 1px #00000038;
     display: flex;
     justify-content: center;
@@ -537,7 +565,7 @@
     grid-template-columns: repeat(4, 1fr); /* Four equal-width columns */
     grid-template-rows: repeat(2, 1fr); /* Two equal-height rows */
     column-gap: 6.5rem; /* Gap between columns */
-    row-gap: 2rem;
+    row-gap: 4rem;
     box-sizing: border-box;
     margin-top: 2rem;
   }
@@ -547,7 +575,7 @@
     background-color: var(--sensor-card-colors);
     border-radius: 2px;
     width: 100%; /* Ensure the card fills its grid cell */
-    height: 95%;
+    height: 400px;
     box-shadow: 0 11px 19px 1px #00000038;
     display: flex;
     justify-content: center;
@@ -671,7 +699,7 @@
     grid-template-columns: repeat(4, 1fr); /* Four equal-width columns */
     grid-template-rows: repeat(2, 1fr); /* Two equal-height rows */
     column-gap: 6.5rem; /* Gap between columns */
-    row-gap: 0;
+    row-gap: 2;
     box-sizing: border-box;
     margin-top: 2rem;
   }
@@ -681,7 +709,7 @@
     background-color: var(--sensor-card-colors);
     border-radius: 0;
     width: 100%; /* Ensure the card fills its grid cell */
-    height: 75%;
+    height: 380px;
     box-shadow: 0 11px 19px 1px #00000038;
     display: flex;
     justify-content: center;
@@ -734,7 +762,7 @@
     flex-shrink: 0;
     height: 2.5rem; /* Set a fixed height */
     flex-shrink: 0;
-    margin-top: 2rem;
+    margin-top: 1rem;
     margin-bottom: 1rem; /* Equal spacing between boxes */
     padding: 0.5rem;
   }
@@ -786,7 +814,7 @@
     height: auto; /* Maintain the aspect ratio */
   }
   .settings-reset-svg {
-    width: 85%; /* Adjust the width of the SVG */
+    width: 76%; /* Adjust the width of the SVG */
     height: auto; /* Maintain the aspect ratio */
   }
 }

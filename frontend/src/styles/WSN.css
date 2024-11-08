@@ -53,10 +53,10 @@
 
 .sensor-data-text-container {
   display: flex;
-  padding: 1rem;
+  /* padding: 1rem; */
   justify-content: space-between;
   width: 100%;
-  margin-top: -30px; /* added for sensor-data-title */
+  /* margin-top: -20px; */
 }
 
 .sensor-right-column p,
@@ -196,21 +196,22 @@
   background-color: #00143642;
   margin-bottom: 1rem;
   border-radius: 2px;
-  box-shadow: inset 1px 4px 5px #0003;
+  /* box-shadow: inset 1px 4px 5px #0003; */
 }
 .placeholder-box:hover,
 .placeholder-box-mobile:hover {
-  border-bottom: 1px solid var(--dark-blue);
+  border-bottom: 2px solid var(--dark-blue);
+  transition: border-bottom-color 0.3s;
 }
 .placeholder-box:focus,
 .placeholder-box-mobile:focus {
-  border-bottom: 1px solid var(--dark-blue); /* Blue bottom border when focused */
+  border-bottom: 2px solid var(--dark-blue); /* Blue bottom border when focused */
   outline: none; /* Remove default outline */
 }
 
 .placeholder-box::placeholder,
 .placeholder-box-mobile::placeholder {
-  color: var(--blue); /* Red placeholder text */
+  color: var(--blue);
 }
 
 .rename-button {
@@ -723,7 +724,7 @@
     padding-right: 1.5rem; /* added for sensor-data-title */
   }
   .sensor-data-title-container {
-    height: 5%;
+    height: 40px;
     padding-left: 1rem;
     padding-right: 1rem;
     margin-top: 10px;
@@ -736,6 +737,7 @@
   .sensor-data-text-container {
     display: flex;
     padding: 1rem;
+    margin-top: -15px;
     justify-content: space-between;
     width: 100%;
   }
@@ -875,7 +877,7 @@
     border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
     color: var(--blue);
     background-color: #00143642;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
     border-radius: 2px;
     box-shadow: inset 1px 4px 5px #0003;
   }
@@ -929,7 +931,7 @@
     padding-right: 1rem; /* added for sensor-data-title */
   }
   .sensor-data-title-container {
-    height: 5%;
+    height: 40px;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     margin-top: 10px;
@@ -940,7 +942,10 @@
   }
   .sensor-data-text-container {
     display: flex;
-    padding: 0.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin-top: -10px;
+    /* padding-bottom: 1.5rem; */
     justify-content: space-between;
     width: 100%;
   }
@@ -1023,6 +1028,7 @@
     justify-content: center; /* Center the content vertically */
     text-align: center; /* Ensure text is centered */
     padding: 1rem;
+    height: 100%;
   }
 
   .sensor-gps-text {
@@ -1041,7 +1047,7 @@
     display: flex;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-    padding-bottom: 1.5rem;
+    /* padding-bottom: 1.5rem; */
     justify-content: space-between;
     width: 100%;
     flex-direction: column;
@@ -1087,7 +1093,7 @@
     border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
     color: var(--blue);
     background-color: #00143642;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
     border-radius: 2px;
     box-shadow: inset 1px 4px 5px #0003;
   }
@@ -1104,7 +1110,6 @@
     cursor: pointer;
     text-align: center;
     height: 2rem;
-    margin-top: 0.5rem;
   }
 }
 
@@ -1144,7 +1149,7 @@
   }
 
   .sensor-data-title-container {
-    height: 5%;
+    height: 40px;
     padding-left: 1.2rem;
     padding-right: 1.2rem;
     margin-top: 15px;
@@ -1299,14 +1304,15 @@
 
   .placeholder-box {
     width: 70%;
-    height: 3rem;
+    height: 2.5rem;
     font-size: 1rem;
     border-style: none none solid;
     border-width: 1px 1px 2px;
     border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
     color: var(--blue);
     background-color: #00143642;
-    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     border-radius: 2px;
     box-shadow: inset 1px 4px 5px #0003;
     text-align: center;
@@ -1323,7 +1329,7 @@
     color: var(--green);
     cursor: pointer;
     text-align: center;
-    height: 3rem;
+    height: 2.5rem;
     margin-top: 0.5rem;
   }
 
@@ -1374,10 +1380,10 @@
   }
 
   .sensor-data-title-container {
-    height: 5%;
+    height: 40px;
     padding-left: 2rem;
     padding-right: 2rem;
-    margin-top: 30px;
+    margin-top: 25px;
   }
   .sensor-data-title {
     font-size: 1.5rem;
@@ -1514,7 +1520,7 @@
 
   .rename-title {
     font-size: 1.4rem;
-    margin-bottom: 0.1rem;
+    margin-bottom: 1rem;
     color: var(--green);
     font-weight: 500;
   }
@@ -1535,7 +1541,7 @@
     border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
     color: var(--blue);
     background-color: #00143642;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     border-radius: 2px;
     box-shadow: inset 1px 4px 5px #0003;
   }

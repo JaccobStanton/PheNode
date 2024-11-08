@@ -73,7 +73,7 @@
 }
 .preferences-dropdown:hover {
   border-color: var(--green);
-  box-shadow: 0 0 7px -5px var(--green);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
   color: var(--green);
   text-shadow: 0 1px 5px #007bff;
 }
@@ -94,19 +94,22 @@
   box-sizing: border-box;
   text-align: center;
   border-style: none none solid;
-  border-width: 1px 1px 2px;
+  border-width: 0px 0px 2px; /* Consistent 2px bottom border */
   border-color: var(--dark-blue) var(--dark-blue) var(--reflected-light);
   color: var(--blue);
   background-color: #00143642;
   box-shadow: inset 1px 4px 5px #0003;
 }
 
-.preferences-input:hover {
-  border-bottom: 1px solid var(--dark-blue);
-}
+.preferences-input:hover,
 .preferences-input:focus {
-  border-bottom: 1px solid var(--dark-blue); /* Blue bottom border when focused */
-  outline: none; /* Remove default outline */
+  outline: none;
+  box-shadow: inset 1px 4px 5px #0003, 0 2px 0 var(--dark-blue); /* Add a subtle shadow */
+  transition: box-shadow 0.3s; /* Smooth transition */
+}
+
+.preferences-input::placeholder {
+  color: var(--dark-blue);
 }
 
 .preferences-button-row {

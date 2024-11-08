@@ -103,10 +103,11 @@
   text-align: center;
 }
 .start-end-box:hover {
-  border-bottom: 1px solid var(--dark-blue);
+  border-bottom: 2px solid var(--dark-blue);
+  transition: border-bottom-color 0.3s;
 }
 .start-end-box:focus {
-  border-bottom: 1px solid var(--dark-blue); /* Blue bottom border when focused */
+  border-bottom: 2px solid var(--dark-blue); /* Blue bottom border when focused */
   outline: none; /* Remove default outline */
 }
 
@@ -234,7 +235,7 @@
 
   .download-button {
     width: 28%; /* Equal width for the button */
-    padding: 0.7rem;
+    padding: 0.77rem;
     font-size: 0.65rem;
     background-color: transparent; /* Transparent button background */
     border: 1px solid var(--blue); /* Orange border for the button */
@@ -352,7 +353,7 @@
 
   .download-button {
     width: 28%; /* Equal width for the button */
-    padding: 0.7rem;
+    padding: 0.8rem;
     font-size: 0.65rem;
     background-color: transparent; /* Transparent button background */
     border: 1px solid var(--blue); /* Orange border for the button */
@@ -474,7 +475,7 @@
     margin-top: 0.05rem;
   }
   .start-end-box {
-    width: 28%; /* Equal width for each text box */
+    width: 26%; /* Equal width for each text box */
     padding: 0.8rem; /* Padding inside the text box */
     border-style: none none solid;
     border-width: 1px 1px 2px;
@@ -604,7 +605,7 @@
     margin-top: 0.05rem;
   }
   .start-end-box {
-    width: 28%; /* Equal width for each text box */
+    width: 26%; /* Equal width for each text box */
     padding: 0.8rem; /* Padding inside the text box */
     border-style: none none solid;
     border-width: 1px 1px 2px;
@@ -736,7 +737,7 @@
     margin-top: 0.5rem;
   }
   .start-end-box {
-    width: 28%; /* Equal width for each text box */
+    width: 26%; /* Equal width for each text box */
     padding: 1.5rem; /* Padding inside the text box */
     border-style: none none solid;
     border-width: 1px 1px 2px;
@@ -751,7 +752,7 @@
 
   .download-button {
     width: 28%; /* Equal width for the button */
-    padding: 1.5rem;
+    padding: 1.45rem;
     font-size: 1rem;
     background-color: transparent; /* Transparent button background */
     border: 1px solid var(--blue); /* Orange border for the button */
@@ -868,7 +869,7 @@
     margin-top: 0.5rem;
   }
   .start-end-box {
-    width: 28%; /* Equal width for each text box */
+    width: 26%; /* Equal width for each text box */
     padding: 1.5rem; /* Padding inside the text box */
     border-style: none none solid;
     border-width: 1px 1px 2px;
@@ -883,7 +884,7 @@
 
   .download-button {
     width: 28%; /* Equal width for the button */
-    padding: 1.5rem;
+    padding: 1.45rem;
     font-size: 1.1rem;
     background-color: transparent; /* Transparent button background */
     border: 1px solid var(--blue); /* Orange border for the button */
