@@ -19,7 +19,7 @@ function DownloadPreferences() {
         <div className="preferences-column-one">
           <div className="preferences-box">
             <div className="download-preferences-text">
-              In the case of zeros...
+              In the case of error values...
             </div>
             <select
               className="preferences-dropdown"
@@ -89,7 +89,7 @@ function DownloadPreferences() {
         <div className="preferences-column-three">
           <div className="preferences-box">
             <div className="download-preferences-text">
-              In the case of zeros...
+              In the case of blank cells...
             </div>
             <select
               className="preferences-dropdown"
