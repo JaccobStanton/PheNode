@@ -14,12 +14,13 @@ function DownloadTitle() {
     <>
       <div className="grid-item page-title">Download Data</div>
       <div className="grid-item cell-wifi-last-measurements">
-        <div className="download-data-preferences-box" onClick={handleNavigate}>
+        <div className="download-data-preferences-box">
           <span className="preferences-text">To Data Download Preferences</span>
           <div
             className="data-preference-svg-container"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            onClick={handleNavigate}
           >
             <img
               src={isHovered ? DataPreferenceActive : DataPreferenceInactive}
