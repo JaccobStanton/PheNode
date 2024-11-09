@@ -3,29 +3,35 @@ import { useKeycloak } from "@react-keycloak/web";
 import { WIRELESS_DASHBOARD_ID } from "../../../../services/api";
 import { useAppContext } from "../../../../context/AppContext";
 import { useMySensors } from "../../../../services/swrHooks";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import Alert from "@mui/material/Alert";
 
 function WSNGrafana() {
   const { keycloak, initialized } = useKeycloak();
   const { selectedWirelessSensor } = useAppContext();
 
-  // Pass the keycloak token to useMySensors
-  const { sensorsData, sensorsLoading, sensorsError } = useMySensors(
-    keycloak.token
-  );
+  // Fetch sensors data
+  const { sensorsData, sensorsLoading, sensorsError } = useMySensors();
 
   const [sensors, setSensors] = useState([]);
+  const [url, setUrl] = useState(""); // State to store the dynamic Grafana URL
 
+  // Update the sensors list based on selectedWirelessSensor
   useEffect(() => {
+    console.log("selectedWirelessSensor:", selectedWirelessSensor);
     if (sensorsData) {
       let allSensors = sensorsData.sensors || [];
 
-      // If a sensor is selected, move it to the beginning of the list
-      if (selectedWirelessSensor) {
+      // Place the selected sensor at the beginning of the list
+      if (selectedWirelessSensor && selectedWirelessSensor.externalSensorId) {
         allSensors = allSensors.filter(
-          (sensor) => sensor.externalSensorId !== selectedWirelessSensor
+          (sensor) =>
+            sensor.externalSensorId !== selectedWirelessSensor.externalSensorId
         );
         const selectedSensor = sensorsData.sensors.find(
-          (sensor) => sensor.externalSensorId === selectedWirelessSensor
+          (sensor) =>
+            sensor.externalSensorId === selectedWirelessSensor.externalSensorId
         );
         if (selectedSensor) {
           allSensors.unshift(selectedSensor);
@@ -33,51 +39,82 @@ function WSNGrafana() {
       }
 
       setSensors(allSensors);
+      console.log("Updated sensors:", allSensors);
     }
+
     if (sensorsError) {
       console.error("Error fetching sensors data:", sensorsError);
     }
-  }, [sensorsData, selectedWirelessSensor, sensorsError]);
+  }, [sensorsData, selectedWirelessSensor]);
+
+  // Update the Grafana URL whenever sensors or keycloak.token change
+  useEffect(() => {
+    if (keycloak.token) {
+      const sensorsUrl =
+        sensors.length > 0
+          ? "&var-sensor=" +
+            sensors
+              .map((sensor) => sensor.externalSensorId)
+              .join("&var-sensor=")
+          : "&var-sensor=";
+
+      // Construct the new Grafana URL with updated sensor parameters
+      const newUrl = `https://grafana.phenode.cloud/${WIRELESS_DASHBOARD_ID}?orgId=1&kiosk=tv&auth_token=${keycloak.token}&refresh=30m&from=now-6h&to=now${sensorsUrl}`;
+
+      setUrl(newUrl);
+      console.log("Updated Grafana URL:", newUrl);
+    }
+  }, [sensors, keycloak.token]);
 
   if (!initialized || !keycloak.authenticated) {
     console.log("Keycloak is not initialized or authenticated.");
-    return <div>Loading...</div>;
+    return <div>Loading authentication...</div>;
   }
 
-  if (keycloak) {
-    const sensorsUrl = sensors
-      ? "&var-sensor=" +
-        sensors.map((sensor) => sensor.externalSensorId).join("&var-sensor=")
-      : "&var-sensor=";
-
-    const url = `https://grafana.phenode.cloud/${WIRELESS_DASHBOARD_ID}?orgId=1&kiosk=tv&auth_token=${keycloak.token}&refresh=30m&from=now-6h&to=now${sensorsUrl}`;
-
-    if (keycloak.authenticated) {
-      return (
-        <iframe
-          className="sensor-grafana-box"
-          title="grafana iframe"
-          src={url}
-          width="100%"
-          height="100%"
-        ></iframe>
-      );
-    } else {
-      console.log("Keycloak is not authenticated.");
-      return (
-        <div className="sensor-grafana-box" style={{ marginTop: "100px" }}>
-          Unable to authenticate!
-        </div>
-      );
-    }
-  } else {
-    console.log("Keycloak is not initialized.");
+  // Display loading state if sensors data is loading
+  if (sensorsLoading) {
     return (
-      <div className="sensor-grafana-box" style={{ marginTop: "100px" }}>
-        Initializing Keycloak...
-      </div>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <CircularProgress />
+      </Box>
     );
   }
+
+  // Display error messages if any error occurs while fetching sensors data
+  if (sensorsError) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          height: "100vh",
+          padding: "2rem",
+        }}
+      >
+        <Alert severity="error">
+          Error loading sensors data: {sensorsError.message || "Unknown error"}
+        </Alert>
+      </Box>
+    );
+  }
+
+  // Now render the iframe with the updated URL
+  return (
+    <iframe
+      className="sensor-grafana-box"
+      title="grafana iframe"
+      src={url}
+      style={{ width: "100%", height: "100%" }}
+    ></iframe>
+  );
 }
 
 export default WSNGrafana;
