@@ -112,32 +112,33 @@ export const fetchAllDeviceImages = async (id, body) => {
     throw new Error("Invalid response format");
   }
 };
-//-------------
 //
 //
-export const fetchSpecificDeviceImages = async (id, from, to, body) => {
+//-------------function used to see how many wireless sensors are associated with a phenode device
+export const fetchConnectedSensors = async (deviceId) => {
   const response = await fetch(
-    `${API_URL}/devices/${id}/images/download/${from}/${to}`,
+    `${API_URL}/devices/check-wireless-sensors/${deviceId}`,
     {
-      method: "PUT", //!is this wrong?
-      headers: await fetcherWithToken(),
-      body: JSON.stringify(body),
+      method: "GET",
+      headers: await fetcherWithToken(), // Fetch headers including the token
     }
   );
 
-  // Check if response is JSON, otherwise handle the error
+  // Check if the response was successful
   if (!response.ok) {
-    console.error("Error fetching images:", response.statusText);
-    throw new Error(`Failed to fetch images: ${response.statusText}`);
+    console.error("Error fetching connected sensors:", response.statusText);
+    throw new Error(
+      `Failed to fetch connected sensors: ${response.statusText}`
+    );
   }
 
+  // Verify that the response is in JSON format
   const contentType = response.headers.get("content-type");
   if (contentType && contentType.includes("application/json")) {
-    return response.json(); // Parse JSON response
+    const data = await response.json();
+    return data[deviceId] || []; // Return sensor array for the specific device
   } else {
-    console.error(
-      "Expected JSON response, but received HTML or another format"
-    );
+    console.error("Expected JSON response, but received another format");
     throw new Error("Invalid response format");
   }
 };
@@ -235,8 +236,6 @@ export const resetDevice = async (id, body) => {
 };
 
 export const updateSensor = async (id, userToken, body) => {
-  console.log("Updating sensor with body: ", body);
-  console.log("Sensor id: ", id);
   const response = await fetch(`${API_URL}/wireless-sensors/${id}`, {
     method: "PUT",
     headers: {
@@ -254,3 +253,5 @@ export const updateSensor = async (id, userToken, body) => {
 
   return response.json();
 };
+//
+//
