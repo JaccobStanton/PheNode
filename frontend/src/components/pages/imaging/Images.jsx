@@ -330,7 +330,7 @@ function Images() {
             <img
               src={`data:image/jpeg;base64,${modalImage?.base64encoded}`}
               alt={modalImage?.filename}
-              style={{ maxWidth: "50%", maxHeight: "50%" }}
+              style={{ maxWidth: "70%", maxHeight: "70%" }}
             />
           ) : null}
         </Box>
