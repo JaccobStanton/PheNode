@@ -1,6 +1,7 @@
 // This file leverages the SWR (Stale-While-Revalidate) library, which is a popular React hook library for
 // data fetching. It provides built-in support for caching, revalidation, refetching, and more.
 // This is useful for creating performant and efficient data fetching logic in React applications
+import React, { useState, useEffect } from "react";
 import useSWR from "swr";
 import { API_URL } from "./api";
 import { useKeycloak } from "@react-keycloak/web";
@@ -13,8 +14,50 @@ import { updateSensor } from "./api";
 // Calls the backend API with the appropriate URL and the token for authorization.
 // Uses SWR’s built-in caching and revalidation features. For instance, refreshInterval is set in the hooks, which means the data is re-fetched at the specified intervals (e.g., 30,000 ms or 60,000 ms).
 // Returns an Object: Each hook returns an object containing data, loading states, and errors, making it easier to handle these states in components.
+
 /**
- * Fetch all devices from DB via API.
+ * Fetch a //!specific
+ * device from DB via API.
+ * Data is revalidated every 30 seconds.
+ *
+ * @param deviceId
+ * @returns object
+ */
+export function useDevice(deviceId) {
+  const { keycloak } = useKeycloak();
+
+  const fetcher = (url) => {
+    if (!keycloak.authenticated) {
+      throw new Error("User is not authenticated");
+    }
+
+    const token = keycloak.token;
+
+    return fetcherWithToken(url, "GET", null, token);
+  };
+
+  const shouldFetch = keycloak.authenticated && deviceId;
+
+  const { data, error, mutate } = useSWR(
+    shouldFetch ? `${API_URL}/devices/${deviceId}` : null,
+    fetcher,
+    {
+      refreshInterval: 30000,
+      revalidateOnFocus: true,
+    }
+  );
+
+  return {
+    deviceData: data,
+    deviceLoading: !error && !data,
+    deviceError: error,
+    mutate,
+  };
+}
+
+/**
+ * Fetch //!all
+ * devices from DB via API.
  * Data is revalidated every 30 seconds.
  *
  * @param userToken
@@ -206,5 +249,50 @@ export function useWirelessSensor(sensorId) {
     sensorError: error,
     mutate,
     updateSensorLabel, // Expose the update function
+  };
+}
+
+/**
+ * Fetch the count of connected sensors for a specific device.
+ * Data is revalidated every 30 seconds.
+ *
+ * @param deviceId
+ * @returns object containing sensor count, loading state, and error
+ */
+export function useConnectedSensorCount(deviceId) {
+  const { keycloak } = useKeycloak();
+  const [lastSensorCount, setLastSensorCount] = useState(null);
+
+  const fetcher = (url) => {
+    if (!keycloak.authenticated) {
+      throw new Error("User is not authenticated");
+    }
+
+    const token = keycloak.token;
+    return fetcherWithToken(url, "GET", null, token);
+  };
+
+  const shouldFetch = keycloak.authenticated && deviceId;
+
+  const { data, error, mutate } = useSWR(
+    shouldFetch
+      ? `${API_URL}/wireless-sensors/check-wireless-sensors/${deviceId}`
+      : null,
+    fetcher,
+    { refreshInterval: 30000, revalidateOnFocus: true }
+  );
+
+  // Update `lastSensorCount` only when new data is available
+  useEffect(() => {
+    if (data && data[deviceId]) {
+      setLastSensorCount(data[deviceId].length);
+    }
+  }, [data, deviceId]);
+
+  return {
+    sensorCount: lastSensorCount,
+    sensorCountLoading: !error && !data,
+    sensorCountError: error,
+    mutate,
   };
 }
