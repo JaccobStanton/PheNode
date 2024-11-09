@@ -276,7 +276,7 @@ export function useConnectedSensorCount(deviceId) {
 
   const { data, error, mutate } = useSWR(
     shouldFetch
-      ? `${API_URL}/wireless-sensors/check-wireless-sensors/${deviceId}`
+      ? `${API_URL}/devices/check-wireless-sensors/${deviceId}`
       : null,
     fetcher,
     { refreshInterval: 30000, revalidateOnFocus: true }
