@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../../context/AppContext"; // Import useAppContext
 import { convertToDMS } from "../../../utils/coordinateUtils";
+import { useConnectedSensorCount } from "../../../services/swrHooks";
 import "../../../styles/Realtime.css";
 import PheNodeDiagram from "../../../assets/diagrams/Phenode-Diagram.svg";
 import SensorSvg from "../../../assets/diagrams/Wireless-Sensors.svg";
@@ -18,6 +19,13 @@ function PheNode() {
   const handleNavigate = () => {
     navigate("/imaging");
   };
+
+  // Fetch the sensor count using the deviceId of the selected device
+  const {
+    sensorCount,
+    loading: sensorLoading,
+    error: sensorError,
+  } = useConnectedSensorCount(selectedDevice?.deviceId);
 
   // Automatically select the first device if none is selected (fallback logic)
   useEffect(() => {
@@ -48,7 +56,15 @@ function PheNode() {
         <div className="wireless-sensor-count-box">
           <div className="top-box">
             <div className="top-box-content">
-              <span className="sensor-count">{connectedSensors ?? "N/A"}</span>
+              {sensorLoading ? (
+                <span>Loading sensors...</span>
+              ) : sensorError ? (
+                <span>Error loading sensors</span>
+              ) : (
+                <span className="sensor-count">
+                  {sensorCount !== null ? sensorCount : ""}
+                </span>
+              )}
               <span className="sensor-text">Wireless Sensors connected</span>
             </div>
           </div>
