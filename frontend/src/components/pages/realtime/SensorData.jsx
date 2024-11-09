@@ -125,7 +125,7 @@ function SensorData() {
 
               <p>
                 {soilSensors && soilSensors[0]?.electricalConductivity
-                  ? `${soilSensors[0].electricalConductivity} ds/m`
+                  ? `${soilSensors[0].electricalConductivity} dS/m`
                   : "N/A"}
               </p>
               <p
