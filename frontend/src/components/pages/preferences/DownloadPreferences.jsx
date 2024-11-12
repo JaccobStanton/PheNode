@@ -60,7 +60,8 @@ function DownloadPreferences() {
               className="preferences-dropdown"
               onChange={(e) => handleDropdownChange(e, setShowCustomInput2)}
             >
-              <option>Leave zero</option>
+              <option>Replace with zero</option>
+              <option>Leave error</option>
               <option>Delete and leave cell blank</option>
               <option>Impute with mean substitution</option>
               <option>Flag with custom value</option>
@@ -95,7 +96,7 @@ function DownloadPreferences() {
               className="preferences-dropdown"
               onChange={(e) => handleDropdownChange(e, setShowCustomInput3)}
             >
-              <option>Leave zero</option>
+              <option>Replace with zero</option>
               <option>Delete and leave cell blank</option>
               <option>Impute with mean substitution</option>
               <option>Flag with custom value</option>
