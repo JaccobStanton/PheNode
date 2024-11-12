@@ -82,6 +82,35 @@ function SoilBox({ soilSensors }) {
           <p>
             {selectedSoilSensor?.soilTemperature !== undefined &&
             selectedSoilSensor.soilTemperature !== null
+              ? `${Math.max(
+                  convertCelsiusToFahrenheit(
+                    selectedSoilSensor.soilTemperature
+                  ),
+                  0
+                ).toFixed(2)} °F`
+              : "N/A"}
+          </p>
+          <p>
+            {selectedSoilSensor?.soilMoisture !== undefined &&
+            selectedSoilSensor.soilMoisture !== null
+              ? `${Math.max(selectedSoilSensor.soilMoisture, 0).toFixed(2)} %`
+              : "N/A"}
+          </p>
+          <p>
+            {selectedSoilSensor?.electricalConductivity !== undefined &&
+            selectedSoilSensor.electricalConductivity !== null
+              ? `${Math.max(
+                  selectedSoilSensor.electricalConductivity,
+                  0
+                ).toFixed()} ds/m`
+              : "N/A"}
+          </p>
+        </div>
+        {/* //! code below does not make negative values automatically into a 0 */}
+        {/* <div className="sensor-right-column">
+          <p>
+            {selectedSoilSensor?.soilTemperature !== undefined &&
+            selectedSoilSensor.soilTemperature !== null
               ? `${convertCelsiusToFahrenheit(
                   selectedSoilSensor.soilTemperature
                 ).toFixed(2)} °F`
@@ -99,7 +128,7 @@ function SoilBox({ soilSensors }) {
               ? `${selectedSoilSensor.electricalConductivity.toFixed()} ds/m`
               : "N/A"}
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

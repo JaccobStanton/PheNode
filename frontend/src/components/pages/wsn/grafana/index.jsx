@@ -19,7 +19,6 @@ function WSNGrafana() {
 
   // Update the sensors list based on selectedWirelessSensor
   useEffect(() => {
-    console.log("selectedWirelessSensor:", selectedWirelessSensor);
     if (sensorsData) {
       let allSensors = sensorsData.sensors || [];
 
@@ -39,7 +38,6 @@ function WSNGrafana() {
       }
 
       setSensors(allSensors);
-      console.log("Updated sensors:", allSensors);
     }
 
     if (sensorsError) {
@@ -62,7 +60,6 @@ function WSNGrafana() {
       const newUrl = `https://grafana.phenode.cloud/${WIRELESS_DASHBOARD_ID}?orgId=1&kiosk=tv&auth_token=${keycloak.token}&refresh=30m&from=now-6h&to=now${sensorsUrl}`;
 
       setUrl(newUrl);
-      console.log("Updated Grafana URL:", newUrl);
     }
   }, [sensors, keycloak.token]);
 

@@ -5,10 +5,10 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function SetWifiCredentials() {
-  const { selectedDevice } = useAppContext(); // Get selected device from context
+  const { selectedDevice } = useAppContext();
   const [ssid, setSsid] = useState("");
   const [password, setPassword] = useState("");
-  const [isUpdating, setIsUpdating] = useState(false); // Track the update state
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const onClickSetWifiCredentials = async () => {
     if (!selectedDevice) {
@@ -16,17 +16,17 @@ function SetWifiCredentials() {
       return;
     }
 
-    setIsUpdating(true); // Start updating
+    setIsUpdating(true);
 
-    const body = { wifi_ssid: ssid, wifi_password: password };
+    const wifiBody = { ssid, password }; // Updated to match backend expectations
 
     try {
-      const response = await setDeviceWifiCredentials(
+      const result = await setDeviceWifiCredentials(
         selectedDevice.deviceId,
-        body
+        wifiBody
       );
 
-      if (response.ok) {
+      if (result) {
         toast.success(
           "Wi-Fi credentials set successfully. The device will restart shortly."
         );
@@ -37,7 +37,7 @@ function SetWifiCredentials() {
       console.error("Error setting Wi-Fi credentials:", error);
       toast.error("An error occurred while setting Wi-Fi credentials.");
     } finally {
-      setIsUpdating(false); // Stop updating
+      setIsUpdating(false);
     }
   };
 
@@ -62,7 +62,7 @@ function SetWifiCredentials() {
         <button
           className="settings-button"
           onClick={onClickSetWifiCredentials}
-          disabled={isUpdating} // Disable button while updating
+          disabled={isUpdating}
         >
           {isUpdating ? "Setting..." : "Set"}
         </button>

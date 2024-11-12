@@ -18,6 +18,8 @@ export default function RealtimeGrafana() {
 
   const [deviceName, setDeviceName] = useState("PheNode");
   const [sensors, setSensors] = useState([]);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [url, setUrl] = useState("");
 
   // Update deviceName when deviceData changes
   useEffect(() => {
@@ -37,24 +39,24 @@ export default function RealtimeGrafana() {
     }
   }, [sensorsData]);
 
+  // Update the Grafana URL whenever deviceName or sensors change
+  useEffect(() => {
+    // Build the sensors URL parameter
+    const sensorsUrl =
+      sensors.length > 0
+        ? "&var-sensor=" +
+          sensors.map((sensor) => sensor.externalSensorId).join("&var-sensor=")
+        : "&var-sensor=";
+
+    // Construct the Grafana URL with the updated deviceName
+    const newUrl = `https://grafana.phenode.cloud/${DASHBOARD_ID}?orgId=1&kiosk=tv&auth_token=${keycloak.token}&refresh=30m&from=now-6h&to=now&var-device=${deviceName}${sensorsUrl}`;
+
+    setUrl(newUrl);
+    setIframeLoaded(false); // Reset iframe load state
+  }, [deviceName, sensors, keycloak.token]);
+
   if (!initialized || !keycloak.authenticated) {
     return <div>Loading authentication...</div>;
-  }
-
-  // Display loading state if either device or sensors data is loading
-  if (deviceLoading || sensorsLoading) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-      >
-        <CircularProgress />
-      </Box>
-    );
   }
 
   // Display error messages if any error occurs while fetching device or sensors data
@@ -84,22 +86,20 @@ export default function RealtimeGrafana() {
     );
   }
 
-  // Build the sensors URL parameter
-  const sensorsUrl =
-    sensors.length > 0
-      ? "&var-sensor=" +
-        sensors.map((sensor) => sensor.externalSensorId).join("&var-sensor=")
-      : "&var-sensor=";
-
-  // Construct the Grafana URL with the updated deviceName
-  const url = `https://grafana.phenode.cloud/${DASHBOARD_ID}?orgId=1&kiosk=tv&auth_token=${keycloak.token}&refresh=30m&from=now-6h&to=now&var-device=${deviceName}${sensorsUrl}`;
-
   return (
-    <iframe
-      className="phenode-grafana-box"
-      title="grafana iframe"
-      src={url}
-      style={{ width: "100%", height: "100%" }}
-    ></iframe>
+    <div className="iframe-container">
+      {!iframeLoaded && (
+        <div className="iframe-overlay">
+          <CircularProgress />
+        </div>
+      )}
+      <iframe
+        className="phenode-grafana-box"
+        title="grafana iframe"
+        src={url}
+        style={{ width: "100%", height: "100%" }}
+        onLoad={() => setIframeLoaded(true)}
+      ></iframe>
+    </div>
   );
 }

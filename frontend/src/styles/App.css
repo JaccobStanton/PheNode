@@ -73,6 +73,13 @@ html,
   overflow: visible;
   margin: auto;
 }
+
+.iframe-container {
+  position: relative;
+  width: 100%; /* Ensures full width of the container */
+  height: 80vh; /* Keeps the desired height */
+  margin-bottom: 2rem;
+}
 .phenode-grafana-box,
 .sensor-grafana-box {
   width: 100%;
@@ -89,6 +96,20 @@ html,
   height: 100%;
   margin-top: 4rem;
   /* border: 1px solid var(--dark-blue); */
+}
+
+.iframe-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  margin-top: 4rem;
 }
 
 .health-offline {

@@ -65,7 +65,7 @@ function StatsBox({ location, battery, externalSensorId }) {
           <div className="sensor-right-column">
             <p>{externalSensorId}</p>
             <p>2 available</p>
-            <p>0</p>
+            <p>{externalSensorId === "WS-b772335432f3" ? "Two" : "0"}</p>
           </div>
         </div>
       );
