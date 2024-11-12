@@ -63,7 +63,7 @@
   margin-bottom: 3px;
 }
 .download-grid-item {
-  background-color: #0000; /* Transparent background */
+  background-color: rgba(12, 35, 80, 0.259);
   border-style: solid none none;
   border-color: var(--reflected-light) var(--box-outline-blue)
     var(--box-outline-blue);
@@ -178,7 +178,7 @@
   }
 
   .download-grid-item {
-    background-color: #0000; /* Transparent background */
+    /* Transparent background */
     border: 1px solid var(--box-outline-blue);
     box-shadow: 0 8px 14px 2px #00000038;
     color: var(--gainsboro);
@@ -295,7 +295,7 @@
   }
 
   .download-grid-item {
-    background-color: #0000; /* Transparent background */
+    /* Transparent background */
     border: 1px solid var(--box-outline-blue);
     box-shadow: 0 8px 14px 2px #00000038;
     color: var(--gainsboro);

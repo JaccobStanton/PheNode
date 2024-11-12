@@ -11,7 +11,7 @@
 
 .settings-card {
   border: 1px solid var(--reflected-light);
-  background-color: var(--sensor-card-colors);
+  background-color: rgba(12, 35, 80, 0.259);
   border-radius: 0;
   width: 100%; /* Ensure the card fills its grid cell */
   height: 75%;
@@ -166,8 +166,6 @@
     margin-top: 2rem;
   }
   .settings-card {
-    border: 1px solid var(--reflected-light);
-    background-color: var(--sensor-card-colors);
     border-radius: 0;
     width: 100%; /* Ensure the card fills its grid cell */
     height: 250px;
@@ -260,8 +258,6 @@
   }
 
   .settings-card {
-    border: 1px solid var(--reflected-light);
-    background-color: var(--sensor-card-colors);
     border-radius: 0;
     width: 100%; /* Ensure the card fills its grid cell */
     height: 250px;
@@ -362,8 +358,6 @@
   }
 
   .settings-card {
-    border: 1px solid var(--reflected-light);
-    background-color: var(--sensor-card-colors);
     border-radius: 0;
     width: 100%; /* Ensure the card fills its grid cell */
     height: 250px;
@@ -463,8 +457,6 @@
   }
 
   .settings-card {
-    border: 1px solid var(--reflected-light);
-    background-color: var(--sensor-card-colors);
     border-radius: 0;
     width: 100%; /* Ensure the card fills its grid cell */
     height: 280px;
@@ -571,8 +563,6 @@
   }
 
   .settings-card {
-    border: 1px solid var(--reflected-light);
-    background-color: var(--sensor-card-colors);
     border-radius: 2px;
     width: 100%; /* Ensure the card fills its grid cell */
     height: 400px;
@@ -705,8 +695,6 @@
   }
 
   .settings-card {
-    border: 1px solid var(--reflected-light);
-    background-color: var(--sensor-card-colors);
     border-radius: 0;
     width: 100%; /* Ensure the card fills its grid cell */
     height: 380px;
