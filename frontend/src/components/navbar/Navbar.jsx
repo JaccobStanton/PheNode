@@ -7,6 +7,9 @@ import "../../styles/Navbar.css";
 
 import Logo from "../../assets/logo/Logo.svg";
 
+import { toast } from "react-toastify";
+import { userHasRole } from "../../utils/authUtils";
+
 import HomeIconInactive from "../../assets/toggle_buttons/Home_Icon_Inactive.svg";
 import RealTimeIconInactive from "../../assets/toggle_buttons/Real_Time_Icon_Inactive.svg";
 import WirelessSensorIconInactive from "../../assets/toggle_buttons/Wireless_Sensor_Inactive_Icon.svg";
@@ -21,6 +24,19 @@ import SettingsIconActive from "../../assets/toggle_buttons/Settings_Icon_Active
 
 const Navbar = () => {
   const { keycloak } = useKeycloak(); // Use useKeycloak for keycloak instance
+
+  const hasEditorRole = userHasRole(keycloak, "phenode-editor");
+
+  const handleSettingsClick = () => {
+    if (hasEditorRole) {
+      navigate("/settings");
+    } else {
+      toast.error(
+        "Permissions required to access this function. Please contact your admin."
+      );
+    }
+  };
+
   const navigate = useNavigate();
 
   // Logic for toggle buttons
@@ -140,13 +156,14 @@ const Navbar = () => {
               />
             </button>
           </Link>
-          <Link to="/settings">
+          <Link>
             <button
               className={`toggle-button ${
                 isActive("/settings") ? "active" : ""
               }`}
               onMouseEnter={() => handleMouseEnter("/settings")}
               onMouseLeave={handleMouseLeave}
+              onClick={handleSettingsClick}
             >
               <img
                 src={
