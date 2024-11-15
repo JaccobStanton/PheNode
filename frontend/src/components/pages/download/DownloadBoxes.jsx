@@ -1,24 +1,12 @@
 import React from "react";
 import EnvData from "./EnvData";
+import ImageData from "./ImageData";
 
 function DownloadBoxes() {
   return (
     <div className="download-grid-container">
       <EnvData />
-      <div className="download-grid-item">
-        <div className="title-container">
-          <span className="title-text">Download PheNode Images</span>
-        </div>
-        <div className="start-end-button-container">
-          <input
-            type="text"
-            className="start-end-box"
-            placeholder="Start Date"
-          />
-          <input type="text" className="start-end-box" placeholder="End Date" />
-          <button className="download-button">Download</button>
-        </div>
-      </div>
+      <ImageData />
       <div className="download-grid-item">
         <div className="title-container">
           <span className="title-text">Download System Diagnostics Data</span>
