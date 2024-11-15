@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../../../context/AppContext"; // Import useAppContext
+import { useAppContext } from "../../../context/AppContext";
 import { convertToDMS } from "../../../utils/coordinateUtils";
-import { useConnectedSensorCount } from "../../../services/swrHooks";
 import "../../../styles/Realtime.css";
 import PheNodeDiagram from "../../../assets/diagrams/Phenode-Diagram.svg";
-import SensorSvg from "../../../assets/diagrams/Wireless-Sensors.svg";
 import ImageInactive from "../../../assets/toggle_buttons/Imaging-Settings-Icon-Inactive.svg";
 import ImageActive from "../../../assets/toggle_buttons/Imaging_Icon_Active.svg";
+import SensorCount from "./SensorCount"; // Adjust the import path as needed
 
 function PheNode() {
   const { selectedDevice, setSelectedDevice, devices, loading, error } =
-    useAppContext(); // Updated to include loading and error
+    useAppContext();
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
@@ -20,14 +19,7 @@ function PheNode() {
     navigate("/imaging");
   };
 
-  // Fetch the sensor count using the deviceId of the selected device
-  const {
-    sensorCount,
-    loading: sensorLoading,
-    error: sensorError,
-  } = useConnectedSensorCount(selectedDevice?.deviceId);
-
-  // Automatically select the first device if none is selected (fallback logic)
+  // Automatically select the first device if none is selected
   useEffect(() => {
     if (!selectedDevice && devices.length > 0) {
       setSelectedDevice(devices[0]);
@@ -36,42 +28,24 @@ function PheNode() {
 
   // Show loading or error states if necessary
   if (loading) {
-    return <div>Loading device data...</div>; // Loading state
+    return <div>Loading device data...</div>;
   }
 
   if (error) {
-    return <div>Error loading device data: {error.message}</div>; // Error state
+    return <div>Error loading device data: {error.message}</div>;
   }
 
   if (!selectedDevice) {
-    return <div>No device selected. Please choose a device.</div>; // Fallback state if no device is selected
+    return <div>No device selected. Please choose a device.</div>;
   }
 
   // Safely destructure properties from selectedDevice
-  const { battery, gps, connectedSensors, camera } = selectedDevice || {};
+  const { battery, gps, camera } = selectedDevice || {};
 
   return (
     <>
       <div className="grid-item twenty-five-width">
-        <div className="wireless-sensor-count-box">
-          <div className="top-box">
-            <div className="top-box-content">
-              {sensorLoading ? (
-                <span>Loading sensors...</span>
-              ) : sensorError ? (
-                <span>Error loading sensors</span>
-              ) : (
-                <span className="sensor-count">
-                  {sensorCount !== null ? sensorCount : ""}
-                </span>
-              )}
-              <span className="sensor-text">Wireless Sensors connected</span>
-            </div>
-          </div>
-          <div className="bottom-box">
-            <img src={SensorSvg} alt="Sensor SVG" className="sensor-svg" />
-          </div>
-        </div>
+        <SensorCount deviceId={selectedDevice.deviceId} />
       </div>
       <div className="grid-item img-grid-container">
         <div className="phenode-svg-container">
