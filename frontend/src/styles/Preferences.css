@@ -104,16 +104,17 @@
 .preferences-input:hover {
   box-shadow: 0 0 7px -5px var(--green);
   color: var(--green);
-  text-shadow: 0 0.5px 1px var(--green);
+  /* text-shadow: 0 0.5px 1px var(--green); */
   border: 1px solid var(--green);
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
 .preferences-input:focus {
   box-shadow: 0 0 7px -5px var(--green);
   color: var(--green);
-  text-shadow: 0 0.5px 1px var(--green);
+  /* text-shadow: 0 0.5px 1px var(--green); */
   border: 1px solid var(--green);
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  outline: none;
 }
 
 .preferences-input::placeholder {

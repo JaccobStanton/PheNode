@@ -189,6 +189,9 @@
   text-shadow: 0 1px 5px #007bff;
   box-shadow: 0 8px 14px 2px #00000038;
 }
+.toggle-button:focus {
+  outline: none;
+}
 
 .toggle-buttons-container a:first-child {
   margin-left: 5; /* Makes just first toggle button has 5 margin */

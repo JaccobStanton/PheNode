@@ -46,7 +46,6 @@
   border: 0.5px solid var(--box-outline-blue); /* Adjust border color as needed */
   box-sizing: border-box;
   margin-top: 2rem;
-  box-shadow: 0 8px 14px 2px #00000038;
 }
 
 .images-row {
@@ -100,6 +99,7 @@
 
 .images-dropdown-menu .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
   border-color: var(--box-outline-blue); /* Default border color */
+  box-shadow: 0 8px 14px 2px #00000038;
 }
 /* Change border color on hover */
 .images-dropdown-menu
