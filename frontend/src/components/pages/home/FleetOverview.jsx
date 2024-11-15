@@ -1,32 +1,41 @@
-// FleetOverview.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../../styles/Home.css";
 import { useAppContext } from "../../../context/AppContext";
 import { convertCelsiusToFahrenheit } from "../../../utils/temperatureUtils";
-import Box from "@mui/material/Box";
-import CircularProgressWithLabel from "@mui/material/CircularProgress";
+import { LoadingProgress } from "../../common/LoadingProgress";
 
 function FleetOverview({ devices, devicesLoading, devicesError }) {
-  const { setSelectedDevice } = useAppContext(); // Access setSelectedDevice from context
+  const { setSelectedDevice } = useAppContext();
   const navigate = useNavigate();
   const [progress, setProgress] = useState(0);
+  const cardRefs = useRef([]);
 
-  // Show loading or error states if necessary
-  if (devicesLoading) {
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "50vh", // Full height of the viewport to center vertically
-          width: "100%", // Ensure full width
-        }}
-      >
-        <CircularProgressWithLabel value={progress} />
-      </Box>
+  useEffect(() => {
+    if (devicesLoading || !devices || devices.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const card = entry.target;
+          card.style.opacity = entry.intersectionRatio; // Adjust opacity based on visibility
+        });
+      },
+      { threshold: Array.from({ length: 11 }, (_, i) => i * 0.1) } // Smooth transitions
     );
+
+    // Observe each card
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [devices, devicesLoading]);
+
+  if (devicesLoading) {
+    return <LoadingProgress value={progress} />;
   }
 
   if (devicesError) {
@@ -37,7 +46,6 @@ function FleetOverview({ devices, devicesLoading, devicesError }) {
     return <div>No devices found.</div>;
   }
 
-  // Handle card click
   const handleCardClick = (device) => {
     setSelectedDevice(device);
     navigate("/realtime");
@@ -46,11 +54,12 @@ function FleetOverview({ devices, devicesLoading, devicesError }) {
   return (
     <div className="fleet-overview-box">
       <div className="fleet-cards-container">
-        {devices.map((item) => (
+        {devices.map((item, index) => (
           <div
-            key={item._id ? item._id : "unknown"}
+            key={item._id || index}
             className="fleet-card"
             onClick={() => handleCardClick(item)}
+            ref={(el) => (cardRefs.current[index] = el)}
           >
             <div className="fleet-card-content">
               {/* Device Label */}
