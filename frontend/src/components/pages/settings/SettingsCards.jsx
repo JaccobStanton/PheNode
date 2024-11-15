@@ -1,10 +1,10 @@
 import React from "react";
 import "../../../styles/Settings.css";
-import ResetSvg from "../../../assets/settings/Reset.svg";
 import DeviceRename from "./DeviceRename";
 import CopyAccessToken from "./AccessToken";
 import ManageAccount from "./ManageAccount";
 import SetWifiCredentials from "./SetWifiCredentials";
+import ResetPhenode from "./ResetPhenode";
 
 const SettingsCards = () => {
   return (
@@ -38,19 +38,7 @@ const SettingsCards = () => {
       <CopyAccessToken />
       <ManageAccount />
 
-      <div className="settings-card">
-        <div className="card-content-container">
-          <div className="settings-title">Remote Reset</div>
-          <div className="settings-svg-container">
-            <img
-              src={ResetSvg}
-              alt="Reset Icon"
-              className="settings-reset-svg"
-            />
-          </div>
-          <button className="settings-button">Reset PheNode</button>
-        </div>
-      </div>
+      <ResetPhenode />
     </div>
   );
 };
