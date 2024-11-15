@@ -9,20 +9,68 @@ export const KEYCLOAK_CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 export const TOKEN_EXPIRATION =
   Number(import.meta.env.VITE_APP_TOKEN_EXPIRATION) || 4 * 60;
 
-export const updateDevice = async (id, body) => {
-  const response = await fetch(`${API_URL}/devices/${id}`, {
+// export const updateDevice = async (id, body) => {
+//   const response = await fetch(`${API_URL}/devices/${id}`, {
+//     method: "PUT",
+//     headers: await fetcherWithToken(),
+//     body: JSON.stringify(body),
+//   });
+//   return handleResponse(response);
+// };
+//
+//
+////!WSN PAGE------------------------------------------------------------
+//
+//
+export const updateSensor = async (id, userToken, body) => {
+  const response = await fetch(`${API_URL}/wireless-sensors/${id}`, {
     method: "PUT",
-    headers: await fetcherWithToken(),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${userToken}`,
+    },
     body: JSON.stringify(body),
   });
-  return handleResponse(response);
+
+  // Check if the response is OK
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || "Failed to update sensor");
+  }
+
+  return response.json();
 };
-//
-//
 //
 //
 ////!IMAGING PAGE------------------------------------------------------------
 //
+//
+//
+//-----------------Fetching specific images in device database----------------------------------
+export const fetchSpecificDeviceImages = async (id, body) => {
+  const response = await fetch(`${API_URL}/${id}/images/${from}/${to}`, {
+    method: "PUT",
+    headers: await fetcherWithToken(),
+    body: JSON.stringify(body),
+  });
+
+  // Check if response is JSON, otherwise handle the error
+  if (!response.ok) {
+    console.error("Error fetching images:", response.statusText);
+    throw new Error(`Failed to fetch images: ${response.statusText}`);
+  }
+
+  const contentType = response.headers.get("content-type");
+  if (contentType && contentType.includes("application/json")) {
+    return response.json(); // Parse JSON response
+  } else {
+    console.error(
+      "Expected JSON response, but received HTML or another format"
+    );
+    throw new Error("Invalid response format");
+  }
+};
+//---------
 //
 //
 //-----------------Fetching all images in device database----------------------------------
@@ -54,33 +102,36 @@ export const fetchAllDeviceImages = async (id, body) => {
 //
 //
 //--------------------Function to Delete Images from database----------------
-export const deleteDeviceImage = async (deviceId, imageId, token) => {
-  try {
-    const response = await fetch(
-      `${API_URL}/devices/${deviceId}/images/${imageId}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+export const deleteDeviceImage = async (deviceId, filename, token) => {
+  const url = `${API_URL}/devices/${deviceId}/images/delete-by-filename/${filename}`;
 
-    if (!response.ok) {
-      throw new Error(`Failed to delete image: ${response.statusText}`);
-    }
+  const response = await fetch(url, {
+    method: "DELETE", // Ensure DELETE method is used
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-    return true; // Return success status
-  } catch (error) {
-    console.error("Error deleting image:", error);
-    throw error; // Rethrow the error so it can be caught in the component
+  // Check if response is successful
+  if (!response.ok) {
+    console.error("Error in deleteDeviceImage:", response.statusText);
+    throw new Error(`Failed to delete image: ${response.statusText}`);
+  }
+
+  // If the response is successful but not JSON, just return success
+  const contentType = response.headers.get("content-type");
+  if (contentType && contentType.includes("application/json")) {
+    return response.json(); // Parse JSON response if available
+  } else {
+    return { success: true }; // Return success for non-JSON responses
   }
 };
+
 //--------
 //
 //
 ////!DATA DOWNLOADS PAGE---------------------------------
-//
 //
 //
 //-----------------Fetching environmental data from the phenode device----------
@@ -134,6 +185,35 @@ export const fetchDeviceHealthData = async (id, from, to, body) => {
 };
 //--------
 //
+//
+//
+//---------------Fetching specific images in device database to download----------------------------------
+export const fetchSpecificDeviceImagesToDownload = async (id, body) => {
+  const response = await fetch(
+    `${API_URL}/${id}/images/download/${from}/${to}`,
+    {
+      method: "PUT",
+      headers: await fetcherWithToken(),
+      body: JSON.stringify(body),
+    }
+  );
+
+  // Check if response is JSON, otherwise handle the error
+  if (!response.ok) {
+    console.error("Error fetching images:", response.statusText);
+    throw new Error(`Failed to fetch images: ${response.statusText}`);
+  }
+
+  const contentType = response.headers.get("content-type");
+  if (contentType && contentType.includes("application/json")) {
+    return response.json(); // Parse JSON response
+  } else {
+    console.error(
+      "Expected JSON response, but received HTML or another format"
+    );
+    throw new Error("Invalid response format");
+  }
+};
 //
 //-----------------Fetching WirelessSensor Data to download at certain data-------------------
 export const fetchWirelessSensorData = async (sensorList, from, to, body) => {
@@ -327,21 +407,3 @@ export const resetDevice = async (id, body) => {
 //
 //
 //
-export const updateSensor = async (id, userToken, body) => {
-  const response = await fetch(`${API_URL}/wireless-sensors/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${userToken}`,
-    },
-    body: JSON.stringify(body),
-  });
-
-  // Check if the response is OK
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || "Failed to update sensor");
-  }
-
-  return response.json();
-};
