@@ -11,6 +11,7 @@ import Preferences from "./pages/Preferences";
 import Imaging from "./pages/Imaging";
 import NoMatch from "./components/routing/NoMatch";
 import PrivateRoute from "./components/routing/privateRoute";
+import ProtectedRoute from "./components/routing/ProtectedRoute";
 
 import BackgroundBox from "./components/layouts/Background";
 import AuthWrapper from "./components/pages/auth/AuthWrapper";
@@ -78,17 +79,17 @@ const AppContent = () => {
                 <Route
                   path="/settings"
                   element={
-                    <PrivateRoute>
+                    <ProtectedRoute requiredRole="phenode-editor">
                       <Settings />
-                    </PrivateRoute>
+                    </ProtectedRoute>
                   }
                 />
                 <Route
                   path="/preferences"
                   element={
-                    <PrivateRoute>
+                    <ProtectedRoute requiredRole="phenode-editor">
                       <Preferences />
-                    </PrivateRoute>
+                    </ProtectedRoute>
                   }
                 />
                 <Route
