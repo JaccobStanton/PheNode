@@ -79,7 +79,8 @@ export function useDevices(userToken) {
 }
 
 /**
- * Fetch all user's devices from DB via API.
+ * Fetch all //?user's
+ * devices from DB via API.
  * Data is revalidated every 30 seconds.
  *
  * @param userToken
@@ -113,15 +114,6 @@ export function useMyDevices() {
 }
 
 /**
- * Fetch a specific device from DB via API.
- * Data is revalidated every 30 seconds.
- *
- * @param userToken
- * @param deviceId
- * @returns object
- */
-
-/**
  * Fetch the specified device images from DB via API.
  * Data is revalidated every 60 seconds.
  *
@@ -141,7 +133,7 @@ export function useDeviceImages(deviceId) {
     return fetcherWithToken(url, "GET", null, token);
   };
 
-  const { data, error } = useSWR(
+  const { data, error, mutate } = useSWR(
     keycloak.authenticated && deviceId
       ? `${API_URL}/devices/${deviceId}/images`
       : null,
@@ -149,13 +141,11 @@ export function useDeviceImages(deviceId) {
     { refreshInterval: 60000, revalidateOnFocus: true }
   );
 
-  console.log("SWR data:", data); // Add this line
-  console.log("SWR error:", error); // Add this line
-
   return {
     images: data ? data.images : [],
     imagesLoading: !error && !data,
     imagesError: error,
+    mutate,
   };
 }
 
