@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
+import NoImages from "./NoImages";
+import {
+  LoadingProgress,
+  DeleteLoadingProgress,
+} from "../../common/LoadingProgress";
+
 import "../../../styles/Imaging.css";
 import { useAppContext } from "../../../context/AppContext";
 import { deleteDeviceImage } from "../../../services/api";
 import { useDeviceImages } from "../../../services/swrHooks";
 import dayjs from "dayjs"; // For date formatting
-import CircularProgressWithLabel from "@mui/material/CircularProgress";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -37,6 +42,8 @@ function Images() {
   const { selectedDevice } = useAppContext(); // Access selectedDevice from context
   const { keycloak } = useKeycloak(); // Access Keycloak for authentication
 
+  const token = keycloak.token; // Get the token here
+
   const [selectedRows, setSelectedRows] = useState([]);
   const [selectAllChecked, setSelectAllChecked] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -45,12 +52,14 @@ function Images() {
   const [modalImage, setModalImage] = useState(null);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [imageToDelete, setImageToDelete] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   // Use the deviceId if selectedDevice is available
   const deviceId = selectedDevice ? selectedDevice.deviceId : null;
 
   // Use the useDeviceImages hook
-  const { images, imagesLoading, imagesError } = useDeviceImages(deviceId);
+  const { images, imagesLoading, imagesError, mutate } =
+    useDeviceImages(deviceId);
 
   // State to hold the filtered images
   const [filteredImages, setFilteredImages] = useState([]);
@@ -82,7 +91,7 @@ function Images() {
           return imageTime.isSame(selectedDate, "day");
         });
       }
-      // **Filter out images without base64-encoded data**
+      // Filter out images without base64-encoded data
       filtered = filtered.filter(
         (item) => item.base64encoded && item.base64encoded.trim() !== ""
       );
@@ -138,7 +147,7 @@ function Images() {
     downloadImage(image);
   };
 
-  //function to download in batch as a zip file
+  // Function to download in batch as a zip file
   const handleBatchDownload = () => {
     batchDownload(selectedRows, filteredImages);
   };
@@ -154,16 +163,23 @@ function Images() {
   };
 
   const confirmDeleteImage = async () => {
+    setLoading(true);
     try {
       await deleteDeviceImage(
         selectedDevice.deviceId,
-        imageToDelete._id,
-        keycloak.token
+        imageToDelete.filename,
+        token
       );
 
-      // Revalidate SWR data after a successful deletion
+      // Remove the deleted image from the filteredImages state
+      setFilteredImages((prevImages) =>
+        prevImages.filter((img) => img._id !== imageToDelete._id)
+      );
+
+      // Optionally, revalidate SWR data after a successful deletion
       await mutate();
 
+      // Close the dialog immediately after successful deletion
       setOpenDeleteDialog(false);
 
       // Show success toast notification
@@ -172,11 +188,14 @@ function Images() {
         autoClose: 3000,
       });
     } catch (error) {
-      // Show error toast notification
+      console.error("Error deleting image:", error);
       toast.error("Failed to delete image. Please try again.", {
         position: "bottom-right",
         autoClose: 3000,
       });
+    } finally {
+      // Delay setting loading to false until after dialog has closed
+      setTimeout(() => setLoading(false), 300); // Adjust delay if necessary
     }
   };
 
@@ -189,27 +208,26 @@ function Images() {
             className="images-dropdown-menu"
             value={selectedDate}
             onChange={(newValue) => setSelectedDate(newValue)}
+            sx={{
+              boxShadow: "none", // Remove shadow
+              backgroundColor: "rgba(12, 35, 80, 0.259)",
+              marginRight: "20px",
+            }}
           />
           <TimeField
             label="Select Time..."
             className="images-dropdown-menu"
             value={selectedTime}
             onChange={(newValue) => setSelectedTime(newValue)}
+            sx={{
+              boxShadow: "none", // Remove shadow
+              backgroundColor: "rgba(12, 35, 80, 0.259)",
+              marginRight: "20px",
+            }}
           />
         </div>
       </LocalizationProvider>
-      {imagesLoading && (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "50vh", // Adjust height as needed
-          }}
-        >
-          <CircularProgressWithLabel />
-        </Box>
-      )}
+      {imagesLoading && <LoadingProgress />}
       {imagesError && <div>Error: {imagesError.message}</div>}
 
       {!imagesLoading && !imagesError && filteredImages.length > 0 && (
@@ -282,26 +300,7 @@ function Images() {
       )}
 
       {!imagesLoading && !imagesError && filteredImages.length === 0 && (
-        <Box
-          className="no-images-found"
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "50vh",
-            color: "#797979",
-            opacity: "60%",
-            fontSize: {
-              xs: "16px", // base font size
-              sm: "18px", // for small screens
-              md: "20px", // for medium screens
-              lg: "24px", // for large screens
-              xl: "28px",
-            },
-          }}
-        >
-          No Images Found
-        </Box>
+        <NoImages />
       )}
 
       {selectedRows.length > 1 && (
@@ -341,18 +340,25 @@ function Images() {
         open={openDeleteDialog}
         onClose={() => setOpenDeleteDialog(false)}
       >
-        <DialogTitle>Delete Image</DialogTitle>
+        <DialogTitle>{loading ? "Deleting Image" : "Delete Image"}</DialogTitle>
+
         <DialogContent>
-          <DialogContentText>
-            Are you sure you want to delete this image?
-          </DialogContentText>
+          {loading ? (
+            <DeleteLoadingProgress />
+          ) : (
+            <DialogContentText>
+              Are you sure you want to delete this image?
+            </DialogContentText>
+          )}
         </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenDeleteDialog(false)}>Cancel</Button>
-          <Button onClick={confirmDeleteImage} color="error">
-            Delete
-          </Button>
-        </DialogActions>
+        {!loading && (
+          <DialogActions>
+            <Button onClick={() => setOpenDeleteDialog(false)}>Cancel</Button>
+            <Button onClick={confirmDeleteImage} color="error">
+              Delete
+            </Button>
+          </DialogActions>
+        )}
       </Dialog>
     </div>
   );
