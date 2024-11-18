@@ -1,57 +1,16 @@
+// SensorBox.jsx
 import React, { useState } from "react";
-import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { useMediaQuery } from "@mui/material";
-import Tooltip from "@mui/material/Tooltip";
 import { convertCelsiusToFahrenheit } from "../../../../utils/temperatureUtils";
+import { SensorToggleButton } from "../../../common/Button";
 
 function SensorBox({ gasSensor, lux }) {
   const [selectedOption, setSelectedOption] = useState("climate");
-
-  // Check if the screen width is at least 1440px
-  const isLargeScreen = useMediaQuery("(min-width:1440px)");
 
   const handleToggleChange = (event, newOption) => {
     if (newOption !== null) {
       setSelectedOption(newOption);
     }
-  };
-
-  const renderButton = (value, label, shortLabel) => {
-    const content = (
-      <ToggleButton
-        value={value}
-        sx={{
-          fontSize: {
-            xs: "0.70rem",
-            sm: "0.45rem",
-            md: "0.45rem",
-            lg: "0.6rem",
-            xl: "0.6rem",
-            customXL: "0.85rem",
-          },
-          padding: "2px 8px",
-          color: "var(--dark-blue)",
-          borderColor: "var(--reflected-light)",
-          backgroundColor: "transparent",
-          "&.Mui-selected": {
-            backgroundColor: "rgba(18, 88, 170, 0.6)",
-            color: "var(--green)",
-          },
-          "&.Mui-selected:focus": {
-            outline: "none",
-            boxShadow: "none",
-          },
-          "&:hover": {
-            borderColor: "var(--green)",
-          },
-        }}
-      >
-        {isLargeScreen ? label : shortLabel}
-      </ToggleButton>
-    );
-
-    return isLargeScreen ? content : <Tooltip title={label}>{content}</Tooltip>;
   };
 
   return (
@@ -65,8 +24,12 @@ function SensorBox({ gasSensor, lux }) {
           size="small"
           style={{ marginLeft: "auto" }}
         >
-          {renderButton("climate", "Climate", "C")}
-          {renderButton("indicators", "Indicators", "In")}
+          <SensorToggleButton value="climate" label="Climate" shortLabel="C" />
+          <SensorToggleButton
+            value="indicators"
+            label="Indicators"
+            shortLabel="In"
+          />
         </ToggleButtonGroup>
       </div>
 

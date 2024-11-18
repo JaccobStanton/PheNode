@@ -1,56 +1,25 @@
 import React, { useState } from "react";
-import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { useMediaQuery } from "@mui/material";
-import Tooltip from "@mui/material/Tooltip";
+import { SensorToggleButton } from "../../../common/Button"; // Ensure the import path is correct
 import { convertToDMS } from "../../../../utils/coordinateUtils";
 
-function StatsBox({ location, battery, externalSensorId }) {
-  const isLargeScreen = useMediaQuery("(min-width:1440px)");
-
+function StatsBox({
+  location,
+  battery,
+  externalSensorId,
+  soilProbesConnected,
+}) {
   const [selectedOption, setSelectedOption] = useState("0");
+
+  // Calculate the number of connected soil probes
+  const soilProbesConnectedCount = soilProbesConnected
+    ? Object.values(soilProbesConnected).filter(Boolean).length
+    : 0;
 
   const handleToggleChange = (event, newOption) => {
     if (newOption !== null) {
       setSelectedOption(newOption);
     }
-  };
-
-  const renderButton = (value, label, shortLabel) => {
-    const content = (
-      <ToggleButton
-        value={value}
-        sx={{
-          fontSize: {
-            xs: "0.70rem",
-            sm: "0.45em",
-            md: "0.45rem",
-            lg: "0.6rem",
-            xl: "0.6rem",
-            customXL: "0.85rem",
-          },
-          padding: "2px 8px",
-          color: "var(--dark-blue)",
-          borderColor: "var(--reflected-light)",
-          backgroundColor: "transparent",
-          "&.Mui-selected": {
-            backgroundColor: "rgba(18, 88, 170, 0.6)",
-            color: "var(--green)",
-          },
-          "&.Mui-selected:focus": {
-            outline: "none",
-            boxShadow: "none",
-          },
-          "&:hover": {
-            borderColor: "var(--green)",
-          },
-        }}
-      >
-        {isLargeScreen ? label : shortLabel}
-      </ToggleButton>
-    );
-
-    return isLargeScreen ? content : <Tooltip title={label}>{content}</Tooltip>;
   };
 
   const renderContent = () => {
@@ -65,7 +34,7 @@ function StatsBox({ location, battery, externalSensorId }) {
           <div className="sensor-right-column">
             <p>{externalSensorId}</p>
             <p>2 available</p>
-            <p>{externalSensorId === "WS-b772335432f3" ? "Two" : "0"}</p>
+            <p>{soilProbesConnectedCount}</p>
           </div>
         </div>
       );
@@ -88,7 +57,6 @@ function StatsBox({ location, battery, externalSensorId }) {
                 ? `${(100 - battery.batteryPercent).toFixed(2)}%`
                 : "N/A"}
             </p>
-
             <p>
               {battery?.batteryVoltage !== undefined
                 ? `${battery.batteryVoltage.toFixed(2)} V`
@@ -138,9 +106,9 @@ function StatsBox({ location, battery, externalSensorId }) {
           size="small"
           style={{ marginLeft: "auto" }}
         >
-          {renderButton("0", "Connect", "Conn.")}
-          {renderButton("1", "Battery", "Bat.")}
-          {renderButton("2", "GPS", "GPS")}
+          <SensorToggleButton value="0" label="Connect" shortLabel="Conn." />
+          <SensorToggleButton value="1" label="Battery" shortLabel="Bat." />
+          <SensorToggleButton value="2" label="GPS" shortLabel="GPS" />
         </ToggleButtonGroup>
       </div>
       {renderContent()}
