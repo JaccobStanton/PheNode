@@ -37,6 +37,8 @@ function RealtimeMobile() {
     camera,
   } = selectedDevice;
 
+  const sensorCount = connectedSensors ? connectedSensors.length : 0;
+
   const handleNavigate = () => {
     navigate("/imaging");
   };
@@ -158,10 +160,13 @@ function RealtimeMobile() {
           <div className="wireless-sensor-count-box2">
             <div className="top-box2">
               <div className="top-box-content2">
-                <span className="sensor-count2">
-                  {connectedSensors ?? "N/A"}
+                <span className="sensor-count2">{sensorCount}</span>
+                <span className="sensor-text2">
+                  {" "}
+                  {sensorCount === 1
+                    ? "Wireless Sensor Connected"
+                    : "Wireless Sensors Connected"}
                 </span>
-                <span className="sensor-text2">Wireless Sensors connected</span>
               </div>
             </div>
             <div className="bottom-box-svg-container2">
