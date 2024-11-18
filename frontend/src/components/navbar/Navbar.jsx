@@ -25,18 +25,6 @@ import SettingsIconActive from "../../assets/toggle_buttons/Settings_Icon_Active
 const Navbar = () => {
   const { keycloak } = useKeycloak(); // Use useKeycloak for keycloak instance
 
-  const hasEditorRole = userHasRole(keycloak, "phenode-editor");
-
-  const handleSettingsClick = () => {
-    if (hasEditorRole) {
-      navigate("/settings");
-    } else {
-      toast.error(
-        "Permissions required to access this function. Please contact your admin."
-      );
-    }
-  };
-
   const navigate = useNavigate();
 
   // Logic for toggle buttons
@@ -156,14 +144,23 @@ const Navbar = () => {
               />
             </button>
           </Link>
-          <Link>
+          <Link
+            to="/settings"
+            onClick={(e) => {
+              if (!userHasRole(keycloak, "phenode-editor")) {
+                e.preventDefault(); // Prevent navigation
+                toast.error(
+                  "Permissions required to access this function. Please contact your admin."
+                );
+              }
+            }}
+          >
             <button
               className={`toggle-button ${
                 isActive("/settings") ? "active" : ""
               }`}
               onMouseEnter={() => handleMouseEnter("/settings")}
               onMouseLeave={handleMouseLeave}
-              onClick={handleSettingsClick}
             >
               <img
                 src={

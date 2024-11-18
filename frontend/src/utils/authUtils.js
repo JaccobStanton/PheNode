@@ -5,10 +5,12 @@ export function userHasRole(keycloak, role) {
     return false;
   }
 
-  const realmRoles = keycloak.tokenParsed.realm_access?.roles || [];
-  const clientId = keycloak.clientId || "phenode"; // Ensure clientId is set
+  // Check realm-level roles
+  const realmRoles = keycloak.tokenParsed.roles || [];
+  // Check client-specific roles under resource_access
   const clientRoles =
-    keycloak.tokenParsed.resource_access?.[clientId]?.roles || [];
+    keycloak.tokenParsed.resource_access?.["phenode"]?.roles || [];
 
+  // Match the role against both realm and client-specific roles
   return realmRoles.includes(role) || clientRoles.includes(role);
 }

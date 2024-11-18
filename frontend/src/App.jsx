@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./styles/App.css";
-import Navbar from "./components/navbar/Navbar";
 import Realtime from "./pages/Realtime";
 import WSN from "./pages/WSN";
 import Download from "./pages/Download";
@@ -10,15 +9,14 @@ import Home from "./pages/Home";
 import Preferences from "./pages/Preferences";
 import Imaging from "./pages/Imaging";
 import NoMatch from "./components/routing/NoMatch";
-import PrivateRoute from "./components/routing/privateRoute";
+import PrivateRoute from "./components/routing/PrivateRoute";
 import ProtectedRoute from "./components/routing/ProtectedRoute";
-
-import BackgroundBox from "./components/layouts/Background";
 import AuthWrapper from "./components/pages/auth/AuthWrapper";
 import { AppContextProvider } from "./context/AppContext";
 import Logout from "./components/pages/auth/Logout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LayoutWithNavbar from "./components/layouts/LayoutWithNavbar";
 
 const AppContent = () => {
   return (
@@ -26,87 +24,76 @@ const AppContent = () => {
       {/* Route for Logout - rendered without Navbar, BackgroundBox, or app-background */}
       <Route path="/logout" element={<Logout />} />
 
+      {/* Routes that include the Navbar */}
       <Route
-        path="/nomatch"
         element={
           <PrivateRoute>
-            <NoMatch />
+            <LayoutWithNavbar />
           </PrivateRoute>
         }
-      />
+      >
+        {/* Define child routes here */}
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/realtime"
+          element={
+            <PrivateRoute>
+              <Realtime />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/wsn"
+          element={
+            <PrivateRoute>
+              <WSN />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/download"
+          element={
+            <PrivateRoute>
+              <Download />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute requiredRole="phenode-editor">
+              <Settings />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/preferences"
+          element={
+            <ProtectedRoute requiredRole="phenode-editor">
+              <Preferences />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/imaging"
+          element={
+            <PrivateRoute>
+              <Imaging />
+            </PrivateRoute>
+          }
+        />
+        {/* Other routes can be added here */}
+      </Route>
 
-      {/* Routes for the rest of the application */}
-      <Route
-        path="/*"
-        element={
-          <div className="app-background">
-            <BackgroundBox>
-              <Navbar />
-
-              <Routes>
-                <Route
-                  path="/"
-                  element={
-                    <PrivateRoute>
-                      <Home />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/realtime"
-                  element={
-                    <PrivateRoute>
-                      <Realtime />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/wsn"
-                  element={
-                    <PrivateRoute>
-                      <WSN />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/download"
-                  element={
-                    <PrivateRoute>
-                      <Download />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/settings"
-                  element={
-                    <ProtectedRoute requiredRole="phenode-editor">
-                      <Settings />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/preferences"
-                  element={
-                    <ProtectedRoute requiredRole="phenode-editor">
-                      <Preferences />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route
-                  path="/imaging"
-                  element={
-                    <PrivateRoute>
-                      <Imaging />
-                    </PrivateRoute>
-                  }
-                />
-
-                {/* Add other routes as needed */}
-              </Routes>
-            </BackgroundBox>
-          </div>
-        }
-      />
+      {/* Global fallback route for 404 (NoMatch) */}
+      <Route path="*" element={<NoMatch />} />
     </Routes>
   );
 };

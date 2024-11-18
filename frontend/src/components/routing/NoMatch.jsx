@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Stack, styled, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import Button from "../common/Button";
+import { Button } from "../common/Button";
 
 const Main = styled(Stack)(() => ({
   height: "100%",

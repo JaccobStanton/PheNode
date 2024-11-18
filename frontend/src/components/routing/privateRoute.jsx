@@ -1,3 +1,5 @@
+//For Authenticated Routes: Routes that require authentication but not specific roles.
+
 import { useKeycloak } from "@react-keycloak/web";
 import { useNavigate } from "react-router-dom";
 

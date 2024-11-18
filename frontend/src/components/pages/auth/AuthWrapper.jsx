@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useKeycloak } from "@react-keycloak/web";
 import { useLocation, useNavigate } from "react-router-dom";
 import Loading from "./Loading";
-import useSessionTimeout from "../../../hooks/useSessionTimeout";
 
 const AuthWrapper = ({ children }) => {
   const { keycloak, initialized } = useKeycloak();
@@ -10,9 +9,7 @@ const AuthWrapper = ({ children }) => {
   const navigate = useNavigate();
 
   const isAuthenticated = initialized && keycloak.authenticated;
-
-  // Use the custom hook for session timeout
-  useSessionTimeout(keycloak, isAuthenticated);
+  const TOKEN_EXPIRATION = 240; // Adjust based on your app settings
 
   // Effect to reset state when the user logs out
   useEffect(() => {
@@ -37,6 +34,29 @@ const AuthWrapper = ({ children }) => {
       navigate("/");
     }
   }, [initialized, keycloak.authenticated, location.pathname, navigate]);
+
+  // Effect to handle proactive token refresh
+  useEffect(() => {
+    if (!isAuthenticated) return;
+
+    const interval = setInterval(() => {
+      keycloak
+        .updateToken(TOKEN_EXPIRATION)
+        .then((refreshed) => {
+          if (refreshed) {
+            console.log("Proactively refreshed token.");
+          } else {
+            console.log("Token is still valid, no refresh needed.");
+          }
+        })
+        .catch((err) => {
+          console.error("Failed to refresh token", err);
+          keycloak.logout();
+        });
+    }, (TOKEN_EXPIRATION - 60) * 1000); // Check a minute before expiration
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [keycloak, isAuthenticated, TOKEN_EXPIRATION]);
 
   // Show Loading component while Keycloak is initializing
   if (!initialized) {
