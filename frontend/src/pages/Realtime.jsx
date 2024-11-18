@@ -1,4 +1,3 @@
-// src/components/CustomGrid.jsx
 import React, { useState, useEffect } from "react";
 import "../styles/Realtime.css";
 import Title from "../components/pages/realtime/Title";
@@ -7,9 +6,28 @@ import SensorData from "../components/pages/realtime/SensorData";
 import PhenodeGrafana from "../components/pages/realtime/grafana/Grafana";
 import RealtimeMobile from "../components/layouts/breakpoints/mobile/991px/RealtimeMobile";
 import RealtimeMobileSmall from "../components/layouts/breakpoints/mobile/767px/RealtimeMobileSmall";
+import { useAppContext } from "../context/AppContext";
+
+//!PROVIDES DATA AS PROPS TO CHILDREN COMPONENTs, <Realtime />
 
 const Realtime = () => {
+  const { devices, setSelectedDevice } = useAppContext();
+  const [selectedDevice, setLocalSelectedDevice] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
+  // Fetch logic in parent component
+  useEffect(() => {
+    if (devices.length > 0) {
+      setLocalSelectedDevice(devices[0]); // Automatically select the first device
+      setSelectedDevice(devices[0]); // Update global context
+      setLoading(false);
+    } else {
+      setLoading(false);
+      setError(new Error("No devices available."));
+    }
+  }, [devices, setSelectedDevice]);
 
   // Update the viewport width on window resize
   useEffect(() => {
@@ -27,25 +45,24 @@ const Realtime = () => {
 
   // Conditional rendering logic based on viewport width
   const renderResponsiveComponent = () => {
-    // Render PheNode and SensorData for 991px and above (including 1280px, 1440px, 1920px, 2560px)
     if (viewportWidth >= 1280) {
       return (
         <>
           <div className="row">
-            <PheNode />
+            <PheNode
+              selectedDevice={selectedDevice}
+              loading={loading}
+              error={error}
+            />
           </div>
           <div className="row">
             <SensorData />
           </div>
         </>
       );
-    }
-    // Render RealtimeMobile for widths between 767px and 991px
-    else if (viewportWidth >= 990) {
+    } else if (viewportWidth >= 990) {
       return <RealtimeMobile />;
-    }
-    // Render RealtimeMobileSmall for widths below 767px
-    else {
+    } else {
       return <RealtimeMobileSmall />;
     }
   };

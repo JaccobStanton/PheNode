@@ -42,8 +42,15 @@ function Sensor() {
   }
 
   // Destructure sensor properties from currentSensorData
-  const { gasSensor, soilSensors, battery, lux, location, externalSensorId } =
-    currentSensorData;
+  const {
+    gasSensor,
+    soilSensors,
+    battery,
+    lux,
+    location,
+    externalSensorId,
+    soilProbesConnected,
+  } = currentSensorData;
 
   return (
     <>
@@ -53,6 +60,7 @@ function Sensor() {
           gasSensor={gasSensor}
           soilSensors={soilSensors}
           lux={lux}
+          soilProbesConnected={soilProbesConnected}
         />
       </div>
 
