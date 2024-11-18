@@ -1,32 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../../../context/AppContext";
 import { convertToDMS } from "../../../utils/coordinateUtils";
 import "../../../styles/Realtime.css";
 import PheNodeDiagram from "../../../assets/diagrams/Phenode-Diagram.svg";
 import ImageInactive from "../../../assets/toggle_buttons/Imaging-Settings-Icon-Inactive.svg";
 import ImageActive from "../../../assets/toggle_buttons/Imaging_Icon_Active.svg";
-import SensorCount from "./SensorCount"; // Adjust the import path as needed
+import SensorCount from "./count/SensorCount";
 
-function PheNode() {
-  const { selectedDevice, setSelectedDevice, devices, loading, error } =
-    useAppContext();
+//!RECEIVES DATA FROM PARENT COMPONENT, <Realtime />
+
+function PheNode({ selectedDevice, loading, error }) {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
-  // Handle navigation to imaging
   const handleNavigate = () => {
     navigate("/imaging");
   };
 
-  // Automatically select the first device if none is selected
-  useEffect(() => {
-    if (!selectedDevice && devices.length > 0) {
-      setSelectedDevice(devices[0]);
-    }
-  }, [devices, selectedDevice, setSelectedDevice]);
-
-  // Show loading or error states if necessary
   if (loading) {
     return <div>Loading device data...</div>;
   }
@@ -39,12 +29,12 @@ function PheNode() {
     return <div>No device selected. Please choose a device.</div>;
   }
 
-  // Safely destructure properties from selectedDevice
   const { battery, gps, camera } = selectedDevice || {};
 
   return (
     <>
       <div className="grid-item twenty-five-width">
+        {/* //! sensor count and soil count here */}
         <SensorCount deviceId={selectedDevice.deviceId} />
       </div>
       <div className="grid-item img-grid-container">

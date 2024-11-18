@@ -10,10 +10,9 @@ function DownloadTitle() {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
   const { keycloak } = useKeycloak();
-  const hasEditorRole = userHasRole(keycloak, "phenode-editor");
 
   const handleNavigate = () => {
-    if (hasEditorRole) {
+    if (userHasRole(keycloak, "phenode-editor")) {
       navigate("/preferences");
     } else {
       toast.error(

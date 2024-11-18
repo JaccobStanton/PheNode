@@ -6,7 +6,12 @@ import { API_URL } from "../../../services/api";
 import { toast } from "react-toastify";
 import StatsBox from "./boxes/Stats";
 
-function GPS_Rename({ location, battery, externalSensorId }) {
+function GPS_Rename({
+  location,
+  battery,
+  externalSensorId,
+  soilProbesConnected,
+}) {
   const [tempName, setTempName] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
 
@@ -62,6 +67,7 @@ function GPS_Rename({ location, battery, externalSensorId }) {
           location={location}
           battery={battery}
           externalSensorId={externalSensorId}
+          soilProbesConnected={soilProbesConnected}
         />
         {/* <div className="grid-item sensor-data-value-boxes">
           <div className="sensor-gps-coordinates-box">
