@@ -745,7 +745,7 @@
     color: var(--blue);
     background-color: #00143642;
     box-shadow: inset 1px 4px 5px #0003;
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-right: 0.5rem; /* Small space between text boxes */
     text-align: center;
   }
@@ -877,7 +877,7 @@
     color: var(--blue);
     background-color: #00143642;
     box-shadow: inset 1px 4px 5px #0003;
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin-right: 0.5rem; /* Small space between text boxes */
     text-align: center;
   }
