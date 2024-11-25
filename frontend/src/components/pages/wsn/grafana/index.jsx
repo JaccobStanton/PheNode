@@ -15,7 +15,7 @@ function WSNGrafana() {
   const { sensorsData, sensorsLoading, sensorsError } = useMySensors();
 
   const [sensors, setSensors] = useState([]);
-  const [url, setUrl] = useState(""); // State to store the dynamic Grafana URL
+  const [url, setUrl] = useState(null); // Initialize url as null
 
   // Update the sensors list based on selectedWirelessSensor
   useEffect(() => {
@@ -76,7 +76,7 @@ function WSNGrafana() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          height: "100vh",
+          height: "80vh", // Adjust height as needed
         }}
       >
         <CircularProgress />
@@ -92,7 +92,7 @@ function WSNGrafana() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          height: "100vh",
+          height: "80vh", // Adjust height as needed
           padding: "2rem",
         }}
       >
@@ -101,6 +101,11 @@ function WSNGrafana() {
         </Alert>
       </Box>
     );
+  }
+
+  // Do not render the iframe until the URL is set
+  if (!url) {
+    return null; // Or you can return a loading indicator
   }
 
   // Now render the iframe with the updated URL

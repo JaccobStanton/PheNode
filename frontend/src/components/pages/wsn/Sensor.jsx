@@ -60,7 +60,6 @@ function Sensor() {
           gasSensor={gasSensor}
           soilSensors={soilSensors}
           lux={lux}
-          soilProbesConnected={soilProbesConnected}
         />
       </div>
 
@@ -78,6 +77,7 @@ function Sensor() {
           location={location}
           battery={battery}
           externalSensorId={externalSensorId}
+          soilProbesConnected={soilProbesConnected}
         />
       </div>
     </>
