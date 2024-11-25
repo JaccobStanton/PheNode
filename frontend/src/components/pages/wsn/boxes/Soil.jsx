@@ -26,8 +26,8 @@ function SoilBox({ soilSensors }) {
           size="small"
           style={{ marginLeft: "auto" }}
         >
-          <SensorToggleButton value="0" label="Depth 1" shortLabel="D1" />
-          <SensorToggleButton value="1" label="Depth 2" shortLabel="D2" />
+          <SensorToggleButton value="0" label="Probe 1" shortLabel="P1" />
+          <SensorToggleButton value="1" label="Probe 2" shortLabel="P2" />
         </ToggleButtonGroup>
       </div>
       <div className="sensor-data-text-container">

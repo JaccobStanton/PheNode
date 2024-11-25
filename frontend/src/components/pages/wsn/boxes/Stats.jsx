@@ -12,10 +12,6 @@ function StatsBox({
   const [selectedOption, setSelectedOption] = useState("0");
 
   // Calculate the number of connected soil probes
-  const soilProbesConnectedCount = soilProbesConnected
-    ? Object.values(soilProbesConnected).filter(Boolean).length
-    : 0;
-
   const handleToggleChange = (event, newOption) => {
     if (newOption !== null) {
       setSelectedOption(newOption);
@@ -24,6 +20,22 @@ function StatsBox({
 
   const renderContent = () => {
     if (selectedOption === "0") {
+      const totalProbes = 2;
+
+      const connectedProbesCount = soilProbesConnected
+        ? Object.values(soilProbesConnected).filter(Boolean).length
+        : 0;
+
+      const availableProbesCount = totalProbes - connectedProbesCount;
+
+      let soilProbesText;
+
+      if (availableProbesCount === 0) {
+        soilProbesText = "All in use";
+      } else {
+        soilProbesText = `${availableProbesCount} available`;
+      }
+
       return (
         <div className="sensor-data-text-container">
           <div className="sensor-left-column">
@@ -33,8 +45,8 @@ function StatsBox({
           </div>
           <div className="sensor-right-column">
             <p>{externalSensorId}</p>
-            <p>2 available</p>
-            <p>{soilProbesConnectedCount}</p>
+            <p>{soilProbesText}</p>
+            <p>{connectedProbesCount}</p>
           </div>
         </div>
       );
