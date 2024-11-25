@@ -1,10 +1,10 @@
 import React from "react";
 
-function ImageData() {
+function Wireless() {
   return (
     <div className="download-grid-item">
       <div className="title-container">
-        <span className="title-text">Download PheNode Images</span>
+        <span className="title-text">Download Wireless Sensor Data</span>
       </div>
       <div className="start-end-button-container">
         <input type="text" className="start-end-box" placeholder="Start Date" />
@@ -15,4 +15,4 @@ function ImageData() {
   );
 }
 
-export default ImageData;
+export default Wireless;
