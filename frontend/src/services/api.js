@@ -46,33 +46,6 @@ export const updateSensor = async (id, userToken, body) => {
 //
 //
 //
-//-----------------Fetching specific images in device database----------------------------------
-export const fetchSpecificDeviceImages = async (id, body) => {
-  const response = await fetch(`${API_URL}/${id}/images/${from}/${to}`, {
-    method: "PUT",
-    headers: await fetcherWithToken(),
-    body: JSON.stringify(body),
-  });
-
-  // Check if response is JSON, otherwise handle the error
-  if (!response.ok) {
-    console.error("Error fetching images:", response.statusText);
-    throw new Error(`Failed to fetch images: ${response.statusText}`);
-  }
-
-  const contentType = response.headers.get("content-type");
-  if (contentType && contentType.includes("application/json")) {
-    return response.json(); // Parse JSON response
-  } else {
-    console.error(
-      "Expected JSON response, but received HTML or another format"
-    );
-    throw new Error("Invalid response format");
-  }
-};
-//---------
-//
-//
 //-----------------Fetching all images in device database----------------------------------
 export const fetchAllDeviceImages = async (id, body) => {
   const response = await fetch(`${API_URL}/devices/${id}/images/`, {
@@ -137,30 +110,37 @@ export const deleteDeviceImage = async (deviceId, filename, token) => {
 //-----------------Fetching environmental data from the phenode device----------
 export const fetchDeviceSensorData = async (
   deviceId,
-  token,
   from,
   to,
+  token,
   body = {}
 ) => {
-  const url = `${API_URL}/devices/${deviceId}/sensor-data`; // Remove dates from URL
-  console.log("Constructed URL:", url); // For debugging
+  // URL-encode the dates
+  const encodedFrom = encodeURIComponent(from);
+  const encodedTo = encodeURIComponent(to);
+
+  // Construct the URL with 'from' and 'to' in the path
+  const url = `${API_URL}/devices/${deviceId}/sensor-data/${encodedFrom}/${encodedTo}`;
 
   const response = await fetch(url, {
-    method: "POST",
+    method: "POST", // Ensure this matches your backend API method
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ ...body, from, to }), // Include dates in the body
+    body: JSON.stringify(body), // Include additional data if needed
   });
+
+  console.log("Response Status:", response.status);
 
   if (!response.ok) {
     let errorMessage = "Failed to fetch device sensor data";
     try {
       const errorData = await response.json();
       errorMessage = errorData.message || errorMessage;
+      console.error("Error response from backend:", errorData);
     } catch (error) {
-      // If response is not JSON, keep default error message
+      console.error("Error parsing response:", error);
     }
     console.error("Error:", errorMessage);
     throw new Error(errorMessage);
@@ -168,52 +148,74 @@ export const fetchDeviceSensorData = async (
 
   return await response.json();
 };
+
 //-------
 //
 //
-//-----------------Fetching Diagnostic Logs for Phenode Device-------------------
-export const fetchDeviceHealthData = async (id, from, to, body) => {
+//---------------Fetching specific images in device database to download----------------------------------
+
+// api.js
+export const fetchDeviceImagesToDownload = async (id, from, to, token) => {
+  const encodedFrom = encodeURIComponent(from);
+  const encodedTo = encodeURIComponent(to);
+
   const response = await fetch(
-    `${API_URL}/devices/${id}/health-data/${from}/${to}`,
+    `${API_URL}/devices/${id}/images/download/${encodedFrom}/${encodedTo}`,
     {
       method: "POST",
-      headers: await fetcherWithToken(),
-      body: JSON.stringify(body),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ downsample: false }),
     }
   );
-  return handleResponse(response);
-};
-//--------
-//
-//
-//
-//---------------Fetching specific images in device database to download----------------------------------
-export const fetchSpecificDeviceImagesToDownload = async (id, body) => {
-  const response = await fetch(
-    `${API_URL}/${id}/images/download/${from}/${to}`,
-    {
-      method: "PUT",
-      headers: await fetcherWithToken(),
-      body: JSON.stringify(body),
-    }
-  );
-
-  // Check if response is JSON, otherwise handle the error
-  if (!response.ok) {
-    console.error("Error fetching images:", response.statusText);
-    throw new Error(`Failed to fetch images: ${response.statusText}`);
-  }
 
   const contentType = response.headers.get("content-type");
-  if (contentType && contentType.includes("application/json")) {
-    return response.json(); // Parse JSON response
+  console.log("Content-Type:", contentType);
+
+  // Check if response is successful
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error("Error fetching images:", errorText);
+    throw new Error(`Failed to fetch images: ${errorText}`);
+  }
+
+  if (contentType && contentType.includes("application/zip")) {
+    // If the backend sends a zip file
+    const blob = await response.blob();
+    console.log("Blob size:", blob.size);
+
+    // Proceed to save the blob as a ZIP file
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "phenode_images.zip";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
   } else {
-    console.error(
-      "Expected JSON response, but received HTML or another format"
-    );
-    throw new Error("Invalid response format");
+    // The response is not a ZIP file, likely an error message
+    const errorText = await response.text();
+    console.error("Error fetching images:", errorText);
+
+    // Attempt to parse the error message from the response
+    let errorMessage = "No images found in selected timeframe.";
+    try {
+      const errorJson = JSON.parse(errorText);
+      if (errorJson && errorJson.error) {
+        errorMessage = errorJson.error;
+      }
+    } catch (e) {
+      // If response is not JSON, use the raw error text
+      errorMessage = errorText;
+    }
+
+    throw new Error(errorMessage);
   }
 };
+
 //
 //-----------------Fetching WirelessSensor Data to download at certain data-------------------
 export const fetchWirelessSensorData = async (sensorList, from, to, body) => {
@@ -230,53 +232,98 @@ export const fetchWirelessSensorData = async (sensorList, from, to, body) => {
 //---------
 //
 //
-//-----------------Fetching Phenode device Data to download at certain date-------------------
-export const fetchAllDeviceData = async (id, from, to, body) => {
-  const response = await fetch(
-    `${API_URL}/devices/${id}/all-data/${from}/${to}`,
-    {
-      method: "POST",
-      headers: await fetcherWithToken(),
-      body: JSON.stringify(body),
-    }
-  );
-  return handleResponse(response);
-};
-//----------------
 //
 //
-//
-//-------------function used to see how many wireless sensors are associated with a phenode device
-export const fetchConnectedSensors = async (deviceId) => {
-  const response = await fetch(
-    `${API_URL}/devices/check-wireless-sensors/${deviceId}`,
-    {
-      method: "GET",
-      headers: await fetcherWithToken(), // Fetch headers including the token
-    }
-  );
+//-----------------Fetching diagnostics data from the phenode device----------
+export const fetchDeviceDiagnosticData = async (
+  deviceId,
+  from,
+  to,
+  token,
+  body = {}
+) => {
+  // URL-encode the dates
+  const encodedFrom = encodeURIComponent(from);
+  const encodedTo = encodeURIComponent(to);
 
-  // Check if the response was successful
+  // Construct the URL with 'from' and 'to' in the path
+  const url = `${API_URL}/devices/${deviceId}/health-data/${encodedFrom}/${encodedTo}`;
+
+  const response = await fetch(url, {
+    method: "POST", // Ensure this matches your backend API method
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(body), // Include additional data if needed
+  });
+
+  console.log("Response Status:", response.status);
+
   if (!response.ok) {
-    console.error("Error fetching connected sensors:", response.statusText);
-    throw new Error(
-      `Failed to fetch connected sensors: ${response.statusText}`
-    );
+    let errorMessage = "Failed to fetch device sensor data";
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.message || errorMessage;
+      console.error("Error response from backend:", errorData);
+    } catch (error) {
+      console.error("Error parsing response:", error);
+    }
+    console.error("Error:", errorMessage);
+    throw new Error(errorMessage);
   }
 
-  // Verify that the response is in JSON format
-  const contentType = response.headers.get("content-type");
-  if (contentType && contentType.includes("application/json")) {
-    const data = await response.json();
-    return data[deviceId] || []; // Return sensor array for the specific device
-  } else {
-    console.error("Expected JSON response, but received another format");
-    throw new Error("Invalid response format");
-  }
+  return await response.json();
 };
-//------
+//-----------------Fetching ALL Phenode device Data to download at certain date-------------------
 //
 //
+//
+//
+//-----------------Fetching diagnostics data from the phenode device----------
+export const fetchAllDeviceData = async (
+  deviceId,
+  from,
+  to,
+  token,
+  body = {}
+) => {
+  // URL-encode the dates
+  const encodedFrom = encodeURIComponent(from);
+  const encodedTo = encodeURIComponent(to);
+
+  // Construct the URL with 'from' and 'to' in the path
+  const url = `${API_URL}/devices/${deviceId}/all-data/${encodedFrom}/${encodedTo}`;
+
+  console.log("Constructed URL:", url);
+  console.log("Token being sent:", token);
+
+  const response = await fetch(url, {
+    method: "POST", // Ensure this matches your backend API method
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(body), // Include additional data if needed
+  });
+
+  console.log("Response Status:", response.status);
+
+  if (!response.ok) {
+    let errorMessage = "Failed to fetch device data";
+    try {
+      const errorData = await response.text();
+      errorMessage = errorData || errorMessage;
+      console.error("Error response from backend:", errorData);
+    } catch (error) {
+      console.error("Error parsing response:", error);
+    }
+    console.error("Error:", errorMessage);
+    throw new Error(errorMessage);
+  }
+
+  // Return the response as a blob since it's a ZIP file
+  return await response.blob();
+};
 ////!SETTINGS PAGE-------------------------------------------------------
 //
 //
@@ -288,6 +335,8 @@ export const fetchUserPreferences = async () => {
   });
   return handleResponse(response);
 };
+//-----------
+//
 //
 //
 //---------------------Updating their Settings---------------------------
@@ -299,6 +348,8 @@ export const updateUserPreferences = async (body) => {
   });
   return handleResponse(response);
 };
+//-----------
+//
 //
 //
 //--------------------Changing Phenode Device name-----------------------
@@ -319,8 +370,6 @@ export const updateDeviceLabel = async (deviceId, newLabel, token) => {
 
   return await response.json();
 };
-//
-//
 //-----------
 //
 //
