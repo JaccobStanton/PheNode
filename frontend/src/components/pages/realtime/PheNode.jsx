@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import styles
 import { convertToDMS } from "../../../utils/coordinateUtils";
 import "../../../styles/Realtime.css";
 import PheNodeDiagram from "../../../assets/diagrams/Phenode-Diagram.svg";
@@ -13,16 +15,21 @@ function PheNode({ selectedDevice, loading, error }) {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
+  // Trigger a toast notification if there's an error
+  useEffect(() => {
+    if (error) {
+      toast.error(`Error loading device data: ${error.message}`, {
+        position: "bottom-right",
+      });
+    }
+  }, [error]);
+
   const handleNavigate = () => {
     navigate("/imaging");
   };
 
   if (loading) {
     return <div>Loading device data...</div>;
-  }
-
-  if (error) {
-    return <div>Error loading device data: {error.message}</div>;
   }
 
   if (!selectedDevice) {
@@ -33,8 +40,11 @@ function PheNode({ selectedDevice, loading, error }) {
 
   return (
     <>
+      {/* Toast container for notifications */}
+      <ToastContainer />
+
       <div className="grid-item twenty-five-width">
-        {/* //! sensor count and soil count here */}
+        {/* Sensor count and soil count */}
         <SensorCount deviceId={selectedDevice.deviceId} />
       </div>
       <div className="grid-item img-grid-container">
