@@ -236,11 +236,11 @@
   }
 
   .settings-svg {
-    width: 55%; /* Adjust the width of the SVG */
+    width: 45%; /* Adjust the width of the SVG */
     height: auto; /* Maintain the aspect ratio */
   }
   .settings-reset-svg {
-    width: 95%; /* Adjust the width of the SVG */
+    width: 80%; /* Adjust the width of the SVG */
     height: auto; /* Maintain the aspect ratio */
   }
 }
@@ -335,11 +335,11 @@
   }
 
   .settings-svg {
-    width: 55%; /* Adjust the width of the SVG */
+    width: 52%; /* Adjust the width of the SVG */
     height: auto; /* Maintain the aspect ratio */
   }
   .settings-reset-svg {
-    width: 95%; /* Adjust the width of the SVG */
+    width: 90%; /* Adjust the width of the SVG */
     height: auto; /* Maintain the aspect ratio */
   }
 }
@@ -435,11 +435,11 @@
   }
 
   .settings-svg {
-    width: 55%; /* Adjust the width of the SVG */
+    width: 52%; /* Adjust the width of the SVG */
     height: auto; /* Maintain the aspect ratio */
   }
   .settings-reset-svg {
-    width: 95%; /* Adjust the width of the SVG */
+    width: 90%; /* Adjust the width of the SVG */
     height: auto; /* Maintain the aspect ratio */
   }
 }
@@ -541,11 +541,11 @@
   }
 
   .settings-svg {
-    width: 65%; /* Adjust the width of the SVG */
+    width: 52%; /* Adjust the width of the SVG */
     height: auto; /* Maintain the aspect ratio */
   }
   .settings-reset-svg {
-    width: 100%; /* Adjust the width of the SVG */
+    width: 90%; /* Adjust the width of the SVG */
     height: auto; /* Maintain the aspect ratio */
   }
 }
