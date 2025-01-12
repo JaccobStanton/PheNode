@@ -68,6 +68,17 @@ function EnvData() {
     }
 
     const now = new Date();
+    const maxFutureDate = new Date(
+      now.getFullYear() + 1,
+      now.getMonth(),
+      now.getDate()
+    );
+
+    if (startDateObj > maxFutureDate || endDateObj > maxFutureDate) {
+      toast.error("Dates cannot be more than one year into the future.");
+      return;
+    }
+
     if (startDateObj > now || endDateObj > now) {
       toast.error("You cannot enter a date in the future.");
       return;
